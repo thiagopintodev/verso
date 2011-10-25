@@ -1,19 +1,103 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Logos Educação - Verso" %></title>
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application" %>
+    <script type="text/javascript">
+	    Cufon.replace('h1,h2,h3,caption,button,div#title,div#slider a span', { fontFamily: 'Wook Bold' });
+	    Cufon.replace('ul#siteNav > li > a, ul#pageTabs > li > a', { fontFamily: 'Wook Regular', hover: true });
+	    Cufon.replace('p.intro', { fontFamily: 'Wook Regular' });
+    </script>
+	  <!--[if IE 8]><link rel="stylesheet" type="text/css" href="/assets/style_ie8.css"><![endif]-->
+	  <!--[if IE 7]><link rel="stylesheet" type="text/css" href="/assets/style_ie7.css"><![endif]-->
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>
-  <body>
+  <body class="jsDisabled">
+  <script type="text/javascript">$('body').removeClass('jsDisabled');</script>
+  
+<div id="header" class="clearfix">
+	
+	<div class="holder clearfix">
+	
+		<div class="skipLink"><a href="#content" title="Skip to content">Skip to content</a></div>
+		
+		<div id="title"><span><a href="index.html" title="Wook" rel="home">Wook</a></span></div>
+		
+		<ul id="siteNav">
+			<li><a href="/">INICIO</a></li>
+      <% if current_user %>
+        <li><%= link_to current_user.username, edit_current_user_path %></li>
+        <li><%= link_to "Logout", logout_path %></li>
+      <% else %>
+        <li><%= link_to "Cadastro", signup_path %></li>
+        <li><%= link_to "Login", login_path %></li>
+      <% end %>
+		</ul>
+
+	</div>
+  
+</div><!-- #header -->
+<% if false %>
     <div id="container">
+      <div style="text-align:right">
+        <% if current_user %>
+          <%= link_to "Editar #{current_user.username}", edit_current_user_path %> |
+          <%= link_to "Logout", logout_path %>
+        <% else %>
+          <%= link_to "Cadastrar Usuario", signup_path %> |
+          <%= link_to "Login", login_path %>
+        <% end %>
+      </div>
+      <hr/>
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <% end %>
       <%= content_tag :h1, yield(:title) if show_title? %>
       <%= yield %>
     </div>
+<% end %>
+    
+
+<div id="wrapper">
+
+	<div id="main" class="clearfix">
+		
+		<div class="mainCol">
+		  <%#= render '/main_col' %>
+		  <%= content_tag :h1, yield(:title) if show_title? %>
+      <%= yield %>
+		</div>
+		
+		<div class="sidebarCol">
+		  <%= yield(:sidebar) || render('/sidebar_col') %>
+		</div>
+		
+	</div><!-- #main -->
+
+	<div id="footer">
+	
+		<p class="copyright">&copy; 2010 Wook. All Rights Reserved. Designed by <a href="http://chrismahon.com/" title="Wook" rel="designer">Chris Mahon</a>.</p>
+		
+		<ul>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="galery.html">Gallery</a></li>
+			<li><a href="blog.html">Blog</a></li>
+			<li><a href="pages_default.html">Pages</a></li>
+			<li><a href="styles.html">Styles</a></li>
+			<li><a href="contact.html">Contact</a></li>
+		</ul>
+		
+	</div><!-- #footer -->
+	
+</div><!-- #wrapper -->
+
+<script type="text/javascript">
+
+	// apply cufon & force a redraw for IE
+	Cufon.now(); document.body.className = '';
+
+</script>
   </body>
 </html>
