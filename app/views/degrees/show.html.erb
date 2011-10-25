@@ -1,0 +1,12 @@
+<% title "Degree" %>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @degree.nome %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_degree_path(@degree) %> |
+  <%= link_to "Destroy", @degree, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", degrees_path %>
+</p>

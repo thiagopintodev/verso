@@ -1,4 +1,7 @@
 Verso::Application.routes.draw do
+  #resources :degrees
+  #resources :subjects
+
   match 'editar' => 'users#edit', :as => :edit_current_user
   match 'cadastro' => 'users#new', :as => :signup
   match 'logout' => 'sessions#destroy', :as => :logout
