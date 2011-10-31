@@ -1,0 +1,20 @@
+<% title "Nova Versão da Animação" %>
+
+<%= form_for @animation_version do |f| %>
+  <%= f.error_messages %>
+  <%= f.hidden_field :animation_id, :value => @animation_version.animation_id %>
+  
+  <p>
+    <%= f.label :fla %><br />
+    <%= f.file_field :fla %>
+  </p>
+  <p>
+    <%= f.label :swf %><br />
+    <%= f.file_field :swf %>
+  </p>
+  <p>
+    <%= f.label :texto %><br />
+    <%= f.text_area :texto %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>

@@ -1,0 +1,25 @@
+<%= render 'degrees_subjects' %>
+
+<h2>Aulas</h2>
+
+				<ul class="work fullWork clearfix">
+  <% for project in @projects %>
+			<li id="id3" class="films">
+			  <a href="<%= project_path(project) %>" class="gallery" rel="films" title="This is image C" style='text-align:center'>
+			    <%= image_tag project.capa.url, :height=>145 %>
+			  </a>
+			  <p>
+			    <%= project.subject.nome %>,
+			    <%= project.degree.to_s %>,
+			    Aula <%= project.sequencia %>
+		    </p>
+			  <p>
+			    (<%= project.animations.count %> cenas)
+			  </p>
+			</li>
+  <% end %>
+		</ul>
+<hr />
+
+<p><%= link_to "Cadastrar Aula", new_project_path(:subject=>params[:subject], :degree=>params[:degree]) %></p>
+

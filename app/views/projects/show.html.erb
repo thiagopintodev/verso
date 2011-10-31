@@ -1,0 +1,24 @@
+<% title "Project" %>
+
+<p>
+  <strong>User:</strong>
+  <%= @project.user.username %>
+</p>
+<p>
+  <strong>Subject:</strong>
+  <%= @project.subject.nome %>
+</p>
+<p>
+  <strong>Degree:</strong>
+  <%= @project.degree.to_s %>
+</p>
+<p>
+  <strong>Sequencia:</strong>
+  <%= @project.sequencia %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_project_path(@project) %> |
+  <%= link_to "Destroy", @project, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", projects_path %>
+</p>

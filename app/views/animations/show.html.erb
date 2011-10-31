@@ -1,0 +1,60 @@
+<% content_for :jsload do %>
+$("a[rel='nova-versao']").click(function() {
+  $('#nova-versao').toggle('blind');
+  return false;
+});
+$("a[rel='swf']").click(function() {
+  var obj = $(this).closest('td');
+  if ($(this).hasClass('max')) {
+    obj.find('object, embed').attr({width: 200, height: 150});
+  } else {
+    obj.find('object, embed').attr({width: 955, height: 715});
+  }
+  $(this).toggleClass('max');
+  return false;
+});
+<% end %>
+
+<%= render @project %>
+<br /><br /><br /><br /><br />
+<h2>Animação código absoluto #<%= @animation.id %></h2>
+
+<%= render 'animations/new_version' %>
+
+
+<% unless @animation.versions.size.zero? %>
+  <h2>Versões dessa animação</h2>
+  <table id="project_show">
+    <tbody>
+      <% i = @animation.versions.length+1 %>
+      <% for version in @animation.versions.includes(:user).reverse %>
+        <tr>
+          <td style="position:relative;padding-bottom:100px;">
+            <h3> -- Versao #<%= i-=1 %> -- </h3>
+            <%= swf version.swf %>
+            <p>
+              <%= link_to image_tag('verso/Fla-32.png'), version.fla.url %>
+              <%= number_to_human_size version.fla.size %>
+              <%= link_to image_tag('verso/Swf-32.png'), version.swf.url %>
+              <%= number_to_human_size version.swf.size %>
+            </p>
+            <p>
+              <a href='#' rel='swf'>ampliar/reduzir</a>
+            </p>
+            <ol id="commentList">
+				      <li>
+				      <!--
+					      <p><a href="#"><img src="http://placehold.it/32x32/000000/999999/" alt="" width="32" height="32"></a></p>
+				      -->
+					      <p><cite>Enviado <a href="#">@<%= version.user.username %></a> <%= l version.created_at %> —</cite> <%= version.texto %>.</p>
+				      </li>
+			
+			      </ol>
+          </td>
+        </tr>
+      <% end %>
+  </tbody>
+</table>
+<% else %>
+  <h3 style='color:red'>Não existe nenhuma versão cadastrada para esta Animação</h3>
+<% end %>

@@ -1,3 +1,3 @@
 class Subject < ActiveRecord::Base
-  attr_accessible :nome
+  include AllCached
 end

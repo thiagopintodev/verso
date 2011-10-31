@@ -1,3 +1,9 @@
 class Degree < ActiveRecord::Base
-  attr_accessible :nome
+  include AllCached
+  
+  def to_s
+    "#{nome}o Ano"
+  end
+  
+
 end

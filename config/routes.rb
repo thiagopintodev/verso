@@ -1,4 +1,12 @@
 Verso::Application.routes.draw do
+  resources :project_versions
+
+  resources :animation_versions
+  resources :animations
+  resources :projects do
+    #get 'animation/:animation_id', :action=>'show', :as => 'animation'
+  end
+
   #resources :degrees
   #resources :subjects
 
@@ -9,7 +17,7 @@ Verso::Application.routes.draw do
 
   resources :sessions
   resources :users
-  root :to => 'users#edit'
+  root :to => 'projects#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

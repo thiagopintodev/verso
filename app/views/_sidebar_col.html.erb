@@ -1,0 +1,71 @@
+
+			<% if false %>
+			<div>
+
+				<h2>Search the site</h2>
+
+				<form class="searchBox" action="." method="post">
+				
+					<div>
+					
+						<input type="text" class="hint" title="Type here...">
+					
+						<button><span>Search</span></button>
+						
+					</div>
+					
+				</form>
+
+			</div>
+			<% end %>
+			
+			<div>
+
+				<h2>Filtrar Por Disciplina</h2>
+				<dl>
+				<% if false %>
+					<dt><a href="#">Feature</a></dt>
+					<dd>122</dd>
+				<% end %>
+				  <% Subject.all.each do |subject| %>
+				    <dt><%= link_to subject.nome, projects_path(:subject=>subject.id) %></dt>
+				    <dd> </dd>
+				  <% end %>
+				</dl>
+
+			</div>
+			<div>
+
+				<h2>Filtrar Por Série</h2>
+				<dl>
+				  <% Degree.all.each do |degree| %>
+				    <dt><%= link_to degree.to_s, projects_path(:degree=>degree.id) %></dt>
+				    <dd> </dd>
+				  <% end %>
+				</dl>
+
+			</div>
+
+			<% if false %>
+			<div>
+
+				<h2>Recent Posts</h2>
+			
+				<ul>
+					<li><a href="#">Star Wars Blu-ray Confirmed</a></li>
+					<li><a href="#">Avatar breaks DVD record</a></li>
+					<li><a href="#">Next Batman Won't Be in 3D</a></li>
+					<li><a href="#">New James Bond put on hold</a></li>
+					<li><a href="#">Transformers 3 in the works?</a></li>
+				</ul>
+
+			</div>
+			
+			<ul class="adverts">
+				<li><a href="#"><img src="http://placehold.it/125x125/000000/999999/" alt="" width="125" height="125" /></a></li>
+				<li><a href="#"><img src="http://placehold.it/125x125/000000/999999/" alt="" width="125" height="125" /></a></li>
+				<li><a href="#"><img src="http://placehold.it/125x125/000000/999999/" alt="" width="125" height="125" /></a></li>
+				<li><a href="#"><img src="http://placehold.it/125x125/000000/999999/" alt="" width="125" height="125" /></a></li>
+			</ul>
+			<% end %>
+

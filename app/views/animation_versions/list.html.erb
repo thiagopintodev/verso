@@ -1,0 +1,50 @@
+<% content_for :jsload do %>
+$("a[rel='nova-versao']").click(function() {
+  $('#nova-versao').toggle('blind');
+  return false;
+});
+<% end %>
+
+<%= render @project %>
+
+<hr />
+<h2>Versões</h2>
+<hr />
+
+
+<% unless @animation.animation_versions.size.zero? %>
+
+  <% for animation_version in @animation.animation_versions %>
+    <div>
+      <%= image_tag animation_version.fla, :width=>400, :height=>300 %>
+      <%= l animation_version.created_at %>
+      <hr />
+    </div>
+  <% end %>
+<% else %>
+  <h3 style='color:red'>Não existe nenhuma versão cadastrada para esta Animação</h3>
+<% end %>
+<br /><br /><br /><br /><br />
+
+<h1><a href="#" rel='nova-versao'>Cadastrar Nova Versão Para Esta Animação</a></h1>
+
+<div id="nova-versao" style="display:none">
+<%= form_for @animation.animation_versions.build do |f| %>
+  <%= f.error_messages %>
+  <%= f.hidden_field :animation_id, :value => @animation.id %>
+  
+  <p>
+    <%= f.label :fla %><br />
+    <%= f.file_field :fla %>
+  </p>
+  <p>
+    <%= f.label :swf %><br />
+    <%= f.file_field :swf %>
+  </p>
+  <p>
+    <%= f.label :texto %><br />
+    <%= f.text_area :texto %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>
+</div>

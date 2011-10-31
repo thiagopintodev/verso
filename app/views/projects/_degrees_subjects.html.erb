@@ -1,0 +1,21 @@
+<h2>Séries</h2>
+<ul class="pagination">
+  <% Degree.all_cached.each do |degree| %>
+    <%= content_tag :li, :class=>('selected' if degree == @degree) do %>
+      <% path = controller.action_name=='show' ? projects_path(:degree=>degree.id) : params.merge(:degree=>degree.id) %>
+      <%= link_to degree.to_s, path %>
+    <% end %>
+  <% end %>
+</ul>
+<br/><br/><br/>
+<h2>Disciplinas</h2>
+<ul class="pagination">
+  <% Subject.all_cached.each do |subject| %>
+    <%= content_tag :li, :class=>('selected' if subject == @subject) do %>
+      <% path = controller.action_name=='show' ? projects_path(:subject=>subject.id) : params.merge(:subject=>subject.id) %>
+      <%= link_to subject.nome, path %>
+    <% end %>
+  <% end %>
+</ul>
+<br/><br/><br/>
+<hr />

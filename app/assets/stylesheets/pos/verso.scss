@@ -1,0 +1,21 @@
+/*
+.sidebarCol {
+  dt { width: 80% !important; }
+  dd { width: 20% !important; }
+}
+ul.work li {
+  height:200px;
+  a.gallery {height:93px; }
+  
+  &, a.gallery, img {width:140px;}
+  a.gallery:hover { -webkit-box-shadow: 0 0 10px #000; }
+  span {display:none}
+}
+*/
+td { vertical-align:top; }
+
+.animacoes a { background:#efefef;border:#e1e1e1 outset 1px;padding:10px;font-size:18px; }
+table#project_show td {
+  font-size:16px;
+  a { color:#00f; }
+}

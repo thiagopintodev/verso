@@ -1,0 +1,40 @@
+<% title "Nova Aula" %>
+<style>
+  select { padding: 10px 5px;width:200px;font-size:16px; }
+</style>
+
+<%= form_for @project do |f| %>
+  <%= f.error_messages %>
+  
+<table>
+<tbody>
+  <tr>
+    <td>
+      <%= f.label :subject, "Disciplina" %><br />
+      <%= collection_select :project, :subject_id, Subject.all, :id, :nome, :selected=>params[:subject] %>
+    </td>
+    <td>
+      <%= f.label :degree, "Ano" %><br />
+      <%= collection_select :project, :degree_id, Degree.all, :id, :nome, :selected=>params[:degree] %>
+    </td>
+    <td>
+      <%= f.label :sequencia, "Numero da Aula" %><br />
+      <%= f.select(:sequencia, Animation::AULAS, :style=>'padding:30px;') %>
+    </td>
+    <td>
+      <%= label_tag :animacoes, "Quantidade de Animacoes (Cenas)" %><br />
+      <%= select_tag :animacoes, options_for_select(1..5, :selected=>3) %>
+    </td>
+  </tr>
+</tbody>
+</table>
+    <p>
+      <%= f.label :capa, "Imagem de Capa" %><br />
+      <%= f.file_field :capa %>
+    </p>
+  
+  <div class="formSubmit" style='text-align:right'>
+	  <button type="submit" name="submit" id="submit">Cadastrar Nova Aula</button>
+  </div>
+
+<% end %>

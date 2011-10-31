@@ -1,0 +1,58 @@
+<%= render '/projects/degrees_subjects' %>
+
+
+
+<h1>Aula código absoluto #<%= @project.id %></h1>
+
+<table id="project_show">
+  <tbody>
+    <tr>
+      <td width="400">
+      
+        <%= image_tag @project.capa.url, :width=>400 %>
+        
+      </td>
+      <td>
+      
+        <p>
+          <strong>Criado por:</strong>
+          @<%= @project.user.username %>
+        </p>
+        <p>
+          <strong>Disciplina:</strong>
+          <%= @project.subject.nome %>
+        </p>
+        <p>
+          <strong>Ano:</strong>
+          <%= @project.degree.to_s %>
+        </p>
+        <p>
+          <strong>Aula Numero:</strong>
+          <%= @project.sequencia %> ( <%= link_to 'editar', edit_project_path(@project) %> )
+        </p>
+        <p>
+          <strong>Quant Animacoes:</strong>
+          <%= @project.animations.size %>
+        </p>
+        
+        
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<br /><br /><br />
+<h2>Animações dessa aula</h2>
+<ul class="pagination">
+  <% i = 0 %>
+  <% @project.animations.each do |animation| %>
+    <%= content_tag :li, :class=>('selected' if animation == @animation) do %>
+      <%= link_to "#{i+=1} (#{animation.animation_versions.size} versoes)", animation %>
+    <% end %>
+  <% end %>
+</ul>
+<br/><br/><br/>
+<hr />
+
+

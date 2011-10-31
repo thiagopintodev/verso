@@ -1,0 +1,32 @@
+<% title "Editar Aula" %>
+
+<table>
+  <tbody>
+    <tr>
+      <td>
+
+<%= image_tag @project.capa.url %>
+
+      </td>
+      <td>
+
+<%= form_for @project do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :sequencia, "Numero da Aula" %><br />
+    <%= f.select(:sequencia, Animation::AULAS) %>
+  </p>
+  <p>
+    <%= f.label :capa, "Imagem de Capa" %><br />
+    <%= f.file_field :capa %>
+  </p>
+  <p>
+    <%= link_to "Cancelar", @project %>
+  </p>
+  <button type="submit" name="submit" id="submit" style="float:right">Salvar Novas Informações</button>
+<% end %>
+
+      </td>
+    </tr>
+  </tbody>
+</table>

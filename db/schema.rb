@@ -11,12 +11,79 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111025170354) do
+ActiveRecord::Schema.define(:version => 20111031182911) do
+
+  create_table "animation_versions", :force => true do |t|
+    t.integer  "animation_id"
+    t.integer  "user_id"
+    t.text     "texto"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "fla_file_name"
+    t.string   "fla_content_type"
+    t.integer  "fla_file_size"
+    t.datetime "fla_updated_at"
+    t.string   "swf_file_name"
+    t.string   "swf_content_type"
+    t.integer  "swf_file_size"
+    t.datetime "swf_updated_at"
+  end
+
+  create_table "animations", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "degrees", :force => true do |t|
     t.string   "nome"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "project_versions", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.text     "texto"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "fla_file_name"
+    t.string   "fla_content_type"
+    t.integer  "fla_file_size"
+    t.datetime "fla_updated_at"
+    t.string   "swf1_file_name"
+    t.string   "swf1_content_type"
+    t.integer  "swf1_file_size"
+    t.datetime "swf1_updated_at"
+    t.string   "swf2_file_name"
+    t.string   "swf2_content_type"
+    t.integer  "swf2_file_size"
+    t.datetime "swf2_updated_at"
+    t.string   "swf3_file_name"
+    t.string   "swf3_content_type"
+    t.integer  "swf3_file_size"
+    t.datetime "swf3_updated_at"
+    t.string   "swf4_file_name"
+    t.string   "swf4_content_type"
+    t.integer  "swf4_file_size"
+    t.datetime "swf4_updated_at"
+  end
+
+  add_index "project_versions", ["project_id"], :name => "index_project_versions_on_project_id"
+  add_index "project_versions", ["user_id"], :name => "index_project_versions_on_user_id"
+
+  create_table "projects", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "subject_id"
+    t.integer  "degree_id"
+    t.integer  "sequencia"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "capa_file_name"
+    t.string   "capa_content_type"
+    t.integer  "capa_file_size"
+    t.datetime "capa_updated_at"
   end
 
   create_table "subjects", :force => true do |t|
