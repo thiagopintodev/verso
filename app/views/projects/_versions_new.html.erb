@@ -1,0 +1,60 @@
+<h3><a href="#" rel='nova-versao' style='color:blue'>Cadastrar Nova Versão Para essa Aula</a></h3>
+
+<div id="nova-versao" style="<%= 'display:none' unless @project.versions.size.zero? %>">
+<%= form_for @project.versions.build do |f| %>
+  <%= f.error_messages %>
+  <%= f.hidden_field :project_id, :value => @project.id %>
+  
+  <table id="project_show">
+    <tbody>
+      <tr>
+        <td colspan="4">
+	        <%= f.label :fla, "*.FLA" %>
+	        <br />
+	        <%= f.file_field :fla %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+	        <%= f.label :swf1, "CENA 1 *.SWF" %>
+	        <br />
+	        <%= f.file_field :swf1 %>
+        </td>
+        <td>
+	        <%= f.label :swf, "CENA 2 *.SWF" %>
+	        <br />
+	        <%= f.file_field :swf2 %>
+        </td>
+        <td>
+	        <%= f.label :swf, "CENA 3 *.SWF" %>
+	        <br />
+	        <%= f.file_field :swf3 %>
+        </td>
+        <td>
+	        <%= f.label :swf, "CENA 4 *.SWF" %>
+	        <br />
+	        <%= f.file_field :swf4 %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4">
+		      <%= f.text_area :texto, :title=>"Escreva seus comentarios sobre essa versão", :class=>"hint" %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+	<div class="formSection" id="formSectionComment">
+	  <div class="formLabel">
+		  <%= f.label :texto %>
+	  </div>
+	  <div class="formTextarea">
+	  </div>
+	</div>
+	
+  <div class="formSubmit" style='text-align:right'>
+	  <button type="submit" name="submit" id="submit">Cadastrar Versão para esta animação</button>
+  </div>
+  
+<% end %>
+</div>

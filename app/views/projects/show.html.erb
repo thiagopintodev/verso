@@ -1,24 +1,40 @@
-<% title "Project" %>
+<% content_for :jsload do %>
+$("a[rel='nova-versao']").click(function() {
+  $('#nova-versao').toggle('blind');
+  return false;
+});
+$("a[rel='swf']").click(function() {
+/*
+  var obj = $(this).closest('td');
+  if ($(this).hasClass('max')) {
+    obj.find('object, embed').attr({width: 200, height: 150});
+  } else {
+    obj.find('object, embed').attr({width: 955, height: 715});
+  }
+  $(this).toggleClass('max');
+  */
+  
+  $('#player').html( $(this).data('swf-content') );
+  return false;
+});
+<% end %>
 
-<p>
-  <strong>User:</strong>
-  <%= @project.user.username %>
-</p>
-<p>
-  <strong>Subject:</strong>
-  <%= @project.subject.nome %>
-</p>
-<p>
-  <strong>Degree:</strong>
-  <%= @project.degree.to_s %>
-</p>
-<p>
-  <strong>Sequencia:</strong>
-  <%= @project.sequencia %>
-</p>
+<%= render '/projects/degrees_subjects' %>
+<%= render @project %>
 
+<%= render 'versions_new' %>
+<%= render 'versions' %>
+
+
+
+
+
+
+
+<% if false %>
 <p>
   <%= link_to "Edit", edit_project_path(@project) %> |
   <%= link_to "Destroy", @project, :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to "View All", projects_path %>
 </p>
+<% end %>

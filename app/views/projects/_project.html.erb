@@ -1,7 +1,3 @@
-<%= render '/projects/degrees_subjects' %>
-
-
-
 <h1>Aula código absoluto #<%= @project.id %></h1>
 
 <table id="project_show">
@@ -31,28 +27,11 @@
           <%= @project.sequencia %> ( <%= link_to 'editar', edit_project_path(@project) %> )
         </p>
         <p>
-          <strong>Quant Animacoes:</strong>
-          <%= @project.animations.size %>
+          <strong>Quant Versoes:</strong>
+          <%= @project.versions.size %>
         </p>
-        
         
       </td>
     </tr>
   </tbody>
 </table>
-
-
-<br /><br /><br />
-<h2>Animações dessa aula</h2>
-<ul class="pagination">
-  <% i = 0 %>
-  <% @project.animations.each do |animation| %>
-    <%= content_tag :li, :class=>('selected' if animation == @animation) do %>
-      <%= link_to "#{i+=1} (#{animation.animation_versions.size} versoes)", animation %>
-    <% end %>
-  <% end %>
-</ul>
-<br/><br/><br/>
-<hr />
-
-

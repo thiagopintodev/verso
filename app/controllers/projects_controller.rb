@@ -9,10 +9,8 @@ class ProjectsController < ApplicationController
 
   def show
     @project   = Project.find(params[:id])
-    @animation = @project.animations.first
     @subject   = @project.subject
     @degree    = @project.degree
-    render 'animations/show'
   end
 
   def new

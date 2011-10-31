@@ -1,0 +1,68 @@
+<% unless @project.versions.size.zero? %>
+  <h2>Versões dessa animação</h2>
+  <table id="project_show">
+    <thead>
+      <tr>
+        <td colspan="4" id="player">
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <% i = @project.versions.length %>
+      <% for version in @project.versions.includes(:user).reverse %>
+        <tr>
+          <td colspan="4">
+            <b style="font-size:20px">-- VERSAO #<%= i-=1 %> @<%= version.user.username %></b>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4">
+            <%= link_to version.fla.url do %>
+              <%= image_tag('verso/Fla-32.png') %>
+              Baixar Fontes da Aula
+              <%= number_to_human_size version.fla.size %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= swf version.swf1 if version.swf1? %>
+          </td>
+          <td>
+            <%= swf version.swf2 if version.swf2? %>
+          </td>
+          <td>
+            <%= swf version.swf3 if version.swf3? %>
+          </td>
+          <td>
+            <%= swf version.swf4 if version.swf4? %>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4">
+            <blockquote>
+              <%= l version.created_at %> —</cite> <%= version.texto %>.
+            </blockquote>
+          </td>
+        </tr>
+      <% end %>
+  </tbody>
+</table>
+<% else %>
+  <h3 style='color:red'>Não existe nenhuma versão cadastrada para essa Aula</h3>
+<% end %>
+
+
+
+          <% if false %>
+            <h3> -- Versao #<%= i-=1 %> -- </h3>
+            
+            <p>
+              
+              <%= link_to image_tag('verso/Swf-32.png'), version.swf1.url %>
+              <%= number_to_human_size version.swf1.size %>
+            </p>
+            <p>
+              <a href='#' rel='swf'>ampliar/reduzir</a>
+            </p>
+          <% end %>
