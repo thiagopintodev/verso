@@ -8,6 +8,11 @@
 	  <!--[if IE 7]><link rel="stylesheet" type="text/css" href="/assets/style_ie7.css"><![endif]-->
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
+    <% if Rails.env.development? %>
+    <style>
+    #header { background: #080; }
+    </style>
+    <% end %>
   </head>
   <body class="jsDisabled">
   <script type="text/javascript">$('body').removeClass('jsDisabled');</script>
