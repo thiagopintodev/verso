@@ -4,8 +4,6 @@ class CreateSubjects < ActiveRecord::Migration
       t.string :nome
       t.timestamps
     end
-    #nomes = ["Português", "Matemática", "Ciências", "História", "Geografia", "Artes", "Educação Física", "Ensino Religioso", "Inglês", "Espanhol"]
-    #nomes.each { |nome| Subject.create! :nome => nome }
   end
 
   def self.down

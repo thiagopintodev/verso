@@ -3,7 +3,7 @@
   <% Degree.all_cached.each do |degree| %>
     <%= content_tag :li, :class=>('selected' if degree == @degree) do %>
       <% path = controller.action_name=='show' ? projects_path(:degree=>degree.id) : params.merge(:degree=>degree.id) %>
-      <%= link_to degree.to_s, path %>
+      <%= link_to degree.to_s, projects_filter_path(:degree=>degree.id) %>
     <% end %>
   <% end %>
 </ul>
@@ -12,8 +12,7 @@
 <ul class="pagination">
   <% Subject.all_cached.each do |subject| %>
     <%= content_tag :li, :class=>('selected' if subject == @subject) do %>
-      <% path = controller.action_name=='show' ? projects_path(:subject=>subject.id) : params.merge(:subject=>subject.id) %>
-      <%= link_to subject.nome, path %>
+      <%= link_to subject.nome, projects_filter_path(:subject=>subject.id) %>
     <% end %>
   <% end %>
 </ul>

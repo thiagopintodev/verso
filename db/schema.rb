@@ -11,30 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111031182911) do
-
-  create_table "animation_versions", :force => true do |t|
-    t.integer  "animation_id"
-    t.integer  "user_id"
-    t.text     "texto"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "fla_file_name"
-    t.string   "fla_content_type"
-    t.integer  "fla_file_size"
-    t.datetime "fla_updated_at"
-    t.string   "swf_file_name"
-    t.string   "swf_content_type"
-    t.integer  "swf_file_size"
-    t.datetime "swf_updated_at"
-  end
-
-  create_table "animations", :force => true do |t|
-    t.integer  "project_id"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20111101115644) do
 
   create_table "degrees", :force => true do |t|
     t.string   "nome"
@@ -77,7 +54,7 @@ ActiveRecord::Schema.define(:version => 20111031182911) do
     t.integer  "user_id"
     t.integer  "subject_id"
     t.integer  "degree_id"
-    t.integer  "sequencia"
+    t.integer  "sequencia",         :default => 1
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "capa_file_name"

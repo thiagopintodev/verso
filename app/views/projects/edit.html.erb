@@ -13,10 +13,6 @@
 <%= form_for @project do |f| %>
   <%= f.error_messages %>
   <p>
-    <%= f.label :sequencia, "Numero da Aula" %><br />
-    <%= f.select(:sequencia, Animation::AULAS) %>
-  </p>
-  <p>
     <%= f.label :capa, "Imagem de Capa" %><br />
     <%= f.file_field :capa %>
   </p>

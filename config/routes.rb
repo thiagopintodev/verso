@@ -1,11 +1,7 @@
 Verso::Application.routes.draw do
   resources :project_versions
 
-  resources :animation_versions
-  resources :animations
-  resources :projects do
-    #get 'animation/:animation_id', :action=>'show', :as => 'animation'
-  end
+  resources :projects
 
   #resources :degrees
   #resources :subjects

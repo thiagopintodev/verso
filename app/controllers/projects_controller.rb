@@ -21,8 +21,6 @@ class ProjectsController < ApplicationController
     @project = Project.new(params[:project])
     @project.user_id = current_user.id
     if @project.save
-      q = params[:animacoes].to_i || 3
-      q.times { @project.animations.create :user_id => current_user.id }
       redirect_to @project, :notice => "Nova Aula Criada."
     else
       render :action => 'new'
