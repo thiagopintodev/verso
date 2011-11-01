@@ -5,7 +5,6 @@ class Project < ActiveRecord::Base
   has_many :animations
   has_many :project_versions
   alias :versions :project_versions
-  AULAS = (1..12).to_a
   
   has_attached_file :capa
   

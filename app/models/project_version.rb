@@ -1,5 +1,5 @@
 class ProjectVersion < ActiveRecord::Base
-  belongs_to :project
+  belongs_to :project, :counter_cache=>true
   belongs_to :user
   
   has_attached_file :fla

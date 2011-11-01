@@ -5,6 +5,7 @@ class CreateProjects < ActiveRecord::Migration
       t.references :subject
       t.references :degree
       t.integer :sequencia, :default=>1
+      t.integer :project_versions_count, :default=>0
       t.timestamps
     end
   end

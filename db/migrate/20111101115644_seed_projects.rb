@@ -24,6 +24,6 @@ class SeedProjects < ActiveRecord::Migration
   end
 
   def down
-    puts "este semeamento de dados nao eh reversivel"
+    puts "semeamento de dados, portanto, nao eh reversivel"
   end
 end

@@ -54,7 +54,8 @@ ActiveRecord::Schema.define(:version => 20111101115644) do
     t.integer  "user_id"
     t.integer  "subject_id"
     t.integer  "degree_id"
-    t.integer  "sequencia",         :default => 1
+    t.integer  "sequencia",              :default => 1
+    t.integer  "project_versions_count", :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "capa_file_name"

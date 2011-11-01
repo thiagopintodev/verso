@@ -1,8 +1,4 @@
 <% content_for :jsload do %>
-$("a[rel='nova-versao']").click(function() {
-  $('#nova-versao').toggle('blind');
-  return false;
-});
 $("a[rel='swf']").click(function() {
 /*
   var obj = $(this).closest('td');
@@ -17,7 +13,9 @@ $("a[rel='swf']").click(function() {
   $('#player').html( $(this).data('swf-content') );
   return false;
 });
+$("a[rel='#nova-versao']").overlay();
 <% end %>
+
 
 <%= render '/projects/degrees_subjects' %>
 <%= render @project %>
