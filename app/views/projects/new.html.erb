@@ -14,16 +14,12 @@
       <%= collection_select :project, :subject_id, Subject.all, :id, :nome, :selected=>params[:subject] %>
     </td>
     <td>
-      <%= f.label :degree, "Ano" %><br />
+      <%= f.label :degree, "Serie" %><br />
       <%= collection_select :project, :degree_id, Degree.all, :id, :nome, :selected=>params[:degree] %>
     </td>
     <td>
       <%= f.label :sequencia, "Numero da Aula" %><br />
-      <%= f.select(:sequencia, Animation::AULAS, :style=>'padding:30px;') %>
-    </td>
-    <td>
-      <%= label_tag :animacoes, "Quantidade de Animacoes (Cenas)" %><br />
-      <%= select_tag :animacoes, options_for_select(1..5, :selected=>3) %>
+      <%= f.select(:sequencia, Project::AULAS, :style=>'padding:30px;') %>
     </td>
   </tr>
 </tbody>
