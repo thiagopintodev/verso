@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   before_filter :login_required
   
   def index
-    @projects = Project.includes(:subject, :degree, :project_versions)
+    @projects = Project.includes(:subject, :degree)
     @projects = @projects.where(:subject_id=>params[:subject]) if params[:subject] && @subject = Subject.find(params[:subject])
     @projects = @projects.where(:degree_id=>params[:degree])   if params[:degree]  && @degree  = Degree.find(params[:degree])
   end
