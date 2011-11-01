@@ -1,12 +1,10 @@
-<h1>Aula código absoluto #<%= @project.id %></h1>
+<h1>Aula</h1>
 
 <table id="project_show">
   <tbody>
     <tr>
       <td width="400">
-      
-        <%= image_tag @project.capa.url, :width=>400 %>
-        
+        <%= link_to image_tag(@project.capa.url, :width=>400), edit_project_path(@project) %>
       </td>
       <td>
       
@@ -24,11 +22,15 @@
         </p>
         <p>
           <strong>Aula Numero:</strong>
-          <%= @project.sequencia %> ( <%= link_to 'editar', edit_project_path(@project) %> )
+          <%= @project.sequencia %>
         </p>
         <p>
           <strong>Quant Versoes:</strong>
           <%= @project.versions.size %>
+        </p>
+        <p>
+          <strong>Código Absoluto:</strong>
+          #<%= @project.id %>
         </p>
         <p>
           <strong>Cadastrar Versao:</strong>

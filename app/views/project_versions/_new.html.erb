@@ -2,10 +2,10 @@
   <%= f.error_messages %>
   <%= f.hidden_field :project_id %>
   
-  <table id="project_show">
+  <table>
     <tbody>
       <tr>
-        <td colspan="4">
+        <td colspan="2">
           <%= f.label :fla, "Fontes *.FLA" %>
           <br />
           <%= f.file_field :fla %>
@@ -22,6 +22,8 @@
           <br />
           <%= f.file_field :swf2 %>
         </td>
+      </tr>
+      <tr>
         <td>
           <%= f.label :swf, "CENA 3 *.SWF" %>
           <br />
@@ -34,7 +36,7 @@
         </td>
       </tr>
       <tr>
-        <td colspan="4">
+        <td colspan="2">
 	        <%= f.text_area :texto, :title=>"Escreva seus comentarios sobre essa versão", :class=>"hint" %>
         </td>
       </tr>

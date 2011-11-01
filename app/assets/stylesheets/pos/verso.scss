@@ -17,10 +17,23 @@
 
 td { vertical-align:top; }
 
-form#new_project_version td {
+
+
+.simple_overlay .margin {
+  margin: 40px;
+}
+.simple_overlay #new_project_version textarea {
+  width:900px;
+}
+
+
+table#project_show td {
   font-size:16px;
   a { color:#00f; }
 }
+
+
+
 
 .error_messages {
   width: 400px;
