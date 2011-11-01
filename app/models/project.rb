@@ -7,7 +7,9 @@ class Project < ActiveRecord::Base
   alias :versions :project_versions
   AULAS = (1..12).to_a
   
-  has_attached_file :capa
+  has_attached_file :capa,
+                    :url  => "/arquivos/:class_:attachment/:id/:filename",
+                    :path => ":rails_root/public/arquivos/:class_:attachment/:id/:filename"
   
   validates_presence_of :sequencia
   validates_uniqueness_of :sequencia, :scope => [:subject_id, :degree_id]

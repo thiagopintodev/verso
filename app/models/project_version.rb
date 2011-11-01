@@ -2,11 +2,21 @@ class ProjectVersion < ActiveRecord::Base
   belongs_to :project, :counter_cache=>true
   belongs_to :user
   
-  has_attached_file :fla
-  has_attached_file :swf1
-  has_attached_file :swf2
-  has_attached_file :swf3
-  has_attached_file :swf4
+  has_attached_file :fla,
+                    :url  => "/arquivos/:class_:attachment/:id/:filename",
+                    :path => ":rails_root/public/arquivos/:class_:attachment/:id/:filename"
+  has_attached_file :swf1,
+                    :url  => "/arquivos/:class_:attachment/:id/:filename",
+                    :path => ":rails_root/public/arquivos/:class_:attachment/:id/:filename"
+  has_attached_file :swf2,
+                    :url  => "/arquivos/:class_:attachment/:id/:filename",
+                    :path => ":rails_root/public/arquivos/:class_:attachment/:id/:filename"
+  has_attached_file :swf3,
+                    :url  => "/arquivos/:class_:attachment/:id/:filename",
+                    :path => ":rails_root/public/arquivos/:class_:attachment/:id/:filename"
+  has_attached_file :swf4,
+                    :url  => "/arquivos/:class_:attachment/:id/:filename",
+                    :path => ":rails_root/public/arquivos/:class_:attachment/:id/:filename"
   
   validates_attachment_presence :fla
   
