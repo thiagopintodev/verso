@@ -7,15 +7,17 @@
 			<li id="id3" class="films">
 			  <a href="<%= project_path(project) %>" class="gallery" rel="films" title="Clique para ver a aula" style='text-align:center'>
 			    <%= image_tag project.capa.url, :height=>145 %>
-			  </a>
 			  <p>
-			    <%= project.subject.nome %>,
-			    <%= project.degree.to_s %>,
-			    Aula <%= project.sequencia %>
-		    </p>
-			  <p>
-			    (<%= project.versions.size %> versoes)
+			    <%= project.subject.nome %> /
+			    <%= project.degree.to_s %>
 			  </p>
+			  <p class="sequencia">
+			    <strong><%= project.sequencia %>a Aula</strong>
+			  </p>
+			  <p>
+		      <strong>(<%= project.versions.size %> versoes)</strong>
+		    </p>
+			  </a>
 			</li>
   <% end %>
 		</ul>
