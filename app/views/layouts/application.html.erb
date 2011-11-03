@@ -4,8 +4,8 @@
     <title><%= content_for?(:title) ? yield(:title) : "Logos Educação - Verso" %></title>
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application" %>
-	  <!--[if IE 8]><link rel="stylesheet" type="text/css" href="/assets/style_ie8.css"><![endif]-->
-	  <!--[if IE 7]><link rel="stylesheet" type="text/css" href="/assets/style_ie7.css"><![endif]-->
+	  <!--[if IE 8]><link rel="stylesheet" type="text/css" href="/javascripts/style_ie8.css"><![endif]-->
+	  <!--[if IE 7]><link rel="stylesheet" type="text/css" href="/javascripts/style_ie7.css"><![endif]-->
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
     <% if Rails.env.development? %>
