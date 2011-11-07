@@ -8,10 +8,10 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project   = Project.find(params[:id])
-    @subject   = @project.subject
-    @degree    = @project.degree
-    @project_version = @project.versions.build
+    @project          = Project.find(params[:id])
+    @subject          = @project.subject
+    @degree           = @project.degree
+    @project_version  = ProjectVersion.new :project => @project
   end
 
   def new

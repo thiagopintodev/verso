@@ -16,12 +16,12 @@
           </td>
         </tr>
         <tr>
-          <td colspan="4">
+          <td colspan="4" style="vertical-align:middle">
             <%= link_to version.fla.url do %>
               <%= image_tag('verso/Fla-32.png') %>
-              Baixar Fontes da Aula
               <%= number_to_human_size version.fla.size %>
             <% end %>
+            <%= version.fla.original_filename %>
           </td>
         </tr>
         <tr>
