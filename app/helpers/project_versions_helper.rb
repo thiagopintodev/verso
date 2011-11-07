@@ -6,8 +6,7 @@ module ProjectVersionsHelper
   def swf_baixar(paperclip)
     link_to paperclip.url, :Style=>'display:inline; float:left; width: 100px; text-align:center' do
       raw [
-        image_tag('verso/Swf-64.png'),
-        'Baixar',
+        image_tag('verso/Swf-32.png'),
         number_to_human_size(paperclip.size)
       ].join('<br />')
     end
@@ -23,7 +22,7 @@ pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0'>
 </object>"
     link_to "#", :rel=>'swf', :'data-swf-content' => s, :Style=>'display:inline; float:left; width: 100px; text-align:center' do
       raw [
-        image_tag('http://aux3.iconpedia.net/uploads/57148141463140983.png'),
+        image_tag('verso/Play-32.png'),
         'Assistir'
       ].join('<br />')
     end
