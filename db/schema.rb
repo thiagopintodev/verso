@@ -45,10 +45,10 @@ ActiveRecord::Schema.define(:version => 20111108183553) do
     t.string   "swf4_content_type"
     t.integer  "swf4_file_size"
     t.datetime "swf4_updated_at"
-    t.integer  "status_revisao_texto"
-    t.integer  "status_revisao_final"
-    t.integer  "user_id_revisao_texto"
-    t.integer  "user_id_revisao_final"
+    t.integer  "status_revisao_texto",  :default => 0
+    t.integer  "status_revisao_final",  :default => 0
+    t.integer  "user_id_revisao_texto", :default => 0
+    t.integer  "user_id_revisao_final", :default => 0
   end
 
   add_index "project_versions", ["project_id"], :name => "index_project_versions_on_project_id"
@@ -66,10 +66,10 @@ ActiveRecord::Schema.define(:version => 20111108183553) do
     t.string   "capa_content_type"
     t.integer  "capa_file_size"
     t.datetime "capa_updated_at"
-    t.integer  "status_revisao_texto"
-    t.integer  "status_revisao_final"
-    t.integer  "user_id_revisao_texto"
-    t.integer  "user_id_revisao_final"
+    t.integer  "status_revisao_texto",   :default => 0
+    t.integer  "status_revisao_final",   :default => 0
+    t.integer  "user_id_revisao_texto",  :default => 0
+    t.integer  "user_id_revisao_final",  :default => 0
   end
 
   create_table "subjects", :force => true do |t|

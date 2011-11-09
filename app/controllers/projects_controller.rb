@@ -6,6 +6,8 @@ class ProjectsController < ApplicationController
     @projects = @projects.where(:subject_id=>params[:subject]) if params[:subject] && @subject = Subject.find(params[:subject])
     @projects = @projects.where(:degree_id=>params[:degree])   if params[:degree]  && @degree  = Degree.find(params[:degree])
     @projects = @projects.where('project_versions_count > 0')  if params[:versioned]
+    @projects = @projects.where(:status_revisao_texto=>params[:status_revisao_texto])  if params[:status_revisao_texto]
+    @projects = @projects.where(:status_revisao_final=>params[:status_revisao_final])  if params[:status_revisao_final]
   end
 
   def show

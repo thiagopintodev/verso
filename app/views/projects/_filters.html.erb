@@ -1,10 +1,36 @@
-<h2>Cadastradas</h2>
+<div style="width:250px;float:left;">
+<h2>Filtro</h2>
 <ul class="pagination">
   <%= content_tag :li, :class=>('selected' if params[:versioned]) do %>
     <%= link_to "Apenas Cadastradas", projects_filter_path(:versioned=>1) %>
   <% end %>
 </ul>
 <br/><br/><br/>
+</div>
+<div style="width:355px;float:left;">
+<h2>R. Ortografica</h2>
+<ul class="pagination">
+  <% Revisao::ARRAY_FOR_SELECT.each do |texto, codigo| %>
+    <%= content_tag :li, :class=>('selected' if codigo.to_s == params[:status_revisao_texto]) do %>
+      <%= link_to texto, projects_filter_path(:status_revisao_texto=>codigo) %>
+    <% end %>
+  <% end %>
+</ul>
+<br/><br/><br/>
+</div>
+<div style="width:355px;float:left;">
+<h2>R. Animacao</h2>
+<ul class="pagination">
+  <% Revisao::ARRAY_FOR_SELECT.each do |texto, codigo| %>
+    <%= content_tag :li, :class=>('selected' if codigo.to_s == params[:status_revisao_final]) do %>
+      <%= link_to texto, projects_filter_path(:status_revisao_final=>codigo) %>
+    <% end %>
+  <% end %>
+</ul>
+<br/><br/><br/>
+</div>
+
+<br style="clear:both" />
 
 <h2>Séries</h2>
 <ul class="pagination">
