@@ -6,6 +6,9 @@ class ProjectVersion < ActiveRecord::Base
   belongs_to :user_revisao_final, :class_name=>'User', :foreign_key => 'user_id_revisao_final'
   include Revisao
   
+  
+  validates :texto, :length => { :minimum => 5 }
+  
   has_attached_file :fla,
                     :url  => "/arquivos/:class_:attachment/:id/:filename",
                     :path => ":rails_root/public/arquivos/:class_:attachment/:id/:filename"
