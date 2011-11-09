@@ -11,6 +11,20 @@ class ProjectVersionsController < ApplicationController
       render :action => 'new'
     end
   end
+  
+  def update
+    v = @project_version = ProjectVersion.find(params[:id])
+
+    v.altera_revisao_texto(params[:project_version][:status_revisao_texto], current_user)
+    v.altera_revisao_final(params[:project_version][:status_revisao_final], current_user)
+    
+    if v.changes.count.zero?
+      flash[:error] = "Correcoes nao alteradas."
+    elsif v.save
+      flash[:notice] = "Correcoes alteradas com sucesso."
+    end
+    redirect_to project_path(@project_version.project_id)
+  end
 =begin
   # DELETE /project_versions/1
   # DELETE /project_versions/1.json

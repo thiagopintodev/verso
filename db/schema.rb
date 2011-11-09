@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111101115644) do
+ActiveRecord::Schema.define(:version => 20111108183553) do
 
   create_table "degrees", :force => true do |t|
     t.string   "nome"
@@ -45,6 +45,10 @@ ActiveRecord::Schema.define(:version => 20111101115644) do
     t.string   "swf4_content_type"
     t.integer  "swf4_file_size"
     t.datetime "swf4_updated_at"
+    t.integer  "status_revisao_texto"
+    t.integer  "status_revisao_final"
+    t.integer  "user_id_revisao_texto"
+    t.integer  "user_id_revisao_final"
   end
 
   add_index "project_versions", ["project_id"], :name => "index_project_versions_on_project_id"
@@ -62,6 +66,10 @@ ActiveRecord::Schema.define(:version => 20111101115644) do
     t.string   "capa_content_type"
     t.integer  "capa_file_size"
     t.datetime "capa_updated_at"
+    t.integer  "status_revisao_texto"
+    t.integer  "status_revisao_final"
+    t.integer  "user_id_revisao_texto"
+    t.integer  "user_id_revisao_final"
   end
 
   create_table "subjects", :force => true do |t|
@@ -77,6 +85,8 @@ ActiveRecord::Schema.define(:version => 20111101115644) do
     t.string   "password_salt"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_revisao_texto"
+    t.boolean  "is_revisao_final"
   end
 
 end

@@ -13,6 +13,18 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password
   validates_length_of :password, :minimum => 4, :allow_blank => true
 
+  def is_revisao?
+    is_revisao_texto || is_revisao_final
+  end
+
+
+
+
+
+
+
+
+
   # login can be either username or email address
   def self.authenticate(login, pass)
     user = find_by_username(login) || find_by_email(login)
@@ -22,6 +34,7 @@ class User < ActiveRecord::Base
   def encrypt_password(pass)
     BCrypt::Engine.hash_secret(pass, password_salt)
   end
+  
 
   private
 

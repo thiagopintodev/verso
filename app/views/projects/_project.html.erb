@@ -29,12 +29,20 @@
           <%= @project.versions.size %>
         </p>
         <p>
-          <strong>Código Absoluto:</strong>
+          <strong>Codigo Absoluto:</strong>
           #<%= @project.id %>
         </p>
         <p>
           <strong>Cadastrar Versao:</strong>
           <a href="#" rel='#nova-versao' style='color:blue'>Cadastrar Nova Versão</a>
+        </p>
+        <p>
+          <strong>Revisao Ortografica:</strong>
+          <%= @project.revisao_texto %>
+        </p>
+        <p>
+          <strong>Revisao Final:</strong>
+          <%= @project.revisao_final %>
         </p>
         
       </td>
