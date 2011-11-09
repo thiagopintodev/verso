@@ -1,13 +1,21 @@
+<h2>Cadastradas</h2>
+<ul class="pagination">
+  <%= content_tag :li, :class=>('selected' if params[:versioned]) do %>
+    <%= link_to "Apenas Cadastradas", projects_filter_path(:versioned=>1) %>
+  <% end %>
+</ul>
+<br/><br/><br/>
+
 <h2>Séries</h2>
 <ul class="pagination">
   <% Degree.all_cached.each do |degree| %>
     <%= content_tag :li, :class=>('selected' if degree == @degree) do %>
-      <% path = controller.action_name=='show' ? projects_path(:degree=>degree.id) : params.merge(:degree=>degree.id) %>
       <%= link_to degree.to_s, projects_filter_path(:degree=>degree.id) %>
     <% end %>
   <% end %>
 </ul>
 <br/><br/><br/>
+
 <h2>Disciplinas</h2>
 <ul class="pagination">
   <% Subject.all_cached.each do |subject| %>

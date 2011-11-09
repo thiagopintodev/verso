@@ -5,6 +5,7 @@ class ProjectsController < ApplicationController
     @projects = Project.includes(:subject, :degree)
     @projects = @projects.where(:subject_id=>params[:subject]) if params[:subject] && @subject = Subject.find(params[:subject])
     @projects = @projects.where(:degree_id=>params[:degree])   if params[:degree]  && @degree  = Degree.find(params[:degree])
+    @projects = @projects.where('project_versions_count > 0')  if params[:versioned]
   end
 
   def show
