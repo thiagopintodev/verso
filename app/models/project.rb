@@ -20,5 +20,17 @@ class Project < ActiveRecord::Base
   validates_presence_of :sequencia
   validates_uniqueness_of :sequencia, :scope => [:subject_id, :degree_id]
   
+  after_save do
+    self.class.limpar_cached
+  end
   
+  class << self
+    def cached_quantidade_versionadas
+      Rails.cache.fetch([:project, :count, :versioned]) { where('project_versions_count > 0').count }
+    end
+    
+    def limpar_cached
+      Rails.cache.delete([:project, :count, :versioned])
+    end
+  end
 end
