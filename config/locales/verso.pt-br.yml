@@ -1,0 +1,11 @@
+# encoding: UTF-8
+# pt-BR translations especificas para a App Verso
+pt-BR:
+  activerecord:
+    models:
+      user: Usuario
+    attributes:
+      user:
+        username: "Usuario"
+        password: "Senha"
+        password_confirmation: "Senha Novamente"
