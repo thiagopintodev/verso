@@ -4,7 +4,7 @@ class SeedProjects < ActiveRecord::Migration
     u = User.create! :username=>'auto', :email=>'auto@auto.com', :password=>xxx, :password_confirmation=>xxx
     
     degree_names = (1..9).to_a
-    subject_names = ["Portugues", "Matematica", "Ciencias", "Historia", "Geografia", "Artes", "Educacao Fisica", "Ensino Religioso", "Ingles", "Espanhol"]
+    subject_names = ["Portugues", "Matematica", "Ciencias", "Historia", "Geografia", "Artes", "E Fisica", "E Relig", "Ingles", "Espanhol"]
     
     subjects = subject_names.map { |nome| Subject.create! :nome => nome }
     degrees  = degree_names.map  { |nome| Degree.create!  :nome => nome }

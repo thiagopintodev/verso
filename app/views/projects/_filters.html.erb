@@ -1,29 +1,35 @@
-<div style="width:250px;float:left;">
+<div style="width:200px;float:left;">
 <h2>Filtro</h2>
 <ul class="pagination">
   <%= content_tag :li, :class=>('selected' if params[:versioned]) do %>
-    <%= link_to "Apenas Cadastradas (#{Project.cached_quantidade_versionadas})", projects_filter_path(:versioned=>1) %>
-  <% end %>
-</ul>
-<br/><br/><br/>
-</div>
-<div style="width:355px;float:left;">
-<h2>R. Ortografica</h2>
-<ul class="pagination">
-  <% Revisao::ARRAY_FOR_SELECT.each do |texto, codigo| %>
-    <%= content_tag :li, :class=>('selected' if codigo.to_s == params[:status_revisao_texto]) do %>
-      <%= link_to texto, projects_filter_path(:status_revisao_texto=>codigo) %>
+    <%= link_to projects_filter_path(:versioned=>1) do %>
+      Apenas Cadastradas (<b><%= Project.cached_quantidade_versionadas %></b>)
     <% end %>
   <% end %>
 </ul>
 <br/><br/><br/>
 </div>
-<div style="width:355px;float:left;">
+<div style="width:380px;float:left;">
+<h2>R. Ortografica</h2>
+<ul class="pagination">
+  <% Revisao::ARRAY_FOR_SELECT.each do |texto, codigo| %>
+    <%= content_tag :li, :class=>('selected' if codigo.to_s == params[:status_revisao_texto]) do %>
+      <%= link_to projects_filter_path(:status_revisao_texto=>codigo) do %>
+        <%= texto %> (<b><%= Project.cached_group_revisao_texto[codigo] || 0 %></b>)
+      <% end %>
+    <% end %>
+  <% end %>
+</ul>
+<br/><br/><br/>
+</div>
+<div style="width:380px;float:left;">
 <h2>R. Animacao</h2>
 <ul class="pagination">
   <% Revisao::ARRAY_FOR_SELECT.each do |texto, codigo| %>
     <%= content_tag :li, :class=>('selected' if codigo.to_s == params[:status_revisao_final]) do %>
-      <%= link_to texto, projects_filter_path(:status_revisao_final=>codigo) %>
+      <%= link_to projects_filter_path(:status_revisao_final=>codigo) do %>
+        <%= texto %> (<b><%= Project.cached_group_revisao_final[codigo] || 0 %></b>)
+      <% end %>
     <% end %>
   <% end %>
 </ul>
@@ -36,7 +42,9 @@
 <ul class="pagination">
   <% Degree.all_cached.each do |degree| %>
     <%= content_tag :li, :class=>('selected' if degree == @degree) do %>
-      <%= link_to degree.to_s, projects_filter_path(:degree=>degree.id) %>
+      <%= link_to projects_filter_path(:degree=>degree.id) do %>
+        <%= degree.to_s %> (<b><%= Project.cached_group_degree[degree.id] || 0 %></b>)
+      <% end %>
     <% end %>
   <% end %>
 </ul>
@@ -46,7 +54,9 @@
 <ul class="pagination">
   <% Subject.all_cached.each do |subject| %>
     <%= content_tag :li, :class=>('selected' if subject == @subject) do %>
-      <%= link_to subject.nome, projects_filter_path(:subject=>subject.id) %>
+      <%= link_to projects_filter_path(:subject=>subject.id) do %>
+        <%= subject.nome %> (<b><%= Project.cached_group_subject[subject.id] || 0 %></b>)
+      <% end %>
     <% end %>
   <% end %>
 </ul>

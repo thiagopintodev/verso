@@ -6,6 +6,7 @@ class Project < ActiveRecord::Base
   has_many :project_versions
   alias :versions :project_versions
   
+  scope :versionadas, where('project_versions_count > 0')
   
   belongs_to :user_revisao_texto, :class_name=>'User', :foreign_key => 'user_id_revisao_texto'
   belongs_to :user_revisao_final, :class_name=>'User', :foreign_key => 'user_id_revisao_final'
@@ -26,11 +27,32 @@ class Project < ActiveRecord::Base
   
   class << self
     def cached_quantidade_versionadas
-      Rails.cache.fetch([:project, :count, :versioned]) { where('project_versions_count > 0').count }
+      Rails.cache.fetch([:project, :count, :versioned]) { versionadas.count }
     end
+    
+    def cached_group_revisao_texto
+      Rails.cache.fetch([:project, :count, :versioned, :by_texto]) { versionadas.select('status_revisao_texto, count(*)').group(:status_revisao_texto).count }
+    end
+    
+    def cached_group_revisao_final
+      Rails.cache.fetch([:project, :count, :versioned, :by_final]) { versionadas.select('status_revisao_final, count(*)').group(:status_revisao_final).count }
+    end
+    
+    def cached_group_degree
+      Rails.cache.fetch([:project, :count, :versioned, :by_degree]) { versionadas.select('degree_id, count(*)').group(:degree_id).count }
+    end
+    
+    def cached_group_subject
+      Rails.cache.fetch([:project, :count, :versioned, :by_subject]) { versionadas.select('subject_id, count(*)').group(:subject_id).count }
+    end
+    
     
     def limpar_cached
       Rails.cache.delete([:project, :count, :versioned])
+      Rails.cache.delete([:project, :count, :versioned, :by_texto])
+      Rails.cache.delete([:project, :count, :versioned, :by_final])
+      Rails.cache.delete([:project, :count, :versioned, :by_degree])
+      Rails.cache.delete([:project, :count, :versioned, :by_subject])
     end
   end
 end
