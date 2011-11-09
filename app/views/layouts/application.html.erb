@@ -23,7 +23,9 @@
 	
 		<div class="skipLink"><a href="#content" title="Skip to content">Skip to content</a></div>
 		
-		<div id="title"><span><a href="/" title="VERSO" rel="home">VERSO</a></span></div>
+		<div id="title"><span>
+		<%= link_to 'VERSO', root_path(:versioned=>1) %>
+		</span></div>
 		
 		<ul id="siteNav">
       <% if current_user %>
