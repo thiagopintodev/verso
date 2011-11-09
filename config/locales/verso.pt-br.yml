@@ -3,9 +3,9 @@
 pt-BR:
   activerecord:
     models:
-      user: Usuario
+      user: "Usuário"
     attributes:
       user:
-        username: "Usuario"
+        username: "Usuário"
         password: "Senha"
         password_confirmation: "Senha Novamente"

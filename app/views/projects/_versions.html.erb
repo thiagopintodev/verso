@@ -14,11 +14,14 @@
           <td colspan="4">
             <b style="font-size:20px">-- VERSAO #<%= i-=1 %> @<%= version.user.username %></b>
             
-            Revisao Ortografica:
+            Revisão Ortográfica:
             <%= content_tag :strong, version.revisao_texto %>
             
-            Revisao Final:
+            Revisão Técnica:
             <%= content_tag :strong, version.revisao_final %>
+            
+            Revisão Áudio:
+            <%= content_tag :strong, version.revisao_audio %>
           </td>
         </tr>
         <tr>
@@ -56,14 +59,20 @@
             <% if @project.versions.last == version && current_user.is_revisao? %>
               <%= form_for version do |f| %>
               
-                <% if current_user.is_revisao_texto %>
-                  <%= label_tag :a, "Revisao Ortografica" %>
+                
+                <% if current_user.is_revisao_audio? %>
+                  <%= label_tag :a, "Revisão Áudio" %>
+                  <%= select :project_version, :status_revisao_audio, Revisao::AUDIO_FOR_SELECT, :selected=>version.status_revisao_audio %>
+                <% end %>
+                
+                <% if current_user.is_revisao_texto? %>
+                  <%= label_tag :a, "Revisão Ortográfica" %>
                   <%= select :project_version, :status_revisao_texto, Revisao::ARRAY_FOR_SELECT, :selected=>version.status_revisao_texto %>
                   <%=  %>
                 <% end %>
                 
-                <% if current_user.is_revisao_final %>
-                  <%= label_tag :a, "Revisao Final" %>
+                <% if current_user.is_revisao_final? %>
+                  <%= label_tag :a, "Revisão Final" %>
                   <%= select :project_version, :status_revisao_final, Revisao::ARRAY_FOR_SELECT, :selected=>version.status_revisao_final %>
                 <% end %>
                 

@@ -9,6 +9,7 @@ class Project < ActiveRecord::Base
   scope :versionadas, where('project_versions_count > 0')
   
   belongs_to :user_revisao_texto, :class_name=>'User', :foreign_key => 'user_id_revisao_texto'
+  belongs_to :user_revisao_audio, :class_name=>'User', :foreign_key => 'user_id_revisao_audio'
   belongs_to :user_revisao_final, :class_name=>'User', :foreign_key => 'user_id_revisao_final'
   include Revisao
   
@@ -34,6 +35,10 @@ class Project < ActiveRecord::Base
       Rails.cache.fetch([:project, :count, :versioned, :by_texto]) { versionadas.select('status_revisao_texto, count(*)').group(:status_revisao_texto).count }
     end
     
+    def cached_group_revisao_audio
+      Rails.cache.fetch([:project, :count, :versioned, :by_audio]) { versionadas.select('status_revisao_audio, count(*)').group(:status_revisao_audio).count }
+    end
+    
     def cached_group_revisao_final
       Rails.cache.fetch([:project, :count, :versioned, :by_final]) { versionadas.select('status_revisao_final, count(*)').group(:status_revisao_final).count }
     end
@@ -50,6 +55,7 @@ class Project < ActiveRecord::Base
     def limpar_cached
       Rails.cache.delete([:project, :count, :versioned])
       Rails.cache.delete([:project, :count, :versioned, :by_texto])
+      Rails.cache.delete([:project, :count, :versioned, :by_audio])
       Rails.cache.delete([:project, :count, :versioned, :by_final])
       Rails.cache.delete([:project, :count, :versioned, :by_degree])
       Rails.cache.delete([:project, :count, :versioned, :by_subject])

@@ -17,11 +17,12 @@ class ProjectVersionsController < ApplicationController
 
     v.altera_revisao_texto(params[:project_version][:status_revisao_texto], current_user)
     v.altera_revisao_final(params[:project_version][:status_revisao_final], current_user)
+    v.altera_revisao_audio(params[:project_version][:status_revisao_audio], current_user)
     
-    if v.changes.count.zero?
-      flash[:error] = "Correcoes nao alteradas."
-    elsif v.save
+    if !v.changes.count.zero? && v.save
       flash[:notice] = "Correcoes alteradas com sucesso."
+    else
+      flash[:error] = "Correcoes nao alteradas."
     end
     redirect_to project_path(@project_version.project_id)
   end

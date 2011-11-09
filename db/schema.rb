@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111108183553) do
+ActiveRecord::Schema.define(:version => 20111109192752) do
 
   create_table "degrees", :force => true do |t|
     t.string   "nome"
@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(:version => 20111108183553) do
     t.integer  "status_revisao_final",  :default => 0
     t.integer  "user_id_revisao_texto", :default => 0
     t.integer  "user_id_revisao_final", :default => 0
+    t.integer  "status_revisao_audio",  :default => 0
+    t.integer  "user_id_revisao_audio", :default => 0
   end
 
   add_index "project_versions", ["project_id"], :name => "index_project_versions_on_project_id"
@@ -70,6 +72,8 @@ ActiveRecord::Schema.define(:version => 20111108183553) do
     t.integer  "status_revisao_final",   :default => 0
     t.integer  "user_id_revisao_texto",  :default => 0
     t.integer  "user_id_revisao_final",  :default => 0
+    t.integer  "status_revisao_audio",   :default => 0
+    t.integer  "user_id_revisao_audio",  :default => 0
   end
 
   create_table "subjects", :force => true do |t|
@@ -87,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20111108183553) do
     t.datetime "updated_at"
     t.boolean  "is_revisao_texto"
     t.boolean  "is_revisao_final"
+    t.boolean  "is_revisao_audio"
   end
 
 end

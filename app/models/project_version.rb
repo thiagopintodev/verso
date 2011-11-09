@@ -3,6 +3,7 @@ class ProjectVersion < ActiveRecord::Base
   belongs_to :user
   
   belongs_to :user_revisao_texto, :class_name=>'User', :foreign_key => 'user_id_revisao_texto'
+  belongs_to :user_revisao_audio, :class_name=>'User', :foreign_key => 'user_id_revisao_audio'
   belongs_to :user_revisao_final, :class_name=>'User', :foreign_key => 'user_id_revisao_final'
   include Revisao
   
@@ -61,11 +62,22 @@ class ProjectVersion < ActiveRecord::Base
     self.status_revisao_final = status
   end
   
+  def altera_revisao_audio(status, user=nil)
+    return if status.nil?
+    user ||= User.find_by_username('auto')
+    return unless user.is_revisao_audio?
+    #
+    self.user_revisao_audio   = user
+    self.status_revisao_audio = status
+  end
+  
   after_save do
     v = project.versions.last
     project.status_revisao_texto = v.status_revisao_texto
+    project.status_revisao_audio = v.status_revisao_audio
     project.status_revisao_final = v.status_revisao_final
     project.user_revisao_texto   = v.user_revisao_texto
+    project.user_revisao_audio   = v.user_revisao_audio
     project.user_revisao_final   = v.user_revisao_final
     project.save
   end

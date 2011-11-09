@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   validates_length_of :password, :minimum => 4, :allow_blank => true
 
   def is_revisao?
-    is_revisao_texto || is_revisao_final
+    is_revisao_texto || is_revisao_audio || is_revisao_final
   end
 
 
