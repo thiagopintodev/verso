@@ -1,3 +1,11 @@
+<% content_for :jsload do %>
+$("a[rel='swf']").click(function() {
+  $('#player').html( $(this).data('swf-content') );
+  return false;
+});
+$("a[rel='#nova-versao']").overlay();
+<% end %>
+
 <%= form_for @project_version do |f| %>
   <%= f.error_messages %>
   <%= f.hidden_field :project_id %>

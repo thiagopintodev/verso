@@ -1,17 +1,11 @@
 <% content_for :jsload do %>
-$("a[rel='swf']").click(function() {
-/*
-  var obj = $(this).closest('td');
-  if ($(this).hasClass('max')) {
-    obj.find('object, embed').attr({width: 200, height: 150});
-  } else {
-    obj.find('object, embed').attr({width: 955, height: 715});
+$("form#new_project_version").submit(function() {
+  if ($("#project_version_texto").html().length < 5)
+  {
+    alert("Preencha um comentario");
+    $("#project_version_texto").focus();
+    return false;
   }
-  $(this).toggleClass('max');
-  */
-  
-  $('#player').html( $(this).data('swf-content') );
-  return false;
 });
 $("a[rel='#nova-versao']").overlay();
 <% end %>
@@ -22,17 +16,3 @@ $("a[rel='#nova-versao']").overlay();
 
 <%= render 'versions_new' %>
 <%= render 'versions' %>
-
-
-
-
-
-
-
-<% if false %>
-<p>
-  <%= link_to "Edit", edit_project_path(@project) %> |
-  <%= link_to "Destroy", @project, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", projects_path %>
-</p>
-<% end %>
