@@ -3,7 +3,17 @@ $("a[rel='swf']").click(function() {
   $('#player').html( $(this).data('swf-content') );
   return false;
 });
+
 $("a[rel='#nova-versao']").overlay();
+
+$("form#new_project_version").submit(function() {
+  if ($("#project_version_texto").val().length < 5)
+  {
+    alert("Preencha um comentário");
+    $("#project_version_texto").focus();
+    return false;
+  }
+});
 <% end %>
 
 <%= form_for @project_version do |f| %>
