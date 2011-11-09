@@ -8,7 +8,6 @@ class ProjectVersion < ActiveRecord::Base
   include Revisao
   
   
-  validates :texto, :length => { :minimum => 5 }
   
   has_attached_file :fla,
                     :url  => "/arquivos/:class_:attachment/:id/:filename",
