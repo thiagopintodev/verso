@@ -18,6 +18,14 @@
 td { vertical-align:top; }
 
 
+ul.pagination li.selected a {
+  color: #fff;
+  background: #333;
+  font-weight: bold;
+  border: 1px outset #666 !important;
+}
+
+
 
 .simple_overlay .margin {
   margin: 40px;
