@@ -105,22 +105,26 @@
     </tr>
     <tr>
       <td>
-        <%= myfile(image_swf, @project.versao_final(:swf1).swf1) %>
+        <% v = @project.versao_final(:swf1) %>
+        <%= myfile(image_swf, v.swf1, swf_path(v.id, 1)) if v.id? %>
       </td>
     </tr>
     <tr>
       <td>
-        <%= myfile(image_swf, @project.versao_final(:swf2).swf2) %>
+        <% v = @project.versao_final(:swf2) %>
+        <%= myfile(image_swf, v.swf2, swf_path(v.id, 2)) if v.id? %>
       </td>
     </tr>
     <tr>
       <td>
-        <%= myfile(image_swf, @project.versao_final(:swf3).swf3) %>
+        <% v = @project.versao_final(:swf3) %>
+        <%= myfile(image_swf, v.swf3, swf_path(v.id, 3)) if v.id? %>
       </td>
     </tr>
     <tr>
       <td>
-        <%= myfile(image_swf, @project.versao_final(:swf4).swf4) %>
+        <% v = @project.versao_final(:swf4) %>
+        <%= myfile(image_swf, v.swf4, swf_path(v.id, 4)) if v.id? %>
       </td>
     </tr>
   </tbody>
