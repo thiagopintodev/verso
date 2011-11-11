@@ -1,12 +1,34 @@
 <h1>Aula</h1>
 
+<table>
+  <thead>
+    <tr>
+      <td colspan="3" style="font-size:16px;color:#333;text-align:center">
+        
+        Revisão Ortográfica:
+        <%= content_tag :strong, @version_final.revisao_texto %>
+        <br />
+        
+        Revisão Técnica:
+        <%= content_tag :strong, @version_final.revisao_final %>
+        <br />
+        
+        Revisão Áudio:
+        <%= content_tag :strong, @version_final.revisao_audio %>
+        
+      </td>
+    </tr>
+  </thead>
+  
+  
+  
+</table>
+
 <table id="project_show">
   <tbody>
     <tr>
-      <td width="400">
-        <%= link_to image_tag(@project.capa.url, :width=>400), edit_project_path(@project) %>
-      </td>
-      <td>
+      <td rowspan="10">
+      
       
         <p>
           <strong>Criado por:</strong>
@@ -49,6 +71,56 @@
           <%= @project.revisao_final %>
         </p>
         
+      
+      </td>
+      <td width="400">
+        <%= link_to image_tag(@project.capa.url, :width=>400), edit_project_path(@project) %>
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        <%= myfile(image_mp3, @project.versao_final(:aud1).aud1) %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= myfile(image_mp3, @project.versao_final(:aud2).aud2) %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= myfile(image_mp3, @project.versao_final(:aud3).aud3) %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= myfile(image_mp3, @project.versao_final(:aud4).aud4) %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= myfile(image_fla, @project.versao_final(:fla).fla) %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= myfile(image_swf, @project.versao_final(:swf1).swf1) %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= myfile(image_swf, @project.versao_final(:swf2).swf2) %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= myfile(image_swf, @project.versao_final(:swf3).swf3) %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= myfile(image_swf, @project.versao_final(:swf4).swf4) %>
       </td>
     </tr>
   </tbody>

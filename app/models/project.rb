@@ -22,6 +22,21 @@ class Project < ActiveRecord::Base
   validates_presence_of :sequencia
   validates_uniqueness_of :sequencia, :scope => [:subject_id, :degree_id]
   
+  def versao_final(attribute)
+    (@final ||= {}).fetch(attribute) do
+      attributes = [:fla, :aud1, :aud2, :aud3, :aud4, :swf1, :swf2, :swf3, :swf4]
+      attributes.each do |a|
+        @final[a] = ProjectVersion.new.fla
+        versions.each { |v| @final[a] = v if v.send(a).present? }
+      end
+      @final[attribute]
+    end
+  end
+  
+  
+  
+  
+  
   after_save do
     self.class.limpar_cached
   end
