@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111110191212) do
+ActiveRecord::Schema.define(:version => 20111111163955) do
 
   create_table "degrees", :force => true do |t|
     t.string   "nome"
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(:version => 20111110191212) do
     t.integer  "user_id"
     t.integer  "subject_id"
     t.integer  "degree_id"
-    t.integer  "sequencia",              :default => 1
+    t.integer  "numero",                 :default => 1
     t.integer  "project_versions_count", :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"

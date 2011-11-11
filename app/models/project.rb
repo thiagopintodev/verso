@@ -19,8 +19,12 @@ class Project < ActiveRecord::Base
                     :url  => "/arquivos/:class_:attachment/:id/:filename",
                     :path => ":rails_root/public/arquivos/:class_:attachment/:id/:filename"
   
-  validates_presence_of :sequencia
-  validates_uniqueness_of :sequencia, :scope => [:subject_id, :degree_id]
+  validates_presence_of :numero
+  validates_uniqueness_of :numero, :scope => [:subject_id, :degree_id]
+  
+  def nome
+    "#{numero}a Aula"
+  end
   
   def versao_final(attribute)
     (@final ||= {}).fetch(attribute) do
