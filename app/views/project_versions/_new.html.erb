@@ -24,102 +24,127 @@ $("form#new_project_version").submit(function() {
   
   <table id="cadastro_versoes">
     <tbody>
+    
       <tr>
-        <td>
-          <p>
-          </p>
-          
-          <p>
-            <label>
-              <%= image_mp3 %>
-              CENA 1 *.MP3
-              <br />
-              <%= f.file_field :aud1 %>
-            </label>
-          </p>
-          
-          <p>
-            <label>
-              <%= image_mp3 %>
-              CENA 2 *.MP3
-              <br />
-              <%= f.file_field :aud2 %>
-            </label>
-          </p>
-          
-          <p>
-            <label>
-              <%= image_mp3 %>
-              CENA 3 *.MP3
-              <br />
-              <%= f.file_field :aud3 %>
-            </label>
-          </p>
-          
-          <p>
-            <label>
-              <%= image_mp3 %>
-              CENA 4 *.MP3
-              <br />
-              <%= f.file_field :aud4 %>
-            </label>
-          </p>
-            
-            
+        <td width="300">
         </td>
-        <td>
-          <p>
-            <label>
-              <%= image_fla %>
-              Fontes *.FLA
-              <br />
-              <%= f.file_field :fla %>
-            </label>
-          </p>
-          
-          <p>
-            <label>
-              <%= image_swf %>
-              CENA 1 *.SWF
-              <br />
-              <%= f.file_field :swf1 %>
-            </label>
-          </p>
-          <p>
-            <label>
-              <%= image_swf %>
-              CENA 2 *.SWF
-              <br />
-              <%= f.file_field :swf2 %>
-            </label>
-          </p>
-          <p>
-            <label>
-              <%= image_swf %>
-              CENA 3 *.SWF
-              <br />
-              <%= f.file_field :swf3 %>
-            </label>
-          </p>
-          <p>
-            <label>
-              <%= image_swf %>
-              CENA 4 *.SWF
-              <br />
-              <%= f.file_field :swf4 %>
-            </label>
-          </p>
+        <td width="300">
+        
+          <label>
+            <%= image_fla %>
+            Fontes *.FLA
+            <br />
+            <%= f.file_field :fla %>
+          </label>
           
         </td>
-        <td style="vertical-align:bottom">
+        <td width="400" rowspan="5" style="vertical-align:bottom">
         
           <h2 style='text-align:center'>@<%= current_user.username.upcase %></h2>
           <h3><%= f.label :texto, "Comentários Sobre Cadastro/Alteração" %></h3>
-	        <%= f.text_area :texto, :title=>"Escreva seus comentarios sobre essa versão da aula", :class=>"hint" %>
-	        
+          <%= f.text_area :texto, :title=>"Escreva seus comentarios sobre essa versão da aula", :class=>"hint" %>
+          
         </td>
       </tr>
       
+      
+      
+      <tr>
+        <td>
+        
+          <label>
+            <%= image_mp3 %>
+            CENA 1 *.MP3
+            <br />
+            <%= f.file_field :aud1 %>
+          </label>
+          
+        </td>
+        <td>
+        
+          <label>
+            <%= image_swf %>
+            CENA 1 *.SWF
+            <br />
+            <%= f.file_field :swf1 %>
+          </label>
+          
+        </td>
+      </tr>
+      
+      
+      
+      <tr>
+        <td>
+        
+          <label>
+            <%= image_mp3 %>
+            CENA 2 *.MP3
+            <br />
+            <%= f.file_field :aud2 %>
+          </label>
+          
+        </td>
+        <td>
+        
+          <label>
+            <%= image_swf %>
+            CENA 2 *.SWF
+            <br />
+            <%= f.file_field :swf2 %>
+          </label>
+        
+        </td>
+      </tr>
+      
+      
+      
+      <tr>
+        <td>
+        
+          <label>
+            <%= image_mp3 %>
+            CENA 3 *.MP3
+            <br />
+            <%= f.file_field :aud3 %>
+          </label>
+          
+        </td>
+        <td>
+        
+          <label>
+            <%= image_swf %>
+            CENA 3 *.SWF
+            <br />
+            <%= f.file_field :swf3 %>
+          </label>
+        
+        </td>
+      </tr>
+      
+      
+      
+      <tr>
+        <td>
+          <label>
+            <%= image_mp3 %>
+            CENA 4 *.MP3
+            <br />
+            <%= f.file_field :aud4 %>
+          </label>
+        
+        </td>
+        <td>
+        
+          <label>
+            <%= image_swf %>
+            CENA 4 *.SWF
+            <br />
+            <%= f.file_field :swf4 %>
+          </label>
+          
+        </td>
+      </tr>
       
     </tbody>
   </table>
