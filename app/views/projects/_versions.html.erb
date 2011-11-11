@@ -74,7 +74,7 @@
             
             <blockquote><%= v.texto %></blockquote>
             
-            <h3 style='text-align:right'><%= l v.created_at %></h3>
+            <h3 style='text-align:right'><%= raw l(v.created_at).gsub(',', '<br/>') %></h3>
             
           </td>
         </tr>
