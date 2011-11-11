@@ -12,6 +12,7 @@ class ProjectVersion < ActiveRecord::Base
   has_attached_file :fla,
                     :url  => "/arquivos/:class_:attachment/:id/:filename",
                     :path => ":rails_root/public/arquivos/:class_:attachment/:id/:filename"
+                    
   has_attached_file :swf1,
                     :url  => "/arquivos/:class_:attachment/:id/:filename",
                     :path => ":rails_root/public/arquivos/:class_:attachment/:id/:filename"
@@ -24,12 +25,27 @@ class ProjectVersion < ActiveRecord::Base
   has_attached_file :swf4,
                     :url  => "/arquivos/:class_:attachment/:id/:filename",
                     :path => ":rails_root/public/arquivos/:class_:attachment/:id/:filename"
+                    
+  has_attached_file :aud1,
+                    :url  => "/arquivos/:class_:attachment/:id/:filename",
+                    :path => ":rails_root/public/arquivos/:class_:attachment/:id/:filename"
+  has_attached_file :aud2,
+                    :url  => "/arquivos/:class_:attachment/:id/:filename",
+                    :path => ":rails_root/public/arquivos/:class_:attachment/:id/:filename"
+  has_attached_file :aud3,
+                    :url  => "/arquivos/:class_:attachment/:id/:filename",
+                    :path => ":rails_root/public/arquivos/:class_:attachment/:id/:filename"
+  has_attached_file :aud4,
+                    :url  => "/arquivos/:class_:attachment/:id/:filename",
+                    :path => ":rails_root/public/arquivos/:class_:attachment/:id/:filename"
   
-  validates_attachment_presence :fla
+  #validates_attachment_presence :fla
+  validates :texto, :length => {:minimum=>5}
   
   validates_attachment_content_type :fla,
                                     :content_type => [ 'application/octet-stream' ],
                                     :message => 'nao indica que este seja um arquivo .FLA'
+                                    
   validates_attachment_content_type :swf1,
                                     :content_type => [ 'application/x-shockwave-flash' ],
                                     :message => 'nao indica que este seja um arquivo .SWF'
@@ -42,6 +58,19 @@ class ProjectVersion < ActiveRecord::Base
   validates_attachment_content_type :swf4,
                                     :content_type => [ 'application/x-shockwave-flash' ],
                                     :message => 'nao indica que este seja um arquivo .SWF'
+                                    
+  validates_attachment_content_type :aud1,
+                                    :content_type => [ 'audio/mp3' ],
+                                    :message => 'nao indica que este arquivo seja do tipo \'audio/mp3\''
+  validates_attachment_content_type :aud2,
+                                    :content_type => [ 'audio/mp3' ],
+                                    :message => 'nao indica que este arquivo seja do tipo \'audio/mp3\''
+  validates_attachment_content_type :aud3,
+                                    :content_type => [ 'audio/mp3' ],
+                                    :message => 'nao indica que este arquivo seja do tipo \'audio/mp3\''
+  validates_attachment_content_type :aud4,
+                                    :content_type => [ 'audio/mp3' ],
+                                    :message => 'nao indica que este arquivo seja do tipo \'audio/mp3\''
   
   def altera_revisao_texto(status, user=nil)
     return if status.nil?

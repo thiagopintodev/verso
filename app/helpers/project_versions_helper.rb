@@ -1,8 +1,15 @@
 module ProjectVersionsHelper
+
+  def myfile(img_html, paperclip)
+    link_to raw("#{img_html} #{paperclip.original_filename} (#{number_to_human_size(paperclip.size)})"), paperclip.url, :target=>'_blank'
+  end
+
+  #desuso 11/nov
   def swf(paperclip)
     raw [swf_baixar(paperclip), swf_assistir(paperclip)].join
   end
 
+  #desuso 11/nov
   def swf_baixar(paperclip)
     link_to paperclip.url, :Style=>'display:inline; float:left; width: 100px; text-align:center' do
       raw [
@@ -12,6 +19,7 @@ module ProjectVersionsHelper
     end
   end
 
+  #desuso 11/nov
   def swf_assistir(paperclip)
     s = "<object width='800' height='600'
 classid='clsid:d27cdb6e-ae6d-11cf-96b8-444553540000'

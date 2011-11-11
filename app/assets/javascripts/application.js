@@ -14,4 +14,4 @@
 
 Cufon.replace('h1,h2,h3,caption,button,div#title,div#slider a span', { fontFamily: 'Wook Bold' });
 Cufon.replace('ul#siteNav > li > a, ul#pageTabs > li > a', { fontFamily: 'Wook Regular', hover: true });
-Cufon.replace('p.intro', { fontFamily: 'Wook Regular' });
+Cufon.replace('p.intro, .c', { fontFamily: 'Wook Regular' });

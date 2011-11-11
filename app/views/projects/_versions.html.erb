@@ -1,105 +1,119 @@
 <% unless @project.versions.size.zero? %>
-  <h2>Versões dessa Aula</h2>
-  <table id="project_show">
-    <thead>
-      <tr>
-        <td colspan="4" id="player">
-        </td>
-      </tr>
-    </thead>
-    <tbody>
-      <% i = @project.versions.length+1 %>
-      <% for version in @project.versions.includes(:user).reverse %>
+  <h2 style='text-align:center'>Versões dessa Aula</h2>
+  <div id="player">
+  </div>
+  
+    
+    
+  <% i = @project.versions.length+1 %>
+  <% @project.versions.includes(:user).reverse.each do |v| %>
+      
+    <h2>v. <%= i-=1 %></h2>
+  
+    <table class="versao">
+      <thead>
         <tr>
-          <td colspan="4">
-            <b style="font-size:20px">-- VERSAO #<%= i-=1 %> @<%= version.user.username %></b>
-            
+          <td colspan="3" style="font-size:16px;color:#333;text-align:center">
+          ***
             Revisão Ortográfica:
-            <%= content_tag :strong, version.revisao_texto %>
+            <%= content_tag :strong, v.revisao_texto %>
             
             Revisão Técnica:
-            <%= content_tag :strong, version.revisao_final %>
+            <%= content_tag :strong, v.revisao_final %>
             
             Revisão Áudio:
-            <%= content_tag :strong, version.revisao_audio %>
+            <%= content_tag :strong, v.revisao_audio %>
+            ***
           </td>
         </tr>
+      </thead>
+      <% if @project.versions.last == v && current_user.is_revisao? %>
+      <tfoot>
         <tr>
-          <td colspan="4" style="vertical-align:middle">
-            <%= link_to version.fla.url do %>
-              <%= image_tag('verso/Fla-32.png') %>
-              <%= number_to_human_size version.fla.size %>
-            <% end %>
-            <%= version.fla.original_filename %>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <%= swf version.swf1 if version.swf1? %>
-          </td>
-          <td>
-            <%= swf version.swf2 if version.swf2? %>
-          </td>
-          <td>
-            <%= swf version.swf3 if version.swf3? %>
-          </td>
-          <td>
-            <%= swf version.swf4 if version.swf4? %>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="4">
-            <blockquote>
-              <%= l version.created_at %> —</cite> <%= version.texto %>.
-            </blockquote>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="4" class="actions">
-            <% if @project.versions.last == version && current_user.is_revisao? %>
-              <%= form_for version do |f| %>
+          <td colspan="3" class="actions">
+          
+              <%= form_for v do |f| %>
               
-                
                 <% if current_user.is_revisao_audio? %>
                   <%= label_tag :a, "Revisão Áudio" %>
-                  <%= select :project_version, :status_revisao_audio, Revisao::AUDIO_FOR_SELECT, :selected=>version.status_revisao_audio %>
+                  <%= select :project_version, :status_revisao_audio, Revisao::AUDIO_FOR_SELECT, :selected=>v.status_revisao_audio %>
                 <% end %>
                 
                 <% if current_user.is_revisao_texto? %>
                   <%= label_tag :a, "Revisão Ortográfica" %>
-                  <%= select :project_version, :status_revisao_texto, Revisao::ARRAY_FOR_SELECT, :selected=>version.status_revisao_texto %>
+                  <%= select :project_version, :status_revisao_texto, Revisao::ARRAY_FOR_SELECT, :selected=>v.status_revisao_texto %>
                   <%=  %>
                 <% end %>
                 
                 <% if current_user.is_revisao_final? %>
                   <%= label_tag :a, "Revisão Final" %>
-                  <%= select :project_version, :status_revisao_final, Revisao::ARRAY_FOR_SELECT, :selected=>version.status_revisao_final %>
+                  <%= select :project_version, :status_revisao_final, Revisao::ARRAY_FOR_SELECT, :selected=>v.status_revisao_final %>
                 <% end %>
                 
                 <%= submit_tag :salvar %>
                 
               <% end %>
-            <% end %>
+              
           </td>
         </tr>
+      </tfoot>
       <% end %>
-  </tbody>
-</table>
+      <tbody>
+        <tr>
+          <td width="30%">
+          </td>
+          <td width="30%">
+            <%= myfile(image_fla, v.fla) if v.fla? %>
+          </td>
+          <td rowspan="5" style="vertical-align:bottom;width:40%">
+          
+            <h3 style='text-align:right'>v. <%= i %></h3>
+            <h2>@<%= v.user.username.upcase %></h2>
+            
+            <blockquote><%= v.texto %></blockquote>
+            
+            <h3 style='text-align:right'><%= l v.created_at %></h3>
+            
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= myfile(image_mp3, v.aud1) if v.aud1? %>
+          </td>
+          <td>
+            <%= myfile(image_swf, v.swf1) if v.swf1? %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= myfile(image_mp3, v.aud2) if v.aud2? %>
+          </td>
+          <td>
+            <%= myfile(image_swf, v.swf2) if v.swf2? %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= myfile(image_mp3, v.aud3) if v.aud3? %>
+          </td>
+          <td>
+            <%= myfile(image_swf, v.swf3) if v.swf3? %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= myfile(image_mp3, v.aud4) if v.aud4? %>
+          </td>
+          <td>
+            <%= myfile(image_swf, v.swf4) if v.swf4? %>
+          </td>
+        </tr>
+      
+      </tbody>
+    </table>
+  <% end %>
+      
+  
 <% else %>
   <h3 style='color:red'>Não existe nenhuma versão cadastrada para essa Aula</h3>
 <% end %>
-
-
-
-          <% if false %>
-            <h3> -- Versao #<%= i-=1 %> -- </h3>
-            
-            <p>
-              
-              <%= link_to image_tag('verso/Swf-32.png'), version.swf1.url %>
-              <%= number_to_human_size version.swf1.size %>
-            </p>
-            <p>
-              <a href='#' rel='swf'>ampliar/reduzir</a>
-            </p>
-          <% end %>
