@@ -41,6 +41,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.1.2)
+    colorize (0.5.8)
     daemons (1.1.4)
     erubis (2.7.0)
     eventmachine (0.12.10)
@@ -130,6 +131,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   coffee-rails (~> 3.1.1)
+  colorize
   haml
   jquery-rails
   mocha
