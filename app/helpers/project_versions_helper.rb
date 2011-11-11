@@ -1,7 +1,8 @@
 module ProjectVersionsHelper
 
-  def myfile(img_html, paperclip)
-    link_to raw("#{img_html} #{paperclip.original_filename} (#{number_to_human_size(paperclip.size)})"), paperclip.url, :target=>'_blank'
+  def myfile(img_html, paperclip, url=nil)
+    url ||= paperclip.url
+    link_to raw("#{img_html} #{paperclip.original_filename} (#{number_to_human_size(paperclip.size)})"), url, :target=>'_blank'
   end
 
   #desuso 11/nov

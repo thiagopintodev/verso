@@ -1,5 +1,11 @@
 class ProjectVersionsController < ApplicationController
 
+  # GET /project_versions/:id/:attribute
+  def swf
+    v = ProjectVersion.find(params[:project_version_id])
+    @paperclip = v.send("swf#{params[:swf_token]}")
+  end
+  
   # POST /project_versions
   # POST /project_versions.json
   def create

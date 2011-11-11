@@ -1,5 +1,6 @@
 Verso::Application.routes.draw do
   resources :project_versions
+  get 'swf/:project_version_id/:swf_token' => "project_versions#swf", :as => :swf
 
   resources :projects
 

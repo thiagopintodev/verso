@@ -3,8 +3,6 @@
   <div id="player">
   </div>
   
-    
-    
   <% i = @project.versions.length+1 %>
   <% @project.versions.includes(:user).reverse.each do |v| %>
   
@@ -85,7 +83,7 @@
             <%= myfile(image_mp3, v.aud1) if v.aud1? %>
           </td>
           <td>
-            <%= myfile(image_swf, v.swf1) if v.swf1? %>
+            <%= myfile(image_swf, v.swf1, swf_path(v.id, 1)) if v.swf1? %>
           </td>
         </tr>
         <tr>
@@ -93,7 +91,7 @@
             <%= myfile(image_mp3, v.aud2) if v.aud2? %>
           </td>
           <td>
-            <%= myfile(image_swf, v.swf2) if v.swf2? %>
+            <%= myfile(image_swf, v.swf2, swf_path(v.id, 2)) if v.swf2? %>
           </td>
         </tr>
         <tr>
@@ -101,7 +99,7 @@
             <%= myfile(image_mp3, v.aud3) if v.aud3? %>
           </td>
           <td>
-            <%= myfile(image_swf, v.swf3) if v.swf3? %>
+            <%= myfile(image_swf, v.swf3, swf_path(v.id, 3)) if v.swf3? %>
           </td>
         </tr>
         <tr>
@@ -109,7 +107,7 @@
             <%= myfile(image_mp3, v.aud4) if v.aud4? %>
           </td>
           <td>
-            <%= myfile(image_swf, v.swf4) if v.swf4? %>
+            <%= myfile(image_swf, v.swf4, swf_path(v.id, 4)) if v.swf4? %>
           </td>
         </tr>
       
