@@ -29,14 +29,7 @@ $("form#new_project_version").submit(function() {
         <td width="300">
         </td>
         <td width="300">
-        
-          <label>
-            <%= image_fla %>
-            Fontes *.FLA
-            <br />
-            <%= f.file_field :fla %>
-          </label>
-          
+          <%= myupload(f, :fla, image_fla, "Fontes *.FLA") %>
         </td>
         <td width="400" rowspan="5" style="vertical-align:bottom">
         
@@ -47,102 +40,39 @@ $("form#new_project_version").submit(function() {
         </td>
       </tr>
       
-      
-      
       <tr>
         <td>
-        
-          <label>
-            <%= image_mp3 %>
-            CENA 1 *.MP3
-            <br />
-            <%= f.file_field :aud1 %>
-          </label>
-          
+          <%= myupload(f, :aud1, image_mp3, "CENA 1 *.MP3") %>
         </td>
         <td>
-        
-          <label>
-            <%= image_swf %>
-            CENA 1 *.SWF
-            <br />
-            <%= f.file_field :swf1 %>
-          </label>
-          
+          <%= myupload(f, :swf1, image_swf, "CENA 1 *.SWF") %>
         </td>
       </tr>
       
-      
-      
       <tr>
         <td>
-        
-          <label>
-            <%= image_mp3 %>
-            CENA 2 *.MP3
-            <br />
-            <%= f.file_field :aud2 %>
-          </label>
-          
+          <%= myupload(f, :aud2, image_mp3, "CENA 2 *.MP3") %>
         </td>
         <td>
-        
-          <label>
-            <%= image_swf %>
-            CENA 2 *.SWF
-            <br />
-            <%= f.file_field :swf2 %>
-          </label>
-        
+          <%= myupload(f, :swf2, image_swf, "CENA 2 *.SWF") %>
         </td>
       </tr>
       
-      
-      
       <tr>
         <td>
-        
-          <label>
-            <%= image_mp3 %>
-            CENA 3 *.MP3
-            <br />
-            <%= f.file_field :aud3 %>
-          </label>
-          
+          <%= myupload(f, :aud3, image_mp3, "CENA 3 *.MP3") %>
         </td>
         <td>
-        
-          <label>
-            <%= image_swf %>
-            CENA 3 *.SWF
-            <br />
-            <%= f.file_field :swf3 %>
-          </label>
-        
+          <%= myupload(f, :swf3, image_swf, "CENA 3 *.SWF") %>
         </td>
       </tr>
       
-      
-      
       <tr>
         <td>
-          <label>
-            <%= image_mp3 %>
-            CENA 4 *.MP3
-            <br />
-            <%= f.file_field :aud4 %>
-          </label>
-        
+          <%= myupload(f, :aud4, image_mp3, "CENA 4 *.MP3") %>
         </td>
         <td>
-        
-          <label>
-            <%= image_swf %>
-            CENA 4 *.SWF
-            <br />
-            <%= f.file_field :swf4 %>
-          </label>
-          
+          <%= myupload(f, :swf4, image_swf, "CENA 4 *.SWF") %>
         </td>
       </tr>
       

@@ -4,6 +4,12 @@ module ProjectVersionsHelper
     url ||= paperclip.url
     link_to raw("#{img_html} #{paperclip.original_filename} (#{number_to_human_size(paperclip.size)})"), url, :target=>'_blank'
   end
+  
+  def myupload(form, field, img_html, texto)
+    label_tag do
+      raw "#{img_html} #{texto} <br /> #{form.file_field field}"
+    end
+  end
 
   #desuso 11/nov
   def swf(paperclip)
