@@ -26,9 +26,10 @@ class ProjectVersionsController < ApplicationController
     v.altera_revisao_audio(params[:project_version][:status_revisao_audio], current_user)
     
     if !v.changes.count.zero? && v.save
-      flash[:notice] = "Correcoes alteradas com sucesso."
+      flash[:notice] = "Revisoes salvas com sucesso."
     else
-      flash[:error] = "Correcoes nao alteradas."
+      mensagens = v.errors.full_messages.each { |field, message| message }
+      flash[:error] = "Revisoes nao salvas. #{mensagens.to_sentence}"
     end
     redirect_to project_path(@project_version.project_id)
   end
