@@ -14,9 +14,6 @@
 }
 
 
-
-body { background:#fff none; }
-
 #footer { margin-top:100px; }
 
 
@@ -46,7 +43,14 @@ table#cadastro_versoes {
 	}
 }
 
-table.versao {
+.versao {
+  position: relative;
+  
+  background:#fff;border: #999 solid 1px;padding:20px;border-radius:10px;
+  margin-top:50px;
+	-moz-box-shadow:0 0 20px 5px #000;
+	-webkit-box-shadow: 0 0 20px #000;
+	
   td { height:40px; }
   a { border:none;display:block;color:#00f; }
   .actions {
