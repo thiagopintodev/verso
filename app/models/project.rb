@@ -26,7 +26,7 @@ class Project < ActiveRecord::Base
     (@final ||= {}).fetch(attribute) do
       attributes = [:fla, :aud1, :aud2, :aud3, :aud4, :swf1, :swf2, :swf3, :swf4]
       attributes.each do |a|
-        @final[a] = ProjectVersion.new.fla
+        @final[a] = ProjectVersion.new
         versions.each { |v| @final[a] = v if v.send(a).present? }
       end
       @final[attribute]
