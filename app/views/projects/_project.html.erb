@@ -80,47 +80,47 @@
     
     <tr>
       <td>
-        <%= myfile(image_mp3, @version_final.aud1) if @version_final.aud1? %>
+        <%= myfile(image_mp3, @project.versao_final(:aud1).aud1) %>
       </td>
     </tr>
     <tr>
       <td>
-        <%= myfile(image_mp3, @version_final.aud2) if @version_final.aud2? %>
+        <%= myfile(image_mp3, @project.versao_final(:aud2).aud2) %>
       </td>
     </tr>
     <tr>
       <td>
-        <%= myfile(image_mp3, @version_final.aud3) if @version_final.aud3? %>
+        <%= myfile(image_mp3, @project.versao_final(:aud3).aud3) %>
       </td>
     </tr>
     <tr>
       <td>
-        <%= myfile(image_mp3, @version_final.aud4) if @version_final.aud4? %>
+        <%= myfile(image_mp3, @project.versao_final(:aud4).aud4) %>
       </td>
     </tr>
     <tr>
       <td>
-        <%= myfile(image_fla, @version_final.fla) if @version_final.fla? %>
+        <%= myfile(image_fla, @project.versao_final(:fla).fla) %>
       </td>
     </tr>
     <tr>
       <td>
-        <%= myfile(image_swf, @version_final.swf1, swf_path(@version_final.id, 1)) if @version_final.swf1? %>
+        <%= myfile(image_swf, @project.versao_final(:swf1).swf1) %>
       </td>
     </tr>
     <tr>
       <td>
-        <%= myfile(image_swf, @version_final.swf2, swf_path(@version_final.id, 2)) if @version_final.swf2? %>
+        <%= myfile(image_swf, @project.versao_final(:swf2).swf2) %>
       </td>
     </tr>
     <tr>
       <td>
-        <%= myfile(image_swf, @version_final.swf3, swf_path(@version_final.id, 3)) if @version_final.swf3? %>
+        <%= myfile(image_swf, @project.versao_final(:swf3).swf3) %>
       </td>
     </tr>
     <tr>
       <td>
-        <%= myfile(image_swf, @version_final.swf4, swf_path(@version_final.id, 4)) if @version_final.swf4? %>
+        <%= myfile(image_swf, @project.versao_final(:swf4).swf4) %>
       </td>
     </tr>
   </tbody>

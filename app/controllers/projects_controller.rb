@@ -16,7 +16,6 @@ class ProjectsController < ApplicationController
     @subject          = @project.subject
     @degree           = @project.degree
     @project_version  = ProjectVersion.new :project => @project
-    @version_final    = @project.versions.last
   end
 
   def new

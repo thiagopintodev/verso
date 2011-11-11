@@ -1,6 +1,7 @@
 module ProjectVersionsHelper
 
   def myfile(img_html, paperclip, url=nil)
+    return unless paperclip.present?
     url ||= paperclip.url
     link_to raw("#{img_html} #{paperclip.original_filename} (#{number_to_human_size(paperclip.size)})"), url, :target=>'_blank'
   end
