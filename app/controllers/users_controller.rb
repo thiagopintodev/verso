@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_url, :notice => "Cadastro realizado, voce ja esta conectado."
+      redirect_to root_url(:versioned=>1), :notice => "Cadastro realizado, voce ja esta conectado."
     else
       render :action => 'new'
     end

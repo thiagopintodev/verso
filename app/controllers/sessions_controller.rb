@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     user = User.authenticate(params[:login], params[:password])
     if user
       session[:user_id] = user.id
-      redirect_to_target_or_default root_url, :notice => "Acesso garantido."
+      redirect_to_target_or_default root_url(:versioned=>1), :notice => "Acesso garantido."
     else
       flash.now[:alert] = "Acesso negado."
       render :action => 'new'
@@ -15,6 +15,6 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_url, :notice => "Desconectado."
+    redirect_to login_url, :notice => "Desconectado."
   end
 end
