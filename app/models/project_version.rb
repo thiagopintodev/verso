@@ -12,7 +12,7 @@ class ProjectVersion < ActiveRecord::Base
     attachment.instance.created_at.strftime("%Y_%h_%d")
   end
   
-  PAPERCLIP_DEFAULT_URL = "/arquivos/:created_at/:class/:id/:attachment/:filename"
+  PAPERCLIP_DEFAULT_URL = "/arquivos/diario/:created_at/:class/:id/:attachment/:filename"
   PAPERCLIP_DEFAULT_OPTIONS = { :url  => PAPERCLIP_DEFAULT_URL, :path => ":rails_root/public#{PAPERCLIP_DEFAULT_URL}" }
   
   has_attached_file :fla,  PAPERCLIP_DEFAULT_OPTIONS
@@ -21,7 +21,7 @@ class ProjectVersion < ActiveRecord::Base
   has_attached_file :swf2, PAPERCLIP_DEFAULT_OPTIONS
   has_attached_file :swf3, PAPERCLIP_DEFAULT_OPTIONS
   has_attached_file :swf4, PAPERCLIP_DEFAULT_OPTIONS
-                    
+  
   has_attached_file :aud1, PAPERCLIP_DEFAULT_OPTIONS
   has_attached_file :aud2, PAPERCLIP_DEFAULT_OPTIONS
   has_attached_file :aud3, PAPERCLIP_DEFAULT_OPTIONS
@@ -30,7 +30,6 @@ class ProjectVersion < ActiveRecord::Base
   FLA_VALIDATIONS = { :content_type => [ 'application/octet-stream' ], :message => 'nao indica que este seja um arquivo .FLA' }
   SWF_VALIDATIONS = { :content_type => [ 'application/x-shockwave-flash' ], :message => 'nao indica que este seja um arquivo .SWF' }
   MP3_VALIDATIONS = { :content_type => [ 'audio/mp3' ], :message => 'nao indica que este arquivo seja do tipo \'audio/mp3\'' }
-  
   
   #validates_attachment_presence :fla
   validates :texto, :length => {:minimum=>5}
