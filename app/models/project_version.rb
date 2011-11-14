@@ -12,13 +12,11 @@ class ProjectVersion < ActiveRecord::Base
     attachment.instance.created_at.strftime("%Y_%h_%d")
   end
   
-  #PAPERCLIP_DEFAULT_URL = "/arquivos/:class_:attachment/:id/:filename"
   PAPERCLIP_DEFAULT_URL = "/arquivos/:created_at/:class/:id/:attachment/:filename"
   PAPERCLIP_DEFAULT_OPTIONS = { :url  => PAPERCLIP_DEFAULT_URL, :path => ":rails_root/public#{PAPERCLIP_DEFAULT_URL}" }
   
-  
-  
   has_attached_file :fla,  PAPERCLIP_DEFAULT_OPTIONS
+  
   has_attached_file :swf1, PAPERCLIP_DEFAULT_OPTIONS
   has_attached_file :swf2, PAPERCLIP_DEFAULT_OPTIONS
   has_attached_file :swf3, PAPERCLIP_DEFAULT_OPTIONS
@@ -28,32 +26,6 @@ class ProjectVersion < ActiveRecord::Base
   has_attached_file :aud2, PAPERCLIP_DEFAULT_OPTIONS
   has_attached_file :aud3, PAPERCLIP_DEFAULT_OPTIONS
   has_attached_file :aud4, PAPERCLIP_DEFAULT_OPTIONS
-  
-  
-  
-  def fla_path; fla.path; end
-  def swf1_path; swf1.path; end
-  def swf2_path; swf2.path; end
-  def swf3_path; swf3.path; end
-  def swf4_path; swf4.path; end
-  def aud1_path; aud1.path; end
-  def aud2_path; aud2.path; end
-  def aud3_path; aud3.path; end
-  def aud4_path; aud4.path; end
-  
-  
-  def self.exportar_to_json
-    all.to_json :only=>[:id],
-               :methods => [
-                 :fla_path,
-                 :swf1_path, :swf2_path, :swf3_path, :swf4_path,
-                 :aud1_path, :aud2_path, :aud3_path, :aud4_path
-               ]
-  end
-  
-  def self.importar_from_xml(filepath)
-    
-  end
   
   FLA_VALIDATIONS = { :content_type => [ 'application/octet-stream' ], :message => 'nao indica que este seja um arquivo .FLA' }
   SWF_VALIDATIONS = { :content_type => [ 'application/x-shockwave-flash' ], :message => 'nao indica que este seja um arquivo .SWF' }
