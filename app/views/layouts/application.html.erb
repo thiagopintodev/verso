@@ -72,6 +72,11 @@
 		</ul>
 	</div><!-- #footer -->
 	
+	<% if Rails.env.development? %>
+  	<h2>params</h2>
+	  <%= params %>
+	<% end %>
+	
 </div><!-- #wrapper -->
 
 <script type="text/javascript">

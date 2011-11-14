@@ -37,5 +37,15 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
+  gem 'minitest'
+  gem "mocha"
 end
-gem "mocha", :group => :test
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
+  gem 'launchy'
+  gem 'database_cleaner'
+  gem 'libnotify'
+  gem 'rb-inotify'
+  gem 'guard-rspec'
+end

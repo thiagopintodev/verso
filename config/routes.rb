@@ -14,7 +14,7 @@ Verso::Application.routes.draw do
 
   resources :sessions
   resources :users
-  root :to => 'projects#index'
+  root :to => 'projects#index', :versioned=>1
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
