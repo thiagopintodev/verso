@@ -37,9 +37,11 @@ namespace :verso do
       mv_file(hash_pv['swf1_path'], pv.swf1.path) if hash_pv['swf1_path'].present?
       mv_file(hash_pv['swf2_path'], pv.swf2.path) if hash_pv['swf2_path'].present?
       mv_file(hash_pv['swf3_path'], pv.swf3.path) if hash_pv['swf3_path'].present?
+      mv_file(hash_pv['swf4_path'], pv.swf4.path) if hash_pv['swf4_path'].present?
       mv_file(hash_pv['aud1_path'], pv.aud1.path) if hash_pv['aud1_path'].present?
       mv_file(hash_pv['aud2_path'], pv.aud2.path) if hash_pv['aud2_path'].present?
       mv_file(hash_pv['aud3_path'], pv.aud3.path) if hash_pv['aud3_path'].present?
+      mv_file(hash_pv['aud4_path'], pv.aud4.path) if hash_pv['aud4_path'].present?
       #
       puts "#{hash_pv['id']}\t#{hash_pv['fla_path']}\t#{pv.fla.path}\tOK"
     end

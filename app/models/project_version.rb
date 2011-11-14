@@ -12,8 +12,8 @@ class ProjectVersion < ActiveRecord::Base
     attachment.instance.created_at.strftime("%Y_%h_%d")
   end
   
-  PAPERCLIP_DEFAULT_URL = "/arquivos/:class_:attachment/:id/:filename"
-  #PAPERCLIP_DEFAULT_URL = "/arquivos/:created_at/:class/:id/:attachment/:filename"
+  #PAPERCLIP_DEFAULT_URL = "/arquivos/:class_:attachment/:id/:filename"
+  PAPERCLIP_DEFAULT_URL = "/arquivos/:created_at/:class/:id/:attachment/:filename"
   PAPERCLIP_DEFAULT_OPTIONS = { :url  => PAPERCLIP_DEFAULT_URL, :path => ":rails_root/public#{PAPERCLIP_DEFAULT_URL}" }
   
   
