@@ -2,7 +2,7 @@ class Project < ActiveRecord::Base
   belongs_to :user
   belongs_to :subject
   belongs_to :degree
-  has_many :animations
+  has_many :reviews
   has_many :project_versions
   alias :versions :project_versions
   

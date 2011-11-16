@@ -1,0 +1,57 @@
+<%= form_for(@review) do |f| %>
+  <% if @review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+      <ul>
+      <% @review.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :project %><br />
+    <%= f.text_field :project %>
+  </div>
+  <div class="field">
+    <%= f.label :criou_user_id %><br />
+    <%= f.number_field :criou_user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :criou_created_at %><br />
+    <%= f.datetime_select :criou_created_at %>
+  </div>
+  <div class="field">
+    <%= f.label :criou_texto %><br />
+    <%= f.text_area :criou_texto %>
+  </div>
+  <div class="field">
+    <%= f.label :corrigiu_user_id %><br />
+    <%= f.number_field :corrigiu_user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :corrigiu_created_at %><br />
+    <%= f.datetime_select :corrigiu_created_at %>
+  </div>
+  <div class="field">
+    <%= f.label :corrigiu_texto %><br />
+    <%= f.text_area :corrigiu_texto %>
+  </div>
+  <div class="field">
+    <%= f.label :revisou_user_id %><br />
+    <%= f.number_field :revisou_user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :revisou_created_at %><br />
+    <%= f.datetime_select :revisou_created_at %>
+  </div>
+  <div class="field">
+    <%= f.label :revisou_texto %><br />
+    <%= f.text_area :revisou_texto %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

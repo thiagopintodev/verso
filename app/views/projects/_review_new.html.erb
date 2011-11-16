@@ -1,0 +1,16 @@
+<%= link_to_function "Cadastrar Novo Erro", "$(this).html('');$('#new_review_wrapper').slideToggle('blind');", :Style=>'float:right' %>
+<div id="new_review_wrapper" style="display:none">
+  <%= form_for(@project.reviews.build) do |f| %>
+    <%= f.hidden_field :project_id %>
+    <div class="field">
+      <%= f.label :tipo, "Tipo de Erro" %>
+      <%= f.select :tipo, Review::TIPOS %>
+    </div>
+    <div class="field">
+      <%= f.text_area :texto, :style=>'height: 40px' %>
+    </div>
+    <div class="actions" style="text-align:right">
+      <%= button_tag "Cadastrar erro para revisão" %>
+    </div>
+  <% end %>
+</div>

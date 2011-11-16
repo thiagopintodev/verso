@@ -39,17 +39,20 @@
                 <% if current_user.is_revisao_audio? %>
                   <%= label_tag :a, "Revisão Áudio" %>
                   <%= select :project_version, :status_revisao_audio, Revisao::AUDIO_FOR_SELECT, :selected=>v.status_revisao_audio %>
+                  <br />
                 <% end %>
                 
                 <% if current_user.is_revisao_texto? %>
                   <%= label_tag :a, "Revisão Ortográfica" %>
                   <%= select :project_version, :status_revisao_texto, Revisao::ARRAY_FOR_SELECT, :selected=>v.status_revisao_texto %>
                   <%=  %>
+                  <br />
                 <% end %>
                 
                 <% if current_user.is_revisao_final? %>
                   <%= label_tag :a, "Revisão Final" %>
                   <%= select :project_version, :status_revisao_final, Revisao::ARRAY_FOR_SELECT, :selected=>v.status_revisao_final %>
+                  <br />
                 <% end %>
                 
                 <%= submit_tag :salvar %>

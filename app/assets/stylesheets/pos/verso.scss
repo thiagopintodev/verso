@@ -1,18 +1,23 @@
-#flash_notice, #flash_error, #flash_alert {
+@mixin flash($color) {
   padding: 5px 8px;
   margin: 10px 0;
+  background-color: $color;
+  border: solid 1px darken($color, 60%);
 }
 
-#flash_notice {
-  background-color: #CFC;
-  border: solid 1px #6C6;
+.flash_notice {
+  @include flash(#CFC);
 }
 
-#flash_error, #flash_alert {
-  background-color: #FCC;
-  border: solid 1px #C66;
+.flash_alert {
+  @include flash(#FFC);
+}
+.flash_error {
+  @include flash(#FCC);
 }
 
+
+.clear { clear:both; }
 
 #footer { margin-top:100px; }
 
@@ -61,6 +66,43 @@ table#cadastro_versoes {
     }
   }
 }
+
+
+
+
+.review {
+  position:relative;
+  a { position:absolute;display:block;width:100%;height:100%;border:none !important; }
+  img {
+    position:absolute;top:10px;
+    &.tipo      { right:94px; }
+    &.corrigiu  { right:52px; }
+    &.revisou   { right:10px; }
+  }
+}
+.detalhes {
+  clear:both;
+  a {
+    &.corrigir  { background: #FF6; }
+    &.aprovar   { background: #6F6; }
+    &.reprovar  { background: #F66; }
+    color: #111 !important;
+    text-shadow: #fff 2px 2px 2px;
+    box-shadow: #666 2px 2px 2px;
+    margin-bottom:15px;
+    width:60%;
+    float:right;
+    display:block;
+    font-size: 20px;
+    border: none;
+    border-radius: 3px;
+    padding: 12px 20px 13px 20px;
+    text-align:center;
+  }
+}
+
+
+
 
 
 table#project_show td {

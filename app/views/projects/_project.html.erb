@@ -1,6 +1,7 @@
 <h1>Aula</h1>
 
 <table>
+        <% if false %>
   <thead>
     <tr>
       <td colspan="3" style="font-size:16px;color:#333;text-align:center">
@@ -19,6 +20,7 @@
       </td>
     </tr>
   </thead>
+        <% end %>
   
   
   
@@ -27,37 +29,14 @@
 <table id="project_show">
   <tbody>
     <tr>
-      <td rowspan="10">
+      <td rowspan="11">
       
       
         <p>
           <strong>Criado por:</strong>
           @<%= @project.user.username %>
         </p>
-        <p>
-          <strong>Disciplina:</strong>
-          <%= @project.subject.nome %>
-        </p>
-        <p>
-          <strong>Série:</strong>
-          <%= @project.degree.to_s %>
-        </p>
-        <p>
-          <strong>Aula Número:</strong>
-          <%= @project.numero %>
-        </p>
-        <p>
-          <strong>Quant Versões:</strong>
-          <%= @project.versions.size %>
-        </p>
-        <p>
-          <strong>Código Absoluto:</strong>
-          #<%= @project.id %>
-        </p>
-        <p>
-          <strong>Cadastrar Versão:</strong>
-          <a href="#" rel='#nova-versao' style='color:blue'>Cadastrar Nova Versão</a>
-        </p>
+        
         <p>
           <strong>Revisão Áudio:</strong>
           <%= @project.revisao_audio %>
@@ -71,13 +50,97 @@
           <%= @project.revisao_final %>
         </p>
         
-      
+        <h2>Revisões</h2>
+        
+        <% @project.reviews.each do |review| %>
+          <div id="review_<%= review.id %>" class="review <%= review_css(review) %>">
+            <%= link_to_function "", "$('#review_detalhes_#{review.id}').slideToggle('slow');" unless review.aprovou? %>
+            
+            <p>
+              @<%= review.criou.user.username %>
+              <b>criou</b>
+              em <%= l review.criou.user.created_at, :format=>:short %>
+              
+              <% if review.corrigiu? %>
+                <br/>
+                @<%= review.corrigiu.user.username %>
+                <b>corrigiu</b>
+                em <%= l review.corrigiu.user.created_at, :format=>:short %>
+              <% end %>
+              
+              <% if review.revisou? %>
+                <br/>
+                @<%= review.revisou.user.username %>
+                <b>revisou e <%= review.aprovou? ? 'aprovou' : 'reprovou' %></b>
+                em <%= l review.revisou.user.created_at, :format=>:short %>
+              <% end %>
+            </p>
+            
+            <b><%= review.tipo_nome %></b>
+            <%= review.texto %>
+            <br/>
+            
+            <%= review_tipo_image_tag(review) %>
+            
+            <%# CORRIGIU sempre positivo %>
+            <%= review_corrigiu_image_tag(review) %>
+            
+            <%# REVISOU revisado: corrigido/nao %>
+            <%= review_revisou_image_tag(review) %>
+            
+            
+            <%# MAO PRA BAIXO %>
+            <%#= image_tag 'http://aux.iconpedia.net/uploads/849989191190195591.png', :width=>32,  :style=>'position:absolute;right:10px;top:10px;' %>
+          </div>
+          
+          <% unless review.aprovou? %>
+            <% if review.precisa_corrigir? %>
+              <div id="review_detalhes_<%= review.id %>" class="detalhes corrigir" style="display:none">
+                <%= link_to "Marcar como corrigido.", corrigiu_review_path(review), :method=>:post, :class=>'corrigir' %>
+                <br class="clear" />
+                <br class="clear" />
+              </div>
+            <% end %>
+            
+            <% if review.precisa_revisar? %>
+              <div id="review_detalhes_<%= review.id %>" class="detalhes revisar" style="display:none">
+                <%= link_to "Marcar como aprovado.",      revisou_aprovou_review_path(review), :method=>:post, :class=>'aprovar' %>
+                <%= link_to "Marcar como NÃO corrigido.",  revisou_reprovou_review_path(review), :method=>:post, :class=>'reprovar' %>
+                <br class="clear" />
+                <br class="clear" />
+              </div>
+            <% end %>
+          <% end %>
+          
+        <% end %>
+        
+        <%= render 'review_new' %>
+        
+        
       </td>
       <td width="400">
         <%= link_to image_tag(@project.capa.url, :width=>400), edit_project_path(@project) %>
       </td>
     </tr>
     
+    <tr>
+      <td>
+        <%= @project.subject.nome %>
+        /
+        <%= @project.degree.to_s %>
+        /
+        <%= @project.nome %>
+        <br />
+        
+        Código Absoluto:
+        <strong>#<%= @project.id %></strong>
+        (<%= @project.versions.size %> Versões)
+        <br />
+        
+        <strong>Cadastrar Versão:</strong>
+        <a href="#" rel='#nova-versao'>Cadastrar Nova Versão</a>
+      </td>
+    </tr>
     <tr>
       <td>
         <%= myfile(image_mp3, @project.versao_final(:aud1).aud1) %>

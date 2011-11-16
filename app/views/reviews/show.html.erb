@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Project:</b>
+  <%= @review.project %>
+</p>
+
+<p>
+  <b>Criou user:</b>
+  <%= @review.criou_user_id %>
+</p>
+
+<p>
+  <b>Criou created at:</b>
+  <%= @review.criou_created_at %>
+</p>
+
+<p>
+  <b>Criou texto:</b>
+  <%= @review.criou_texto %>
+</p>
+
+<p>
+  <b>Corrigiu user:</b>
+  <%= @review.corrigiu_user_id %>
+</p>
+
+<p>
+  <b>Corrigiu created at:</b>
+  <%= @review.corrigiu_created_at %>
+</p>
+
+<p>
+  <b>Corrigiu texto:</b>
+  <%= @review.corrigiu_texto %>
+</p>
+
+<p>
+  <b>Revisou user:</b>
+  <%= @review.revisou_user_id %>
+</p>
+
+<p>
+  <b>Revisou created at:</b>
+  <%= @review.revisou_created_at %>
+</p>
+
+<p>
+  <b>Revisou texto:</b>
+  <%= @review.revisou_texto %>
+</p>
+
+
+<%= link_to 'Edit', edit_review_path(@review) %> |
+<%= link_to 'Back', reviews_path %>

@@ -4,6 +4,9 @@ pt-BR:
   activerecord:
     models:
       user: "Usuário"
+      review: "Revisão"
+      project: "Aula"
+      project_version: "Versão"
     attributes:
       user:
         username: "Usuário"
