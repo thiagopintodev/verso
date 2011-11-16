@@ -4,7 +4,8 @@ class Review < ActiveRecord::Base
   belongs_to :corrigiu_user,  :class_name=>'User', :foreign_key=>:corrigiu_user_id
   belongs_to :revisou_user,   :class_name=>'User', :foreign_key=>:revisou_user_id
   
-  validates :project, :presence => true
+  validates :project, :presence=>true
+  validates :criou_user, :presence=>true
   validates :texto, :length => { :minimum=>2 }
   
   TIPO_TEXTO = 0
@@ -23,7 +24,12 @@ class Review < ActiveRecord::Base
     [TIPOS_HASH[2], 2]
   ]
   
+
+  scope :fechadas, where(:revisou_aprovou => true)
   
+  scope :textos,  where(:tipo => TIPO_TEXTO)
+  scope :flashes, where(:tipo => TIPO_FLASH)
+  scope :audios,  where(:tipo => TIPO_AUDIO)
   
   def tipo_nome
     TIPOS_HASH[tipo]
@@ -52,10 +58,8 @@ class Review < ActiveRecord::Base
     corrigiu? and not revisou?
   end
   def precisa_corrigir?
-    #!aprovou? || !corrigiu?
     (not corrigiu?) || (revisou? and not aprovou?)
   end
-  
   
   class Author
     attr_accessor :parent, :prefix
@@ -85,6 +89,7 @@ class Review < ActiveRecord::Base
   def revisou
     @revisou ||= Author.new(self, 'revisou')
   end
+  
 =begin
   def self.author(prefix)
     class_eval do
@@ -97,8 +102,6 @@ class Review < ActiveRecord::Base
   author :revisou
 =end
 
-  validates :project, :presence=>true
-  validates :criou_user, :presence=>true
 end
 =begin
       t.integer :criou_user_id

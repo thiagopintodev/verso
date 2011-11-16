@@ -75,7 +75,7 @@ class ProjectVersion < ActiveRecord::Base
     self.user_revisao_audio   = user
     self.status_revisao_audio = status
   end
-  
+=begin
   after_save do
     v = project.versions.last
     project.status_revisao_texto = v.status_revisao_texto
@@ -86,5 +86,5 @@ class ProjectVersion < ActiveRecord::Base
     project.user_revisao_final   = v.user_revisao_final
     project.save
   end
-  
+=end
 end

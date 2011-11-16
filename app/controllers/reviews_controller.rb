@@ -46,6 +46,7 @@ class ReviewsController < ApplicationController
     
     respond_to do |format|
       if review.save
+        review.project.recalcula_revisoes
         format.html { redirect_to project_path(review.project_id), :notice => 'Revisao Cadastrada Com Sucesso.' }
         format.js {  }
       else
@@ -63,6 +64,7 @@ class ReviewsController < ApplicationController
     
     respond_to do |format|
       if review.save
+        review.project.recalcula_revisoes
         format.html { redirect_to project_path(review.project_id), notice: 'Revisao Atualizada Com Sucesso.' }
         format.js {  }
       else
@@ -80,6 +82,7 @@ class ReviewsController < ApplicationController
     
     respond_to do |format|
       if review.save
+        review.project.recalcula_revisoes
         format.html { redirect_to project_path(review.project_id), notice: 'Revisao Atualizada Com Sucesso.' }
         format.js {  }
       else
@@ -97,6 +100,7 @@ class ReviewsController < ApplicationController
     
     respond_to do |format|
       if review.save
+        review.project.recalcula_revisoes
         format.html { redirect_to project_path(review.project_id), notice: 'Revisao Atualizada Com Sucesso.' }
         format.js {  }
       else

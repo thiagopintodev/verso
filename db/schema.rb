@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111111163955) do
+ActiveRecord::Schema.define(:version => 20111116170016) do
 
   create_table "degrees", :force => true do |t|
     t.string   "nome"
@@ -91,6 +91,23 @@ ActiveRecord::Schema.define(:version => 20111111163955) do
     t.integer  "status_revisao_audio",   :default => 0
     t.integer  "user_id_revisao_audio",  :default => 0
   end
+
+  create_table "reviews", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "tipo"
+    t.text     "texto"
+    t.integer  "criou_user_id"
+    t.datetime "criou_at"
+    t.integer  "corrigiu_user_id"
+    t.datetime "corrigiu_at"
+    t.integer  "revisou_user_id"
+    t.datetime "revisou_at"
+    t.boolean  "revisou_aprovou"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reviews", ["project_id"], :name => "index_reviews_on_project_id"
 
   create_table "subjects", :force => true do |t|
     t.string   "nome"

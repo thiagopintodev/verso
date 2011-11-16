@@ -11,58 +11,6 @@
     <h2>v. <%= i-=1 %></h2>
     
     <table>
-      <thead>
-        <tr>
-          <td colspan="3" style="font-size:16px;color:#333;text-align:center">
-            
-            Revisão Ortográfica:
-            <%= content_tag :strong, v.revisao_texto %>
-            <br />
-            
-            Revisão Técnica:
-            <%= content_tag :strong, v.revisao_final %>
-            <br />
-            
-            Revisão Áudio:
-            <%= content_tag :strong, v.revisao_audio %>
-            
-          </td>
-        </tr>
-      </thead>
-      <% if @project.versions.last == v && current_user.is_revisao? %>
-      <tfoot>
-        <tr>
-          <td colspan="3" class="actions">
-          
-              <%= form_for v do |f| %>
-              
-                <% if current_user.is_revisao_audio? %>
-                  <%= label_tag :a, "Revisão Áudio" %>
-                  <%= select :project_version, :status_revisao_audio, Revisao::AUDIO_FOR_SELECT, :selected=>v.status_revisao_audio %>
-                  <br />
-                <% end %>
-                
-                <% if current_user.is_revisao_texto? %>
-                  <%= label_tag :a, "Revisão Ortográfica" %>
-                  <%= select :project_version, :status_revisao_texto, Revisao::ARRAY_FOR_SELECT, :selected=>v.status_revisao_texto %>
-                  <%=  %>
-                  <br />
-                <% end %>
-                
-                <% if current_user.is_revisao_final? %>
-                  <%= label_tag :a, "Revisão Final" %>
-                  <%= select :project_version, :status_revisao_final, Revisao::ARRAY_FOR_SELECT, :selected=>v.status_revisao_final %>
-                  <br />
-                <% end %>
-                
-                <%= submit_tag :salvar %>
-                
-              <% end %>
-              
-          </td>
-        </tr>
-      </tfoot>
-      <% end %>
       <tbody>
         <tr>
           <td width="30%">

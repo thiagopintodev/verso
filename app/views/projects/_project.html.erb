@@ -31,12 +31,6 @@
     <tr>
       <td rowspan="11">
       
-      
-        <p>
-          <strong>Criado por:</strong>
-          @<%= @project.user.username %>
-        </p>
-        
         <p>
           <strong>Revisão Áudio:</strong>
           <%= @project.revisao_audio %>
@@ -85,12 +79,9 @@
             <%# CORRIGIU sempre positivo %>
             <%= review_corrigiu_image_tag(review) %>
             
-            <%# REVISOU revisado: corrigido/nao %>
+            <%# REVISOU revisado: vazio/corrigido/reprovado %>
             <%= review_revisou_image_tag(review) %>
             
-            
-            <%# MAO PRA BAIXO %>
-            <%#= image_tag 'http://aux.iconpedia.net/uploads/849989191190195591.png', :width=>32,  :style=>'position:absolute;right:10px;top:10px;' %>
           </div>
           
           <% unless review.aprovou? %>

@@ -11,9 +11,30 @@ class Project < ActiveRecord::Base
   belongs_to :user_revisao_texto, :class_name=>'User', :foreign_key => 'user_id_revisao_texto'
   belongs_to :user_revisao_audio, :class_name=>'User', :foreign_key => 'user_id_revisao_audio'
   belongs_to :user_revisao_final, :class_name=>'User', :foreign_key => 'user_id_revisao_final'
-  include Revisao
+
   
   AULAS = (1..12).to_a
+  
+  
+  REVISAO_NAO       = 0
+  REVISAO_REJEITADO = 1
+  REVISAO_REPROVADO = 1
+  REVISAO_APROVADO  = 2
+  
+  REVISOES_HASH = {
+    0=>('NAO REVISADO'),
+    1=>('REJEITADO'),
+    2=>('APROVADO')
+  }
+  
+  REVISOES = [
+    [REVISOES_HASH[0], 0],
+    [REVISOES_HASH[1], 1],
+    [REVISOES_HASH[2], 2]
+  ]
+  
+  include Revisao
+  
   
   has_attached_file :capa,
                     :url  => "/arquivos/:class_:attachment/:id/:filename",
@@ -38,7 +59,31 @@ class Project < ActiveRecord::Base
   end
   
   
-  
+  def recalcula_revisoes
+    #audio
+    @revisoes = reviews.audios
+    unless @revisoes.size.zero?
+      self.status_revisao_audio = @revisoes.fechadas.size.zero? ? Project::REVISAO_REPROVADO : Project::REVISAO_APROVADO
+    puts "------------------audio--------------------------"
+    end
+    #texto
+    @revisoes = reviews.textos
+    unless @revisoes.size.zero?
+      self.status_revisao_texto = @revisoes.fechadas.size.zero? ? Project::REVISAO_REPROVADO : Project::REVISAO_APROVADO
+    puts "------------------texto--------------------------"
+    end
+    #flash
+    @revisoes = reviews.flashes
+    unless @revisoes.size.zero?
+      self.status_revisao_final = @revisoes.fechadas.size.zero? ? Project::REVISAO_REPROVADO : Project::REVISAO_APROVADO
+    puts "------------------flash--------------------------"
+    end
+    puts "--------------------------------------------"
+    puts self.changes
+    puts self.save
+    puts self.errors.messages
+    puts "--------------------------------------------"
+  end
   
   
   after_save do
