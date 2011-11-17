@@ -8,6 +8,12 @@ class Review < ActiveRecord::Base
   validates :criou_user, :presence=>true
   validates :texto, :length => { :minimum=>2 }
   
+  validate do
+    if Rails.env.production? && corrigiu? && corrigiu.user_id == revisou.user_id
+      errors[:revisou_user_id] = "Voce nao pode revisar sua propria correcao"
+    end
+  end
+  
   TIPO_TEXTO = 0
   TIPO_FLASH = 1
   TIPO_AUDIO = 2
@@ -25,7 +31,7 @@ class Review < ActiveRecord::Base
   ]
   
 
-  scope :fechadas, where(:revisou_aprovou => true)
+  scope :abertas,  where(:revisou_aprovou => false)
   
   scope :textos,  where(:tipo => TIPO_TEXTO)
   scope :flashes, where(:tipo => TIPO_FLASH)
@@ -77,6 +83,7 @@ class Review < ActiveRecord::Base
       @parent.attributes.each do |k, v|
         @parent[k] = nil if k.starts_with? prefix
       end
+      @parent.revisou_aprovou=false
     end
   end
   
@@ -88,6 +95,33 @@ class Review < ActiveRecord::Base
   end
   def revisou
     @revisou ||= Author.new(self, 'revisou')
+  end
+  
+  def salva_e_recalcula
+    save and project.recalcula_revisoes
+  end
+  
+  def cadastrar(user, project_id, tipo, texto)
+    self.project_id = project_id
+    self.tipo       = tipo
+    self.texto      = texto
+    criou.at = Time.now
+    criou.user = user
+    salva_e_recalcula
+  end
+  
+  def corrigir(user)
+    corrigiu.user = user
+    corrigiu.at = Time.now
+    revisou.clear
+    salva_e_recalcula
+  end
+  
+  def revisar(user, bool_aprovado)
+    revisou.user = user
+    revisou.at = Time.now
+    revisou.aprovou = bool_aprovado
+    salva_e_recalcula
   end
   
 =begin

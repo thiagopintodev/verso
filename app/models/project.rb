@@ -35,7 +35,6 @@ class Project < ActiveRecord::Base
   
   include Revisao
   
-  
   has_attached_file :capa,
                     :url  => "/arquivos/:class_:attachment/:id/:filename",
                     :path => ":rails_root/public/arquivos/:class_:attachment/:id/:filename"
@@ -45,6 +44,17 @@ class Project < ActiveRecord::Base
   
   def nome
     "#{numero}a Aula"
+  end
+  
+  
+  def revisao_texto
+    REVISOES_HASH[status_revisao_texto]
+  end
+  def revisao_final
+    REVISOES_HASH[status_revisao_final]
+  end
+  def revisao_audio
+    REVISOES_HASH[status_revisao_audio]
   end
   
   def versao_final(attribute)
@@ -63,19 +73,19 @@ class Project < ActiveRecord::Base
     #audio
     @revisoes = reviews.audios
     unless @revisoes.size.zero?
-      self.status_revisao_audio = @revisoes.fechadas.size.zero? ? Project::REVISAO_REPROVADO : Project::REVISAO_APROVADO
+      self.status_revisao_audio = @revisoes.abertas.size.zero? ? Project::REVISAO_APROVADO : Project::REVISAO_REPROVADO
     puts "------------------audio--------------------------"
     end
     #texto
     @revisoes = reviews.textos
     unless @revisoes.size.zero?
-      self.status_revisao_texto = @revisoes.fechadas.size.zero? ? Project::REVISAO_REPROVADO : Project::REVISAO_APROVADO
+      self.status_revisao_texto = @revisoes.abertas.size.zero? ? Project::REVISAO_APROVADO : Project::REVISAO_REPROVADO
     puts "------------------texto--------------------------"
     end
     #flash
     @revisoes = reviews.flashes
     unless @revisoes.size.zero?
-      self.status_revisao_final = @revisoes.fechadas.size.zero? ? Project::REVISAO_REPROVADO : Project::REVISAO_APROVADO
+      self.status_revisao_final = @revisoes.abertas.size.zero? ? Project::REVISAO_APROVADO : Project::REVISAO_REPROVADO
     puts "------------------flash--------------------------"
     end
     puts "--------------------------------------------"
@@ -83,6 +93,7 @@ class Project < ActiveRecord::Base
     puts self.save
     puts self.errors.messages
     puts "--------------------------------------------"
+    true
   end
   
   

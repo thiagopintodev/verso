@@ -40,17 +40,18 @@ class ReviewsController < ApplicationController
   # POST /reviews
   # POST /reviews.json
   def create
-    review = Review.new(params[:review])
-    review.criou.at = Time.now
-    review.criou.user = current_user
+    pr = params[:review]
+    review = Review.new
     
     respond_to do |format|
-      if review.save
-        review.project.recalcula_revisoes
+      if review.cadastrar(current_user, pr[:project_id], pr[:tipo], pr[:texto])
         format.html { redirect_to project_path(review.project_id), :notice => 'Revisao Cadastrada Com Sucesso.' }
         format.js {  }
       else
-        format.html { redirect_to project_path(review.project_id), :error => "Revisao Nao Cadastrada #{review.errors.messages}." }
+        format.html do
+          flash[:error] = "Revisao Nao Cadastrada #{review.errors.messages}."
+          redirect_to project_path(review.project_id)
+        end
         format.js {  }
       end
     end
@@ -58,17 +59,16 @@ class ReviewsController < ApplicationController
   
   def corrigiu
     review = Review.find(params[:id])
-    review.corrigiu.user = current_user
-    review.corrigiu.at = Time.now
-    review.revisou.clear
     
     respond_to do |format|
-      if review.save
-        review.project.recalcula_revisoes
+      if review.corrigir(current_user)
         format.html { redirect_to project_path(review.project_id), notice: 'Revisao Atualizada Com Sucesso.' }
         format.js {  }
       else
-        format.html { render action: "edit" }
+        format.html do
+          flash[:error] = "Revisao Nao Cadastrada #{review.errors.messages}."
+          redirect_to project_path(review.project_id)
+        end
         format.js {  }
       end
     end
@@ -76,17 +76,16 @@ class ReviewsController < ApplicationController
   
   def revisou_aprovou
     review = Review.find(params[:id])
-    review.revisou.user = current_user
-    review.revisou.at = Time.now
-    review.revisou.aprovou = true
     
     respond_to do |format|
-      if review.save
-        review.project.recalcula_revisoes
+      if review.revisar(current_user, true)
         format.html { redirect_to project_path(review.project_id), notice: 'Revisao Atualizada Com Sucesso.' }
         format.js {  }
       else
-        format.html { render action: "edit" }
+        format.html do
+          flash[:error] = "Revisao Nao Cadastrada #{review.errors.messages}."
+          redirect_to project_path(review.project_id)
+        end
         format.js {  }
       end
     end
@@ -94,17 +93,16 @@ class ReviewsController < ApplicationController
   
   def revisou_reprovou
     review = Review.find(params[:id])
-    review.revisou.user = current_user
-    review.revisou.at = Time.now
-    review.revisou.aprovou = false
     
     respond_to do |format|
-      if review.save
-        review.project.recalcula_revisoes
+      if review.revisar(current_user, false)
         format.html { redirect_to project_path(review.project_id), notice: 'Revisao Atualizada Com Sucesso.' }
         format.js {  }
       else
-        format.html { render action: "edit" }
+        format.html do
+          flash[:error] = "Revisao Nao Cadastrada #{review.errors.messages}."
+          redirect_to project_path(review.project_id)
+        end
         format.js {  }
       end
     end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111117103158) do
+ActiveRecord::Schema.define(:version => 20111117111801) do
 
   create_table "degrees", :force => true do |t|
     t.string   "nome"
@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(:version => 20111117103158) do
     t.datetime "corrigiu_at"
     t.integer  "revisou_user_id"
     t.datetime "revisou_at"
-    t.boolean  "revisou_aprovou"
+    t.boolean  "revisou_aprovou",  :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
