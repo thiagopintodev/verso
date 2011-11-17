@@ -1,50 +1,29 @@
 <h1>Aula</h1>
 
-<table>
-        <% if false %>
+<table id="project_show">
   <thead>
     <tr>
-      <td colspan="3" style="font-size:16px;color:#333;text-align:center">
+      <td colspan="2" style="font-size:16px;color:#333;text-align:center">
         
-        Revisão Ortográfica:
+        Revisão Ortográfica..:
         <%= content_tag :strong, @project.revisao_texto %>
         <br />
         
-        Revisão Técnica:
+        Revisão Animação...:
         <%= content_tag :strong, @project.revisao_final %>
         <br />
         
-        Revisão Áudio:
+        Revisão Áudio..........:
         <%= content_tag :strong, @project.revisao_audio %>
         
       </td>
     </tr>
   </thead>
-        <% end %>
-  
-  
-  
-</table>
-
-<table id="project_show">
   <tbody>
     <tr>
       <td rowspan="11">
       
-        <p>
-          <strong>Revisão Áudio:</strong>
-          <%= @project.revisao_audio %>
-        </p>
-        <p>
-          <strong>Revisao Ortográfica:</strong>
-          <%= @project.revisao_texto %>
-        </p>
-        <p>
-          <strong>Revisão Final:</strong>
-          <%= @project.revisao_final %>
-        </p>
-        
-        <h2>Revisões</h2>
+        <h2>Erros e Revisões</h2>
         
         <% @project.reviews.each do |review| %>
           <div id="review_<%= review.id %>" class="review <%= review_css(review) %>">
