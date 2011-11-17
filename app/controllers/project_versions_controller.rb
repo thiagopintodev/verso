@@ -18,21 +18,6 @@ class ProjectVersionsController < ApplicationController
     end
   end
   
-  def update
-    v = @project_version = ProjectVersion.find(params[:id])
-
-    v.altera_revisao_texto(params[:project_version][:status_revisao_texto], current_user)
-    v.altera_revisao_final(params[:project_version][:status_revisao_final], current_user)
-    v.altera_revisao_audio(params[:project_version][:status_revisao_audio], current_user)
-    
-    if !v.changes.count.zero? && v.save
-      flash[:notice] = "Revisoes salvas com sucesso."
-    else
-      mensagens = v.errors.full_messages.each { |field, message| message }
-      flash[:error] = "Revisoes nao salvas. #{mensagens.to_sentence}"
-    end
-    redirect_to project_path(@project_version.project_id)
-  end
 =begin
   # DELETE /project_versions/1
   # DELETE /project_versions/1.json

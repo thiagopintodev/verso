@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111116170016) do
+ActiveRecord::Schema.define(:version => 20111117103158) do
 
   create_table "degrees", :force => true do |t|
     t.string   "nome"
@@ -45,12 +45,6 @@ ActiveRecord::Schema.define(:version => 20111116170016) do
     t.string   "swf4_content_type"
     t.integer  "swf4_file_size"
     t.datetime "swf4_updated_at"
-    t.integer  "status_revisao_texto",  :default => 0
-    t.integer  "status_revisao_final",  :default => 0
-    t.integer  "user_id_revisao_texto", :default => 0
-    t.integer  "user_id_revisao_final", :default => 0
-    t.integer  "status_revisao_audio",  :default => 0
-    t.integer  "user_id_revisao_audio", :default => 0
     t.string   "aud1_file_name"
     t.string   "aud1_content_type"
     t.integer  "aud1_file_size"
@@ -86,10 +80,7 @@ ActiveRecord::Schema.define(:version => 20111116170016) do
     t.datetime "capa_updated_at"
     t.integer  "status_revisao_texto",   :default => 0
     t.integer  "status_revisao_final",   :default => 0
-    t.integer  "user_id_revisao_texto",  :default => 0
-    t.integer  "user_id_revisao_final",  :default => 0
     t.integer  "status_revisao_audio",   :default => 0
-    t.integer  "user_id_revisao_audio",  :default => 0
   end
 
   create_table "reviews", :force => true do |t|
@@ -122,9 +113,6 @@ ActiveRecord::Schema.define(:version => 20111116170016) do
     t.string   "password_salt"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_revisao_texto"
-    t.boolean  "is_revisao_final"
-    t.boolean  "is_revisao_audio"
   end
 
 end
