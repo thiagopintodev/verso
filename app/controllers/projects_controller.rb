@@ -9,6 +9,7 @@ class ProjectsController < ApplicationController
     @projects = @projects.where(:status_revisao_texto=>params[:status_revisao_texto])  if params[:status_revisao_texto]
     @projects = @projects.where(:status_revisao_final=>params[:status_revisao_final])  if params[:status_revisao_final]
     @projects = @projects.where(:status_revisao_audio=>params[:status_revisao_audio])  if params[:status_revisao_audio]
+    @projects = @projects.where(:status_producao=>params[:status_producao])  if params[:status_producao]
   end
 
   def show

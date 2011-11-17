@@ -6,21 +6,24 @@
       Apenas Cadastradas (<b><%= Project.cached_quantidade_versionadas %></b>)
     <% end %>
   <% end %>
+  
+  
 </ul>
-<br/><br/><br/>
 </div>
 <div style="width:450px;float:left;">
-<h2>Revisão Flash</h2>
+<h2>Enviadas para o Ava</h2>
 <ul class="pagination">
-  <% Project::REVISOES.each do |texto, codigo| %>
-    <%= content_tag :li, :class=>('selected' if codigo.to_s == params[:status_revisao_final]) do %>
-      <%= link_to projects_filter_path(:status_revisao_final=>codigo) do %>
-        <%= texto %> (<b><%= Project.cached_group_revisao_final[codigo] || 0 %></b>)
-      <% end %>
+  <%= content_tag :li, :class=>('selected' if params[:status_producao] == '0') do %>
+    <%= link_to projects_filter_path(:status_producao=>0) do %>
+      Em Produção (<b><%= Project.cached_group_producao[0] %></b>)
+    <% end %>
+  <% end %>
+  <%= content_tag :li, :class=>('selected' if params[:status_producao] == '1') do %>
+    <%= link_to projects_filter_path(:status_producao=>1) do %>
+      Em Desenvolvimento (<b><%= Project.cached_group_producao[1] %></b>)
     <% end %>
   <% end %>
 </ul>
-<br/><br/><br/>
 </div>
 
 
@@ -37,8 +40,22 @@
     <% end %>
   <% end %>
 </ul>
-<br/><br/><br/>
 </div>
+
+<div style="width:450px;float:left;">
+<h2>Revisão Flash</h2>
+<ul class="pagination">
+  <% Project::REVISOES.each do |texto, codigo| %>
+    <%= content_tag :li, :class=>('selected' if codigo.to_s == params[:status_revisao_final]) do %>
+      <%= link_to projects_filter_path(:status_revisao_final=>codigo) do %>
+        <%= texto %> (<b><%= Project.cached_group_revisao_final[codigo] || 0 %></b>)
+      <% end %>
+    <% end %>
+  <% end %>
+</ul>
+</div>
+
+<br style="clear:both" />
 
 <div style="width:450px;float:left;">
 <h2>Revisão Áudio</h2>
@@ -51,8 +68,8 @@
     <% end %>
   <% end %>
 </ul>
-<br/><br/><br/>
 </div>
+
 
 <br style="clear:both" />
 
@@ -66,7 +83,8 @@
     <% end %>
   <% end %>
 </ul>
-<br/><br/><br/>
+
+<br style="clear:both" />
 
 <h2>Disciplinas</h2>
 <ul class="pagination">
@@ -78,5 +96,7 @@
     <% end %>
   <% end %>
 </ul>
-<br/><br/><br/>
+
+<br style="clear:both" />
+<br /><br /><br />
 <hr />

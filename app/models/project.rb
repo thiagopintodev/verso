@@ -149,6 +149,9 @@ class Project < ActiveRecord::Base
       Rails.cache.fetch([:project, :count, :versioned, :by_subject]) { versionadas.select('subject_id, count(*)').group(:subject_id).count }
     end
     
+    def cached_group_producao
+      Rails.cache.fetch([:project, :count, :versioned, :by_producao]) { versionadas.select('status_producao, count(*)').group(:status_producao).count }
+    end
     
     def limpar_cached
       Rails.cache.delete([:project, :count, :versioned])
@@ -157,6 +160,7 @@ class Project < ActiveRecord::Base
       Rails.cache.delete([:project, :count, :versioned, :by_final])
       Rails.cache.delete([:project, :count, :versioned, :by_degree])
       Rails.cache.delete([:project, :count, :versioned, :by_subject])
+      Rails.cache.delete([:project, :count, :versioned, :by_producao])
     end
   end
 end
