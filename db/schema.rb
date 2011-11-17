@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111117111801) do
+ActiveRecord::Schema.define(:version => 20111117130618) do
 
   create_table "degrees", :force => true do |t|
     t.string   "nome"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(:version => 20111117111801) do
     t.integer  "status_revisao_texto",   :default => 0
     t.integer  "status_revisao_final",   :default => 0
     t.integer  "status_revisao_audio",   :default => 0
+    t.integer  "status_producao",        :default => 0
   end
 
   create_table "reviews", :force => true do |t|

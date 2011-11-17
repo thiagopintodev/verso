@@ -1,92 +1,16 @@
 <h1>Aula</h1>
 
 <table id="project_show">
-  <thead>
-    <tr>
-      <td colspan="2" style="font-size:16px;color:#333;text-align:center">
-        
-        Revisão Ortográfica..:
-        <%= content_tag :strong, @project.revisao_texto %>
-        <br />
-        
-        Revisão Animação...:
-        <%= content_tag :strong, @project.revisao_final %>
-        <br />
-        
-        Revisão Áudio..........:
-        <%= content_tag :strong, @project.revisao_audio %>
-        
-      </td>
-    </tr>
-  </thead>
   <tbody>
     <tr>
       <td rowspan="11">
       
-        <h2>Erros e Revisões</h2>
-        
-        <% @project.reviews.each do |review| %>
-          <div id="review_<%= review.id %>" class="review <%= review_css(review) %>">
-            <%= link_to_function "", "$('#review_detalhes_#{review.id}').slideToggle('slow');" unless review.aprovou? %>
-            
-            <p>
-              @<%= review.criou.user.username %>
-              <b>criou</b>
-              em <%= l review.criou.user.created_at, :format=>:short %>
-              
-              <% if review.corrigiu? %>
-                <br/>
-                @<%= review.corrigiu.user.username %>
-                <b>corrigiu</b>
-                em <%= l review.corrigiu.user.created_at, :format=>:short %>
-              <% end %>
-              
-              <% if review.revisou? %>
-                <br/>
-                @<%= review.revisou.user.username %>
-                <b>revisou e <%= review.aprovou? ? 'aprovou' : 'reprovou' %></b>
-                em <%= l review.revisou.user.created_at, :format=>:short %>
-              <% end %>
-            </p>
-            
-            <b><%= review.tipo_nome %></b>
-            <%= review.texto %>
-            <br/>
-            
-            <%= review_tipo_image_tag(review) %>
-            
-            <%# CORRIGIU sempre positivo %>
-            <%= review_corrigiu_image_tag(review) %>
-            
-            <%# REVISOU revisado: vazio/corrigido/reprovado %>
-            <%= review_revisou_image_tag(review) %>
-            
-          </div>
-          
-          <% unless review.aprovou? %>
-            <% if review.precisa_corrigir? %>
-              <div id="review_detalhes_<%= review.id %>" class="detalhes corrigir" style="display:none">
-                <%= link_to "Marcar como corrigido.", corrigiu_review_path(review), :method=>:post, :class=>'corrigir' %>
-                <br class="clear" />
-                <br class="clear" />
-              </div>
-            <% end %>
-            
-            <% if review.precisa_revisar? %>
-              <div id="review_detalhes_<%= review.id %>" class="detalhes revisar" style="display:none">
-                <%= link_to "Marcar como aprovado.",      revisou_aprovou_review_path(review), :method=>:post, :class=>'aprovar' %>
-                <%= link_to "Marcar como NÃO corrigido.",  revisou_reprovou_review_path(review), :method=>:post, :class=>'reprovar' %>
-                <br class="clear" />
-                <br class="clear" />
-              </div>
-            <% end %>
-          <% end %>
-          
+        <% if @project.producao? %>
+          <h3 style='color:green'>Esta aula já foi cadastrada no Ava, portanto não devem ser cadastrados erros.</h3>
+        <% else %>
+          <%= render 'project_reviews' %>
         <% end %>
-        
-        <%= render 'review_new' %>
-        
-        
+      
       </td>
       <td width="400">
         <%= link_to image_tag(@project.capa.url, :width=>400), edit_project_path(@project) %>
@@ -106,9 +30,41 @@
         <strong>#<%= @project.id %></strong>
         (<%= @project.versions.size %> Versões)
         <br />
+        <br />
         
         <strong>Cadastrar Versão:</strong>
         <a href="#" rel='#nova-versao'>Cadastrar Nova Versão</a>
+        <br />
+        <br />
+        <br />
+        <br />
+        
+        <div style="font-size:16px;color:#333;margin-bottom:20px;">
+          
+          Revisão Ortográfica..:
+          <%= content_tag :strong, @project.revisao_texto %>
+          <br />
+          
+          Revisão Animação...:
+          <%= content_tag :strong, @project.revisao_final %>
+          <br />
+          
+          Revisão Áudio..........:
+          <%= content_tag :strong, @project.revisao_audio %>
+          
+        </div>
+        
+        <% if @project.revisado? %>
+          <div style="text-align:right;">
+            <%= form_for @project do |f| %>
+              <%= select :project, :status_producao, Project::PRODUCAO_ARRAY, {}, :style=>'padding:8px' %>
+              <%= button_tag "Salvar", :style=>'padding:5px' %>
+            <% end %>
+          </div>
+        <% else %>
+          <h3 style='color:green'>Conclua as revisões antes de cadastrar a aula no Ava.</h3>
+        <% end %>
+        
       </td>
     </tr>
     <tr>

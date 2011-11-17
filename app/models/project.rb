@@ -15,7 +15,21 @@ class Project < ActiveRecord::Base
   
   AULAS = (1..12).to_a
   
+  #
+  PRODUCAO_NAO = 0
+  PRODUCAO_SIM = 1
   
+  PRODUCAO_HASH = {
+    0=>('NAO ENVIADO PARA O AVA'),
+    1=>('ENVIADO PARA O AVA')
+  }
+  
+  PRODUCAO_ARRAY = [
+    [PRODUCAO_HASH[0], 0],
+    [PRODUCAO_HASH[1], 1]
+  ]
+  
+  #
   REVISAO_NAO       = 0
   REVISAO_REJEITADO = 1
   REVISAO_REPROVADO = 1
@@ -44,6 +58,17 @@ class Project < ActiveRecord::Base
     "#{numero}a Aula"
   end
   
+  #enviado para o ava?
+  def producao?
+    status_producao==1
+  end
+  
+  #passou pelas 3 revisoes?
+  def revisado?
+    REVISAO_APROVADO == status_revisao_texto &&
+    REVISAO_APROVADO == status_revisao_audio &&
+    REVISAO_APROVADO == status_revisao_final
+  end
   
   def revisao_texto
     REVISOES_HASH[status_revisao_texto]
