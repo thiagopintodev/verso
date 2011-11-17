@@ -4,13 +4,7 @@
   <tbody>
     <tr>
       <td rowspan="11">
-      
-        <% if @project.producao? %>
-          <h3 style='color:green'>Esta aula já foi cadastrada no Ava, portanto não devem ser cadastrados erros.</h3>
-        <% else %>
-          <%= render 'project_reviews' %>
-        <% end %>
-      
+        <%= render 'project_reviews' %>
       </td>
       <td width="400">
         <%= link_to image_tag(@project.capa.url, :width=>400), edit_project_path(@project) %>
@@ -29,13 +23,6 @@
         Código Absoluto:
         <strong>#<%= @project.id %></strong>
         (<%= @project.versions.size %> Versões)
-        <br />
-        <br />
-        
-        <strong>Cadastrar Versão:</strong>
-        <a href="#" rel='#nova-versao'>Cadastrar Nova Versão</a>
-        <br />
-        <br />
         <br />
         <br />
         
@@ -63,6 +50,10 @@
           </div>
         <% else %>
           <h3 style='color:green'>Conclua as revisões antes de cadastrar a aula no Ava.</h3>
+          <br />
+          <br />
+          <strong>Cadastrar Versão:</strong>
+          <a href="#" rel='#nova-versao'>Cadastrar Nova Versão</a>
         <% end %>
         
       </td>
