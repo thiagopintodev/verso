@@ -33,8 +33,6 @@ class Project < ActiveRecord::Base
     [REVISOES_HASH[2], 2]
   ]
   
-  include Revisao
-  
   has_attached_file :capa,
                     :url  => "/arquivos/:class_:attachment/:id/:filename",
                     :path => ":rails_root/public/arquivos/:class_:attachment/:id/:filename"

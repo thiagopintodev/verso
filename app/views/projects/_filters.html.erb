@@ -10,9 +10,9 @@
 <br/><br/><br/>
 </div>
 <div style="width:450px;float:left;">
-<h2>R. Animação</h2>
+<h2>Revisão Flash</h2>
 <ul class="pagination">
-  <% Revisao::ARRAY_FOR_SELECT.each do |texto, codigo| %>
+  <% Project::REVISOES.each do |texto, codigo| %>
     <%= content_tag :li, :class=>('selected' if codigo.to_s == params[:status_revisao_final]) do %>
       <%= link_to projects_filter_path(:status_revisao_final=>codigo) do %>
         <%= texto %> (<b><%= Project.cached_group_revisao_final[codigo] || 0 %></b>)
@@ -27,9 +27,9 @@
 <br style="clear:both" />
 
 <div style="width:450px;margin-right:55px;float:left;">
-<h2>R. Ortográfica</h2>
+<h2>Revisão Texto</h2>
 <ul class="pagination">
-  <% Revisao::ARRAY_FOR_SELECT.each do |texto, codigo| %>
+  <% Project::REVISOES.each do |texto, codigo| %>
     <%= content_tag :li, :class=>('selected' if codigo.to_s == params[:status_revisao_texto]) do %>
       <%= link_to projects_filter_path(:status_revisao_texto=>codigo) do %>
         <%= texto %> (<b><%= Project.cached_group_revisao_texto[codigo] || 0 %></b>)
@@ -41,9 +41,9 @@
 </div>
 
 <div style="width:450px;float:left;">
-<h2>R. Áudio</h2>
+<h2>Revisão Áudio</h2>
 <ul class="pagination">
-  <% Revisao::AUDIO_FOR_SELECT.each do |texto, codigo| %>
+  <% Project::REVISOES.each do |texto, codigo| %>
     <%= content_tag :li, :class=>('selected' if codigo.to_s == params[:status_revisao_audio]) do %>
       <%= link_to projects_filter_path(:status_revisao_audio=>codigo) do %>
         <%= texto %> (<b><%= Project.cached_group_revisao_audio[codigo] || 0 %></b>)

@@ -5,8 +5,6 @@ class ProjectVersion < ActiveRecord::Base
   belongs_to :user_revisao_texto, :class_name=>'User', :foreign_key => 'user_id_revisao_texto'
   belongs_to :user_revisao_audio, :class_name=>'User', :foreign_key => 'user_id_revisao_audio'
   belongs_to :user_revisao_final, :class_name=>'User', :foreign_key => 'user_id_revisao_final'
-  include Revisao
-  
   
   Paperclip.interpolates :created_at  do |attachment, style|
     attachment.instance.created_at.strftime("%Y_%h_%d")
