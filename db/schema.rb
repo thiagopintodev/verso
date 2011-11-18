@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(:version => 20111117130618) do
     t.datetime "corrigiu_at"
     t.integer  "revisou_user_id"
     t.datetime "revisou_at"
-    t.boolean  "revisou_aprovou",  :default => false, :null => false
+    t.boolean  "revisou_aprovou",  :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
