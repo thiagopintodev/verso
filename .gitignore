@@ -1,7 +1,9 @@
 .bundle
 db/*.sqlite3
 log/*.log
+log/newrelic_agent_store.*
 tmp/
 .sass-cache/
 public/arquivos/**
+public/assets/
 backup/
