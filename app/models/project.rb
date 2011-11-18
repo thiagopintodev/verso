@@ -108,19 +108,19 @@ class Project < ActiveRecord::Base
     #audio
     @revisoes = reviews.audios
     unless @revisoes.size.zero?
-      self.status_revisao_audio = @revisoes.abertas.size.zero? ? Project::REVISAO_APROVADO : Project::REVISAO_REPROVADO
+      self.status_revisao_audio = @revisoes.abertas.size.zero? ? Project::REVISAO_APROVADO : Project::REVISAO_REJEITADO
     puts "------------------audio--------------------------"
     end
     #texto
     @revisoes = reviews.textos
     unless @revisoes.size.zero?
-      self.status_revisao_texto = @revisoes.abertas.size.zero? ? Project::REVISAO_APROVADO : Project::REVISAO_REPROVADO
+      self.status_revisao_texto = @revisoes.abertas.size.zero? ? Project::REVISAO_APROVADO : Project::REVISAO_REJEITADO
     puts "------------------texto--------------------------"
     end
     #flash
     @revisoes = reviews.flashes
     unless @revisoes.size.zero?
-      self.status_revisao_final = @revisoes.abertas.size.zero? ? Project::REVISAO_APROVADO : Project::REVISAO_REPROVADO
+      self.status_revisao_final = @revisoes.abertas.size.zero? ? Project::REVISAO_APROVADO : Project::REVISAO_REJEITADO
     puts "------------------flash--------------------------"
     end
     puts "--------------------------------------------"
