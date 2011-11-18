@@ -40,8 +40,8 @@
           <%= content_tag :strong, @project.revisao_audio %>
           <br />
           
-          Em Produção............:
-          <%= content_tag :strong, @project.producao? ? 'ENVIADO PARA O AVA' : 'NAO ENVIADO' %>
+          Enviado para o Ava..:
+          <%= content_tag :strong, @project.producao? ? 'ENVIADO' : 'NÃO ENVIADO' %>
           
         </div>
         <% if @project.revisado? %>

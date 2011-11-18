@@ -15,12 +15,12 @@
 <ul class="pagination">
   <%= content_tag :li, :class=>('selected' if params[:status_producao] == '0') do %>
     <%= link_to projects_filter_path(:status_producao=>0) do %>
-      Em Desenvolvimento (<b><%= Project.cached_group_producao[0] %></b>)
+      Não Enviado (<b><%= Project.cached_group_producao[0] %></b>)
     <% end %>
   <% end %>
   <%= content_tag :li, :class=>('selected' if params[:status_producao] == '1') do %>
     <%= link_to projects_filter_path(:status_producao=>1) do %>
-      Em Produção (<b><%= Project.cached_group_producao[1] %></b>)
+      Enviado (<b><%= Project.cached_group_producao[1] %></b>)
     <% end %>
   <% end %>
 </ul>
