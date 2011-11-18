@@ -29,6 +29,11 @@
 		
 		<ul id="siteNav">
       <% if current_user %>
+      
+        <li><%= link_to 'aulas totalmente aprovadas', projects_path(:status_revisao_texto=>Project::REVISAO_APROVADO,
+                                                                    :status_revisao_final=>Project::REVISAO_APROVADO,
+                                                                    :status_revisao_audio=>Project::REVISAO_APROVADO
+                                                                    ) %></li>
   			<li><%= link_to 'ver todas as aulas', projects_path %></li>
         <li><%= link_to current_user.username, edit_current_user_path %></li>
         <li><%= link_to "Logout", logout_path %></li>
