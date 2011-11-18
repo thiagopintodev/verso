@@ -41,7 +41,7 @@
   <% unless review.aprovou? %>
     <% if review.precisa_corrigir? %>
       <div id="review_detalhes_<%= review.id %>" class="detalhes corrigir" style="display:none">
-        <%= link_to "Marcar como corrigido.", corrigiu_review_path(review), :method=>:post, :class=>'corrigir' %>
+        <%= link_to "Marcar como corrigido.", corrigiu_review_path(review), :method=>:post, :class=>'botao_revisao corrigir' %>
         <br class="clear" />
         <br class="clear" />
       </div>
@@ -49,8 +49,8 @@
     
     <% if review.precisa_revisar? %>
       <div id="review_detalhes_<%= review.id %>" class="detalhes revisar" style="display:none">
-        <%= link_to "Marcar como aprovado.",      revisou_aprovou_review_path(review), :method=>:post, :class=>'aprovar' %>
-        <%= link_to "Marcar como NÃO corrigido.",  revisou_reprovou_review_path(review), :method=>:post, :class=>'reprovar' %>
+        <%= link_to "Marcar como aprovado.",      revisou_aprovou_review_path(review), :method=>:post, :class=>'botao_revisao aprovar' %>
+        <%= link_to "Marcar como NÃO corrigido.",  revisou_reprovou_review_path(review), :method=>:post, :class=>'botao_revisao reprovar' %>
         <br class="clear" />
         <br class="clear" />
       </div>
@@ -58,6 +58,27 @@
   <% end %>
   
 <% end %>
+
+
+<%= link_to "Áudio aprovado!",
+            create_aprovado_reviews_path(:project_id=>@project.id, :tipo=>Review::TIPO_AUDIO),
+            :class=>'botao_revisao aprovar',
+            :method=>:post unless @project.audio_revisado?
+            %>
+            
+<%= link_to "Texto aprovado!",
+            create_aprovado_reviews_path(:project_id=>@project.id, :tipo=>Review::TIPO_TEXTO),
+            :class=>'botao_revisao aprovar',
+            :method=>:post unless @project.texto_revisado?
+            %>
+            
+<%= link_to "Flash aprovado!",
+            create_aprovado_reviews_path(:project_id=>@project.id, :tipo=>Review::TIPO_FLASH),
+            :class=>'botao_revisao aprovar',
+            :method=>:post unless @project.flash_revisado?
+            %>
+            
+<br class="clear" >
 
 <%= link_to_function "Cadastrar Novo Erro", "$(this).html('');$('#new_review_wrapper').slideToggle('blind');", :Style=>'float:right' %>
 <div id="new_review_wrapper" style="display:none">

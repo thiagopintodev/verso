@@ -70,6 +70,19 @@ class Project < ActiveRecord::Base
     REVISAO_APROVADO == status_revisao_final
   end
   
+  def texto_revisado?
+    REVISAO_NAO != status_revisao_texto
+  end
+  
+  def audio_revisado?
+    REVISAO_NAO != status_revisao_audio
+  end
+  
+  def flash_revisado?
+    REVISAO_NAO != status_revisao_final
+  end
+  
+  
   def revisao_texto
     REVISOES_HASH[status_revisao_texto]
   end

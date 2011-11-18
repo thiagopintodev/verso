@@ -10,6 +10,9 @@ Verso::Application.routes.draw do
       post :revisou_aprovou
       post :revisou_reprovou
     end
+    collection do
+      post :create_aprovado
+    end
   end
 
   #resources :degrees

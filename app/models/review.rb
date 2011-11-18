@@ -110,6 +110,20 @@ class Review < ActiveRecord::Base
     salva_e_recalcula
   end
   
+  def cadastrar_aprovada(user, project_id, tipo)
+    self.project_id = project_id
+    self.tipo       = tipo
+    self.texto      = "*** Nao foram encontrados erros ***"
+    criou.user    = user
+    corrigiu.user = user
+    revisou.user  = user
+    criou.at    = Time.now
+    corrigiu.at = criou.at
+    revisou.at  = criou.at
+    revisou.aprovou = true
+    salva_e_recalcula
+  end
+  
   def corrigir(user)
     corrigiu.user = user
     corrigiu.at = Time.now

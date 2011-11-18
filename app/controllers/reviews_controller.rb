@@ -57,6 +57,25 @@ class ReviewsController < ApplicationController
     end
   end
   
+  def create_aprovado
+    review = Review.new
+    
+    respond_to do |format|
+      if review.cadastrar_aprovada(current_user, params[:project_id], params[:tipo])
+        format.html { redirect_to project_path(review.project_id), :notice => 'Revisao Cadastrada Com Sucesso.' }
+        format.js {  }
+      else
+        format.html do
+          flash[:error] = "Revisao Nao Cadastrada #{review.errors.messages}."
+          redirect_to project_path(review.project_id)
+        end
+        format.js {  }
+      end
+    end
+  end
+  
+  #
+  
   def corrigiu
     review = Review.find(params[:id])
     
