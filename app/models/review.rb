@@ -19,9 +19,9 @@ class Review < ActiveRecord::Base
   TIPO_AUDIO = 2
   
   TIPOS_HASH = {
-    0=>('ORTOGRAFICA'),
-    1=>('ANIMACAO'),
-    2=>('AUDIO')
+    TIPO_TEXTO=>('ORTOGRAFICA'),
+    TIPO_FLASH=>('ANIMACAO'),
+    TIPO_AUDIO=>('AUDIO')
   }
   
   TIPOS = [
@@ -42,13 +42,13 @@ class Review < ActiveRecord::Base
   end
   
   def ortografica?
-    tipo==0
+    tipo==TIPO_TEXTO
   end
   def audio?
-    tipo==1
+    tipo==TIPO_AUDIO
   end
   def animacao?
-    tipo==2
+    tipo==TIPO_FLASH
   end
   def corrigiu?
     corrigiu.at.present?

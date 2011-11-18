@@ -20,8 +20,8 @@ class Project < ActiveRecord::Base
   PRODUCAO_SIM = 1
   
   PRODUCAO_HASH = {
-    0=>('NAO ENVIADO PARA O AVA'),
-    1=>('ENVIADO PARA O AVA')
+    PRODUCAO_NAO=>('NAO ENVIADO PARA O AVA'),
+    PRODUCAO_SIM=>('ENVIADO PARA O AVA')
   }
   
   PRODUCAO_ARRAY = [
@@ -32,13 +32,12 @@ class Project < ActiveRecord::Base
   #
   REVISAO_NAO       = 0
   REVISAO_REJEITADO = 1
-  REVISAO_REPROVADO = 1
   REVISAO_APROVADO  = 2
   
   REVISOES_HASH = {
-    0=>('NAO REVISADO'),
-    1=>('REJEITADO'),
-    2=>('APROVADO')
+    REVISAO_NAO=>('NAO REVISADO'),
+    REVISAO_REJEITADO=>('REJEITADO'),
+    REVISAO_APROVADO=>('APROVADO')
   }
   
   REVISOES = [
