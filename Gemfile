@@ -41,7 +41,7 @@ group :test do
   gem "mocha"
 end
 group :development, :test do
-  gem 'rspec-rails'
+  gem 'rspec-rails', :git => 'git@github.com:yakko/rspec-rails.git'
   gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
   gem 'launchy'
   gem 'database_cleaner'
