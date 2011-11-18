@@ -115,7 +115,7 @@ class Review < ActiveRecord::Base
     self.tipo       = tipo
     self.texto      = "*** Nao foram encontrados erros ***"
     criou.user    = user
-    corrigiu.user = user
+    corrigiu.user = User.find_auto
     revisou.user  = user
     criou.at    = Time.now
     corrigiu.at = criou.at

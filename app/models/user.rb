@@ -17,7 +17,9 @@ class User < ActiveRecord::Base
     is_revisao_texto || is_revisao_audio || is_revisao_final
   end
 
-
+  def self.find_auto
+    find_by_username('auto')
+  end
 
 
 
