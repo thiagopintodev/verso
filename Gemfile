@@ -43,6 +43,7 @@ end
 group :development, :test do
   gem 'rspec-rails', :git => 'git@github.com:yakko/rspec-rails.git'
   gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
+  gem 'fabrication'
   gem 'launchy'
   gem 'database_cleaner'
   gem 'libnotify'

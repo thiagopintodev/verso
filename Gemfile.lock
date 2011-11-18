@@ -74,6 +74,7 @@ GEM
     eventmachine (0.12.10)
     execjs (1.2.9)
       multi_json (~> 1.0)
+    fabrication (1.2.0)
     ffi (1.0.11)
     guard (0.8.8)
       thor (~> 0.14.6)
@@ -190,6 +191,7 @@ DEPENDENCIES
   coffee-rails (~> 3.1.1)
   colorize
   database_cleaner
+  fabrication
   guard-rspec
   haml
   jquery-rails
