@@ -33,7 +33,6 @@ $("form#new_project_version").submit(function() {
         </td>
         <td width="400" rowspan="5" style="vertical-align:bottom">
         
-          <h2 style='text-align:center'>@<%= current_user.username.upcase %></h2>
           <h3><%= f.label :texto, "Comentários Sobre Cadastro/Alteração" %></h3>
           <%= f.text_area :texto, :title=>"Escreva seus comentarios sobre essa versão da aula", :class=>"hint" %>
           

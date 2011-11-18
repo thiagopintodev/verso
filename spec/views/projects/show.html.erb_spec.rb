@@ -14,15 +14,12 @@ describe "projects/show.html.erb" do
     @project_version  = ProjectVersion.new :project => @project
   end
   
-  def current_user
-    Fabricate(:user)
-  end
-
   it "renders attributes in <p>" do
     render
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     #rendered.should match(/1/)
     # Run the generator again with the --webrat flag if you want to use webrat matchers
-    #rendered.should match(@degree.nome)
+    rendered.should match(@degree.nome)
+    rendered.should match(@subject.nome)
   end
 end
