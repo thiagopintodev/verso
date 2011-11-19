@@ -44,8 +44,19 @@ class ProjectVersion < ActiveRecord::Base
   validates_attachment_content_type :aud3, MP3_VALIDATIONS
   validates_attachment_content_type :aud4, MP3_VALIDATIONS
   
+  validate do
+    errors[:fla] = "Voce deve enviar pelo menos um arquivo" if not algum_swf? and not algum_aud? and not fla?
+    errors[:fla] = "Voce nao pode enviar arquivos SWF sem enviar o FLA" if algum_swf? and not fla?
+    errors[:swf1] = "Voce nao pode enviar o FLA sem enviar ao menos um SWF" if not algum_swf? and fla?
+  end
   
+  def algum_swf?
+    swf1? || swf2? || swf3? || swf4?
+  end
   
+  def algum_aud?
+    aud1? || aud2? || aud3? || aud4?
+  end
   
   def altera_revisao_texto(status, user=nil)
     return if status.nil?
