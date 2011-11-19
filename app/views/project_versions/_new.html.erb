@@ -13,6 +13,8 @@ $("form#new_project_version").submit(function() {
     $("#project_version_texto").focus();
     return false;
   }
+  $("#submit, a.close").hide();
+  $("#enviando").fadeIn(1200);
 });
 <% end %>
 <style>
@@ -88,6 +90,7 @@ $("form#new_project_version").submit(function() {
       <%= @project_version.project.nome %>
     </span>
     <button type="submit" name="submit" id="submit">Cadastrar Versão para esta Aula</button>
+    <%= image_enviando %>
   </div>
   
 <% end %>

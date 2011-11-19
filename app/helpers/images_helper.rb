@@ -11,5 +11,9 @@ module ImagesHelper
   def image_fla
     image_tag('verso/Fla-32.png')
   end
+  
+  def image_enviando
+    image_tag('verso/enviando.gif', :id=>'enviando', :style=>'display:none')
+  end
 
 end
