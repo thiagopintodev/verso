@@ -53,7 +53,7 @@
 		<!-- Page -->
 		<div id="page" class="<%= yield :page_css %>">
 		
-      <%= content_tag :h1, yield(:title) if show_title? %>
+      <%= content_tag :h2, yield(:title) if show_title? %>
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :class => "flash_#{name}" %>
       <% end %>
