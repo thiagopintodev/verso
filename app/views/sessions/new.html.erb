@@ -1,8 +1,7 @@
 <% title "Log in" %>
 
-<p>Nao é cadastrado? <%= link_to "Clique Aqui!", signup_path %></p>
-
-<%= form_tag sessions_path do %>
+<%= form_tag sessions_path, :class=>'aspire' do %>
+  <fieldset>
   <p>
     <%= label_tag :login, "Usuario ou Email" %><br />
     <%= text_field_tag :login, params[:login] %>
@@ -12,4 +11,9 @@
     <%= password_field_tag :password %>
   </p>
   <p><%= submit_tag "Log in" %></p>
+  </fieldset>
 <% end %>
+
+<br /><br /><br /><br />
+
+<p>Nao é cadastrado? <%= link_to "Clique Aqui!", signup_path %></p>

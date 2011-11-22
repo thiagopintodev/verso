@@ -477,38 +477,6 @@ body{
 			width: 550px;
 		}
 		
-		#page #reply form input,
-		#page #contact form input,
-		#page #reply form textarea,
-		#page #contact form textarea{
-			display: block;
-			background: #f8f8f8;
-			border: 1px solid #cfcfcf;
-			padding: 15px;
-			width: 500px;
-			margin: 10px 0 10px;
-		}
-		
-		#page #contact form input,
-		#page #contact form textarea{
-			width: 500px;
-		}
-		
-		
-		#page #reply form textarea,
-		#page #contact form textarea{
-			height: 100px;
-			font: 12px 'Arial';
-		}
-		
-		#page #reply form .button,
-		#page #contact form .button{
-			background: #000;
-			color: #FFF;
-			padding: 13px;
-			border:1px solid #cfcfcf;
-			width: auto;
-		}
 		
 	#page .article_nav{
 		height: 50px;
