@@ -12,6 +12,6 @@ describe "projects/index.html.erb" do
 
   it "renders a list of projects" do
     render
-    assert_select "ul.work>li", :count => 2
+    assert_select "ul#gallery>li", :count => 2
   end
 end
