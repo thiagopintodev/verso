@@ -60,19 +60,19 @@
 <% end %>
 
 
-<%= link_to "Áudio aprovado!",
+<%= link_to "Aprovar Áudio!",
             create_aprovado_reviews_path(:project_id=>@project.id, :tipo=>Review::TIPO_AUDIO),
             :class=>'botao_revisao aprovar',
             :method=>:post unless @project.audio_revisado?
             %>
             
-<%= link_to "Texto aprovado!",
+<%= link_to "Aprovar Texto!",
             create_aprovado_reviews_path(:project_id=>@project.id, :tipo=>Review::TIPO_TEXTO),
             :class=>'botao_revisao aprovar',
             :method=>:post unless @project.texto_revisado?
             %>
             
-<%= link_to "Flash aprovado!",
+<%= link_to "Aprovar Flash!",
             create_aprovado_reviews_path(:project_id=>@project.id, :tipo=>Review::TIPO_FLASH),
             :class=>'botao_revisao aprovar',
             :method=>:post unless @project.flash_revisado?
