@@ -7,20 +7,20 @@
     <p>
       @<%= review.criou.user.username %>
       <b>criou</b>
-      em <%= l review.criou.user.created_at, :format=>:short %>
+      em <%= l review.criou.at, :format=>:short %>
       
       <% if review.corrigiu? %>
         <br/>
         @<%= review.corrigiu.user.username %>
         <b>corrigiu</b>
-        em <%= l review.corrigiu.user.created_at, :format=>:short %>
+        em <%= l review.corrigiu.at, :format=>:short %>
       <% end %>
       
       <% if review.revisou? %>
         <br/>
         @<%= review.revisou.user.username %>
         <b>revisou e <%= review.aprovou? ? 'aprovou' : 'reprovou' %></b>
-        em <%= l review.revisou.user.created_at, :format=>:short %>
+        em <%= l review.revisou.at, :format=>:short %>
       <% end %>
     </p>
     
