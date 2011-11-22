@@ -5,8 +5,9 @@ td { vertical-align:top; }
 
 table#cadastro_versoes {
   width: auto;
+  td { padding-bottom:20px; }
   p { height:60px;margin-bottom:0;border-bottom:#efefef solid 1px;padding: 10px 0; }
-  textarea { width:350px; }
+  textarea { width:100%; }
   
 	form button:hover,
 	form button:focus {

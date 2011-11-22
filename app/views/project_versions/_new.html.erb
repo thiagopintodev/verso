@@ -8,9 +8,6 @@ $("form#new_project_version").submit(function() {
   }
   $("#submit").hide();
   $("#enviando").fadeIn(1200);
-  $(window).bind('beforeunload', function(){
-    return "Voce vai interromper o envio de arquivos!"
-  });
 });
 <% end %>
 <style>
@@ -24,16 +21,32 @@ $("form#new_project_version").submit(function() {
     <tbody>
     
       <tr>
-        <td width="300">
+        <td width="400">
+          <%= myupload(f, :swf1, image_swf, "CENA 1 *.SWF") %>
         </td>
-        <td width="300">
+        <td width="600">
           <%= myupload(f, :fla, image_fla, "Fontes *.FLA") %>
-        </td>
-        <td width="400" rowspan="5" style="vertical-align:bottom">
         
+        </td>
+      </tr>
+      
+      <tr>
+        <td>
+          <%= myupload(f, :swf2, image_swf, "CENA 2 *.SWF") %>
+        </td>
+        <td rowspan="7" style="vertical-align:bottom">
           <h3><%= f.label :texto, "Comentários Sobre Cadastro/Alteração" %></h3>
           <%= f.text_area :texto, :title=>"Escreva seus comentarios sobre essa versão da aula", :class=>"hint" %>
-          
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= myupload(f, :swf3, image_swf, "CENA 3 *.SWF") %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= myupload(f, :swf4, image_swf, "CENA 4 *.SWF") %>
         </td>
       </tr>
       
@@ -41,37 +54,25 @@ $("form#new_project_version").submit(function() {
         <td>
           <%= myupload(f, :aud1, image_mp3, "CENA 1 *.MP3") %>
         </td>
-        <td>
-          <%= myupload(f, :swf1, image_swf, "CENA 1 *.SWF") %>
-        </td>
       </tr>
-      
       <tr>
         <td>
           <%= myupload(f, :aud2, image_mp3, "CENA 2 *.MP3") %>
         </td>
-        <td>
-          <%= myupload(f, :swf2, image_swf, "CENA 2 *.SWF") %>
-        </td>
       </tr>
-      
       <tr>
         <td>
           <%= myupload(f, :aud3, image_mp3, "CENA 3 *.MP3") %>
         </td>
-        <td>
-          <%= myupload(f, :swf3, image_swf, "CENA 3 *.SWF") %>
-        </td>
       </tr>
-      
       <tr>
         <td>
           <%= myupload(f, :aud4, image_mp3, "CENA 4 *.MP3") %>
         </td>
-        <td>
-          <%= myupload(f, :swf4, image_swf, "CENA 4 *.SWF") %>
-        </td>
       </tr>
+      
+      
+      
       
     </tbody>
   </table>
