@@ -1,14 +1,24 @@
 module ProjectsHelper
 
   def projects_filter_path(options)
-    p = params.clone
-    defaults = {:action=>'index', :id=>nil}
-    disablers = [:subject, :degree, :versioned, :status_revisao_texto, :status_revisao_final, :status_revisao_audio, :status_producao]
-    options.each do |k,v|
-      next unless disablers.include?(k)
-      options[k].to_s == p[k].to_s ? p.delete(k) : ( p[k] = v )
-    end
-    p.merge defaults
+    options.merge({:action=>'index', :id=>nil})
   end
-
+  
+  def li_subject_options(subject)
+    if subject.nil?
+      return unless params[:subject].nil?
+    else
+      return unless subject.id.to_s == params[:subject]
+    end
+    {:class=>'selected'}
+  end
+  
+  def li_degree_options(degree)
+    if degree.nil?
+      return unless params[:degree].nil?
+    else
+      return unless degree.id.to_s == params[:degree]
+    end
+    {:class=>'selected'}
+  end
 end

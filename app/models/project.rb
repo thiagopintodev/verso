@@ -141,6 +141,9 @@ class Project < ActiveRecord::Base
   end
   
   class << self
+    def cached_quantidade
+      Rails.cache.fetch([:project, :count]) { count }
+    end
     def cached_quantidade_versionadas
       Rails.cache.fetch([:project, :count, :versioned]) { versionadas.count }
     end
@@ -170,6 +173,7 @@ class Project < ActiveRecord::Base
     end
     
     def limpar_cached
+      Rails.cache.delete([:project, :count])
       Rails.cache.delete([:project, :count, :versioned])
       Rails.cache.delete([:project, :count, :versioned, :by_texto])
       Rails.cache.delete([:project, :count, :versioned, :by_audio])
