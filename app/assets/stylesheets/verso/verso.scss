@@ -1,44 +1,6 @@
-@mixin flash($color) {
-  padding: 5px 8px;
-  margin: 10px 0;
-  background-color: $color;
-  border: solid 1px darken($color, 60%);
-}
-
-.flash_notice {
-  @include flash(#CFC);
-}
-
-.flash_alert {
-  @include flash(#FFC);
-}
-.flash_error {
-  @include flash(#FCC);
-}
-
-
 .clear { clear:both; }
-
-
-/*
-#footer { margin-top:100px; }
-
-
 td { vertical-align:top; }
 
-
-ul.pagination li.selected a {
-  color: #fff;
-  background: #333;
-  font-weight: bold;
-  border: 1px outset #666 !important;
-}
-
-
-
-.simple_overlay .margin {
-  margin: 40px;
-}
 
 
 table#cadastro_versoes {
@@ -68,7 +30,6 @@ table#cadastro_versoes {
     }
   }
 }
-*/
 
 
 
@@ -105,43 +66,10 @@ a.botao_revisao {
 
 
 
-/*
-table#project_show td {
-  font-size:16px;
-  a { color:#00f; }
-}
-
-ul.work li p {
-  margin: 10px 0 0 0;
-  font-size:16px;
-  &.sequencia { font-size:32px; }
-}
-a.gallery {
-  height:300px;
-  color: #da0000;
-  &:hover { color:#9a0000; }
-}
-*/
-
-.error_messages {
-  width: 400px;
-  padding: 0px;
-  padding-bottom: 12px;
-  margin-bottom: 20px;
-  color: #c00;
-}
-
-.error_messages h2 {
-  padding: 5px 10px;
-  color: #c00;
-  background: none !important;
-}
-
-.error_messages p {
-  margin: 8px 10px;
-  text-decoration: underline;
-}
-
-.error_messages ul {
-  margin: 0;
+table#project_show {
+  width: 100%;
+  td {
+    font-size:16px;
+    a { color:#00f; }
+  }
 }

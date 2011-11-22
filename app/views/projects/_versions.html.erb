@@ -1,7 +1,5 @@
 <% unless @project.versions.size.zero? %>
   <h2 style='text-align:center;margin-top:200px'>Versões dessa Aula</h2>
-  <div id="player">
-  </div>
   
   <% i = @project.versions.length+1 %>
   <% @project.versions.includes(:user).reverse.each do |v| %>

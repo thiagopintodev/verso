@@ -1,11 +1,5 @@
 <% content_for :jsload do %>
-$("a[rel='swf']").click(function() {
-  $('#player').html( $(this).data('swf-content') );
-  return false;
-});
-
-$("a[rel='#nova-versao']").overlay();
-
+$('#page').addClass('full');
 $("form#new_project_version").submit(function() {
   if ($("#project_version_texto").val().length < 5)
   {
@@ -13,8 +7,11 @@ $("form#new_project_version").submit(function() {
     $("#project_version_texto").focus();
     return false;
   }
-  $("#submit, a.close").hide();
+  $("#submit").hide();
   $("#enviando").fadeIn(1200);
+  $(window).bind('beforeunload', function(){
+    return "Voce vai interromper o envio de arquivos!"
+  });
 });
 <% end %>
 <style>
@@ -83,11 +80,7 @@ $("form#new_project_version").submit(function() {
   <div class="formSubmit" style='text-align:right'>
   
     <span class="c" style="font-size:36px;">
-      <%= @project_version.project.subject.nome %>
-      /
-      <%= @project_version.project.degree.to_s %>
-      /
-      <%= @project_version.project.nome %>
+      <%= @project_version.project.nome_completo %>
     </span>
     <button type="submit" name="submit" id="submit">Cadastrar Versão para esta Aula</button>
     <%= image_enviando %>

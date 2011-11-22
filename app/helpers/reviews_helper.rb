@@ -8,7 +8,7 @@ module ReviewsHelper
               else
                 "error"
               end
-    "flash_#{status}"
+    "flash #{status}"
   end
   
   

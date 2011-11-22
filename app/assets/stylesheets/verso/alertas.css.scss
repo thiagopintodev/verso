@@ -1,0 +1,38 @@
+@mixin flash($color) {
+  background-color: $color;
+  color: darken($color, 60%);
+  border: solid 1px darken($color, 60%);
+  
+}
+.flash {
+  padding: 10px;
+  margin: 10px 0;
+  display:block;
+  &:hover   { text-decoration:none; }
+  &.notice  { @include flash(#CFC); }
+  &.alert   { @include flash(#FFC); }
+  &.error   { @include flash(#FCC); }
+}
+
+.error_messages {
+  width: 400px;
+  padding: 0px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  color: #c00;
+}
+
+.error_messages h2 {
+  padding: 5px 10px;
+  color: #c00;
+  background: none !important;
+}
+
+.error_messages p {
+  margin: 8px 10px;
+  text-decoration: underline;
+}
+
+.error_messages ul {
+  margin: 0;
+}

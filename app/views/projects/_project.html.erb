@@ -3,7 +3,7 @@
 <table id="project_show">
   <tbody>
     <tr>
-      <td rowspan="11">
+      <td rowspan="11" style="padding-right:20px;">
         <%= render 'project_reviews' %>
       </td>
       <td width="400">
@@ -13,11 +13,7 @@
     
     <tr>
       <td>
-        <%= @project.subject.nome %>
-        /
-        <%= @project.degree.to_s %>
-        /
-        <%= @project.nome %>
+        <%= @project.nome_completo %>
         <br />
         
         Código Absoluto:
@@ -54,10 +50,6 @@
         <% else %>
           <h3 style='color:green'>Conclua as revisões antes de cadastrar a aula no Ava.</h3>
         <% end %>
-        <br />
-        <br />
-        <strong>Cadastrar Versão:</strong>
-        <a href="#" rel='#nova-versao'>Cadastrar Nova Versão</a>
         
       </td>
     </tr>

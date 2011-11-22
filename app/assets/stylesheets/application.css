@@ -11,5 +11,6 @@
  *= require aspire/prettyPhoto.css
  *= require aspire/core.css
  *= require aspire/colors.css
- *= require pos/verso.css
+ *= require verso/alertas.css
+ *= require verso/verso.css
 */
