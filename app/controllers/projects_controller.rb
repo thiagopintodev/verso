@@ -14,8 +14,6 @@ class ProjectsController < ApplicationController
 
   def show
     @project          = Project.find(params[:id])
-    @subject          = @project.subject
-    @degree           = @project.degree
     @project_version  = ProjectVersion.new :project => @project
   end
 
