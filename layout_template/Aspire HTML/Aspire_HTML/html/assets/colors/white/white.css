@@ -1,0 +1,16 @@
+body{
+	background: #FFF url(../white/bg.jpg) repeat-x;
+}
+
+	body.sub{
+		background: #FFF url(../white/sub.jpg) repeat-x;
+	}
+	
+	body.sub_no_cap{
+		background: #FFF url(../white/sub_no_cap.jpg) repeat-x;
+	}
+	
+	.sub_header p{color: #222 !important;}
+	
+	#page ul#entries li .entry small a, .entry p a, #container ul.quick_links li a.more {color:#0e75b6;}
+	#slider{border: 11px solid #000;}

@@ -57,6 +57,10 @@ class Project < ActiveRecord::Base
     "#{numero}a Aula"
   end
   
+  def nome_completo
+    "#{subject.nome}, #{degree.to_s}, #{nome}"
+  end
+  
   #enviado para o ava?
   def producao?
     status_producao==1

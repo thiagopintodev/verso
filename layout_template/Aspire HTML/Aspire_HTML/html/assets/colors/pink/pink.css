@@ -1,0 +1,13 @@
+body{
+	background: #FFF url(../pink/bg.jpg) repeat-x;
+}
+
+	body.sub{
+		background: #FFF url(../pink/sub.jpg) repeat-x;
+	}
+	
+	body.sub_no_cap{
+		background: #FFF url(../pink/sub_no_cap.jpg) repeat-x;
+	}
+	
+	#page ul#entries li .entry small a, .entry p a, #container ul.quick_links li a.more {color:#d41369;}

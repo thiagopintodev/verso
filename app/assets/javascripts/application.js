@@ -9,3 +9,21 @@
 //= require jquery_ujs
 //= require_directory .
 
+// jQuery Nivo Slider
+//= require aspire/jquery.nivo.slider.pack.js
+
+// jQuery Social Tooltip
+//= require aspire/jquery.tipsy.js
+
+// jQuery Super Fish Navigation
+//= require aspire/hoverIntent.js
+//= require aspire/superfish.js
+
+// jQuery FancyBox
+//= require aspire/jquery.prettyPhoto.js
+
+// Theme Core File
+//= require aspire/aspire.js
+
+// Cufon Font Replacement
+//= require aspire/cufon-yui.js

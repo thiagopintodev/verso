@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Aspire - Getting Started</title>
+<style type="text/css">
+html{background: #222 url(images/bg.jpg) no-repeat fixed top center;}
+body { background: white; margin: 40px auto; font-family: Lucida Grande, Arial, Helvetica, sans-serif; font-size: 12px; color: #202020; line-height: 20px; width: 800px; padding: 50px;}
+h1 { margin-top: 0px; }
+fieldset { margin: 30px 0; padding: 30px; }
+legend { font-size: 18px; padding: 0 10px; color: #202020; }
+pre, xmp {
+	border: solid 1px #ccc;
+	padding:15px; 
+	background: #efefef;
+	width:700px;
+	}
+a {color: #1386d7;}
+hr{
+	background: #FFF;
+	height: 1px;
+	border: 0px;
+	border-bottom: 1px dotted #c2c2c2;
+	margin-top: 5px;
+	margin-bottom: 20px;
+}
+
+a img {padding: 3px; background: #eee; border: 1px solid #ccc; width: 95%; height: 95%; margin: 10px auto;}
+a img:hover {background: #afdeff;}
+ul.nobullets {
+	list-style: none;
+	}
+	
+.social img{width:285px; height: 70px; text-align: center;}
+.social {text-align: center;}
+</style>
+</head>
+
+<body>
+<h1><center><img src="images/logo.jpg" /></center></h1>
+<p><center>Created: April 20, 2010<br />
+Version: HTML/CSS<br />
+By: Brandon R Jones<br />
+Contact Info: <a href="http://makedesignnotwar.com">http://makedesignnotwar.com</a><br /><br />
+
+Full Wordpress Version coming soon! <a href="http://themeforest.net/user/epicera/follow">Follow Me</a> to Get Updates on the New Version!<br /><br />
+
+Thank you for purchasing this template! If you have any questions that are beyond the scope of this help file, please feel free to email me via my user page contact form. Thanks so much!</p>
+<p><br /></center>
+
+<h2>TABLE OF CONTENTS:</h2>
+
+A) HTML Structure <br />
+B) CSS Files<br />
+C) Javascript <br />
+D) PSD Files<br />
+E) Fonts Uses<br />
+F) SIFR Implementation<br />
+G) Customization and Contact Form<br />
+H) UPDATES<br />
+
+</p>
+<p>
+-- ORGANIZATION:<br />
+First - a note on the organization of this template.
+I have placed all essential non-html files inside of the "assets" folder. There you'll find the primary images, javascript, css, and other files that are essential to each version of this template.<br /><br />
+Above this folder I have grouped each "color" inside of it's own folder. You'll notice that there are 7 main .html files and a contact form .php file. You will notice that each of these files is referencing it's respecitive "color style" stylesheet at the very top of the header - ie: the white version references white.css. The blue version regerences /colors/blue/blue.css .<br /><br />
+The files inside of each theme folder are just for quick access - you can re-organize their proximity to the files in the "assets" folder at your own pleasure. <br /><br />
+The CSS file in those color folders (black.css, blue.css, etc.) doesn't cover the main styling for the template, only those styles that differentiate each theme from each other.
+</p>
+
+<fieldset>
+<legend>A) HTML Structure</legend>
+This theme is a fixed layout with two possible configurations: Full Width, and 2 Column. <br />
+
+All of the information within the main content area is nested within a div with an id of "container". The header section is located under the "header" class. <br /><br />
+The navigation is located in the "sf-menu"" class inside the "header". <br />
+The slider at the top of the homepage is located inside the "slider" id. <br />
+The homepage 4 blurbs of information are nested inside the div with the class of "quick-links". <br />
+The left column content is within a div with an id of "page". <br />
+The sidebar's (column #2) content is within a div with an id of "sidebar". <br />
+The footer content is within a div with an id of "footer".<br /><br />
+
+If you would like to edit the color, font, or style of any elements in one of these columns, you would do the following:<br /><br />
+<xmp>#content a {<br />
+   color: #someColor;<br />
+}</xmp> <br />
+
+If you find that your new style is not overriding, it is most likely because of a specificity problem. Scroll down in your CSS file and make sure that there isn't a similar style that has more weight. <br /><br />
+
+I.E.<br />
+<xmp>.green a {<br />
+color: #someColor;<br />
+}</xmp><br />
+
+So, to ensure that your new styles are applied, make sure that they carry enough "weight" and that there isn't a style lower in the CSS file that is being applied after yours. <br /><br />
+
+The styling for this theme are stored in 3 key locations: core.css (main styling) , quickstyles.css , and finally, there are a handful of other CSS files that include styling for the various third party plugins, such as the dropdown, prettyPhoto, etc. I have taken the time to separate the most important styling components (the background graphic and the main link colors) into their own CSS files, located in the "css/quick-styles" folder.<br />
+</fieldset>
+
+
+<fieldset>
+<legend>B) CSS</legend>
+
+I'm using one main CSS file in this theme to load all other stylesheets (core.css). There several support stylesheets (for IE browsers and the jQuery stuff). The site also includes a generic reset stylesheet (reset.css) inside the hacks folder. Many browser interpret the default behavior of html elements differently. By using a general reset CSS rule, we can work round this. This file also contains some general styling, such as anchor tag colors, font-sizes, etc. Keep in mind, that these values might be overridden somewhere else in the file. 
+<br /><br />
+The main file (core.css) contains all of the universal stylings for the pages. The file is separated into sections using:  
+<br /><br />
+/* Main Section */<br />
+
+some code<br /><br />
+
+/* Footer */<br />
+
+some code<br />
+
+etc, etc. <br /><br />
+
+If you would like to edit a specific section of the site, simply find the appropriate label in the CSS file, and then scroll down until you find the appropriate style that needs to be edited. <br /><br />
+
+I've also done by best to keep this code as organized as possible. Take a few minutes to familiarize yourself with what's in each file before you start your styling, and it should be a breeze.<br /><br />
+
+</fieldset>
+
+<fieldset>
+<legend>C) Javascript</legend>
+
+This theme imports several Javascript files.<br /><br />
+
+  1) load.js | This file LOADS ALL OTHER JS FILES into the template!<br />
+  2) losangeles.js | The main JS file that runs any necessary activation scripts for the other files.<br />
+  3) jquery-1.4.2.min.js | The main jQuery script.<br />
+  4) jquery.prettyPhoto.js | The jQuery script that drives the image lightbox.<br />
+  5) jquery.nivo.slider.pack.js | The jQuery script that drives the image slider on the homepage.<br />
+  6) superfish.js | The dropdown menu script.<br />
+  7) hoverIntent,js | A support file for the dropdown menu.<br />
+  8) cufon-yui.js | The main text-replacement script.<br />
+  9) avenir.js | The "font" file for the CUFON font replacement.<br />
+  10) DD_belatedPNG_0.0.8a-min.js | A PNG fix script.<br />
+  
+  
+A) jQuery is a Javascript library that greatly reduces the amount of code that you must write. <br />
+B) Most of the animation in this site is carried out from open source scripts that are "tried and true". To get support about how to modify these, please refer to their author sites:<br /><br />
+
+"CUFON": http://cufon.shoqolate.com/generate/<br />
+"prettyPhoto (lightbox)": http://www.no-margin-for-errors.com/projects/prettyphoto-jquery-lightbox-clone/<br />
+"Nivo Slider (gallery slider)": http://nivo.dev7studios.com/<br />
+"jQuery": http://jquery.com/<br />
+"Super Simple Contact Form": http://supersimple.org/contact
+
+For these scripts, I stuck to conventional implementation, so if you run into problems trying to customize them, the support information should be readily available on those sites. <br /><br />
+
+For the Nivo Slider (used on the homepage) and the prettyPhoto Lightbox - keep in mind you can customize the settings (as discussed on their official websites) from the aspire.js file.
+
+<br />
+</fieldset>
+
+<fieldset>
+<legend>D) PSD Files</legend>
+
+I've included several psds with this theme:<br /><br />
+
+   1) The main layout PSD file (sorted inside by color - you must download this file)<br />
+   2) The "chop" psd files. These are sorted by name, and represent the EXACT images you'll need to overwrite if you're interested in restyling this theme. The match up perfectly with the CSS dimmensions, and their names are EXACTLY the same as the files you'll need to overwrite.<br /><br />
+
+To change the logo at the top of the header, simply replace that logo with your own and adjust the height/width/padding of that space to your own liking. <br /><br />
+
+All of these files are organized using the highest design standards, and can be editted in any version of photoshop after CS3.
+</fieldset>
+
+<fieldset>
+<legend>E) Fonts Used</legend>
+Avenir (Light and Bold) : The Title Font for most titles, headers, and other highlight fonts on the site. You can purchase this font at : http://new.myfonts.com/fonts/linotype/avenir/ - but it is permissible to distribute the digital copy of this font with this template.<br />
+Arial : System Font
+</fieldset>
+
+
+<fieldset>
+<legend>F) CUFON Implementation</legend>
+This site uses CUFON for font-replacement in the navigation, the headlines, and several other spots. It's accomplished using the basic CUFON-installation as described on their site. Notice the references to CUFON fonts inside the header-section of each HTML file, and the "replacement" declaration inside the losangeles.js file.<br /><br />
+
+The fonts are then given their style inside the main template stylesheets (most are in core.css)<br /><br />
+
+You can change the color of some of the CUFON fonts from the color specific stylesheet - ie: /assets/colors/white/white.css 
+
+<br /><br />
+
+If you need to change to another font because of language or other special character issues - just pick the font that you want to use, take it to http://cufon.shoqolate.com/generate/ - and generate a new font. Then reference the new font file inside the load.js file and the aspire.js file.
+</fieldset>
+
+
+<fieldset>
+<legend>G) Customization and Contact Form Usage</legend>
+You can quickly create your own custom stylesheets by over-writing the color specific CSS files with your own adjustments. Keep in mind that you will need to keep track of the original styling in case your new styles compete with them. You can also add new background graphics and other customizations here as well.<br /><br />
+
+The Contact Form is quite simple to use, but as it's the only PHP file, I should walk you through it. It's been built using the Super Simple Contact Form Maker : http://supersimple.org/contact. First, there's a good chance that you'll want to ignore the large block of PHP at the top of this page. If all you want to do is setup your email address, just scroll down to line 230-233 in the code:<br />
+
+<xmp>//now get the recipient(s)
+$_to[] = "YourEmail@Address.here";
+</xmp>
+<br />
+Just enter your email address instead of "YourEmail@Address.here" and the form will be setup. To make customizations to this form, I highly recommend reading the documentation at the Super Simple Contact Form website, as that's what I used to create the form. Just insert the code that they give you into this framework and you'll be good to go.
+
+</fieldset>
+
+
+<fieldset>
+<legend>H) Homepage Slider Usage</legend>
+You'll locate the default "NivoSlider" inside the main index.html file inside the "slider" section of code:<br /><br />
+
+<xmp><!-- Slider -->
+<div id="slider">
+<a href="#"><img src="../assets/img/slider/example01.jpg" alt="" /></a>
+<img src="../assets/img/slider/example02.jpg" alt="" />
+<a rel="prettyPhoto[gallery]" href="#"><img src="../assets/img/slider/example03.jpg" alt=""
+ title="This is an example of a caption! Add your own custom title and description here." /></a>
+<a rel="prettyPhoto[gallery]" href="#"><img src="../assets/img/slider/example04.jpg" alt="" /></a>
+<a rel="prettyPhoto[gallery]" href="#"><img src="../assets/img/slider/example05.jpg" alt="" /></a>
+</div>
+<!-- </Slider -->
+</xmp>
+<br />
+The code here is quite simple - just add a new IMG element inside the "slider" DIV for each new slide that you want. You can wrap the image tag with a Hyperlink tag to make it link to another page. You can edit the destination of the slide from the HREF item, and the source of the image from the SRC item. You will notice that by adding a TITLE="..." to any of your image tags will trigger the slider to show a "caption" underneath the image.<br /><br />
+
+If you want to launch a lightbox, just insert the [rel="prettyPhoto[YourGalleryTitle]"] into the hyperlink tag. Read more about how to use the lightbox <a href="http://www.no-margin-for-errors.com/projects/prettyphoto-jquery-lightbox-clone/">at the PrettyPhoto website</a>.
+
+</fieldset>
+
+
+<fieldset>
+<legend>I) Updates</legend>
+None yet :)
+</fieldset>	
+
+Once again, thank you so much for purchasing this theme. As I said at the beginning, I'd be glad to help you if you have any questions relating to this theme. No guarantees, but I'll do my best to assist. If you have a more general question relating to the themes on ThemeForest, you might consider visiting the forums and asking your question in the "Item Discussion" section. <br /><br />

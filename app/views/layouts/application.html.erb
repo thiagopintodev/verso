@@ -1,34 +1,45 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en-us" xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title><%= content_for?(:title) ? yield(:title) : "Logos Educação - Verso" %></title>
     <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "application" %>
-	  <!--[if IE 8]><link rel="stylesheet" type="text/css" href="/javascripts/style_ie8.css"><![endif]-->
-	  <!--[if IE 7]><link rel="stylesheet" type="text/css" href="/javascripts/style_ie7.css"><![endif]-->
+    <%= javascript_include_tag "application", "/javascripts/avenir.js" %>
+<% if false %>
+    <link rel="icon" type="image/x-icon" href="../assets/img/global/favicon.gif" />
+<% end %>
+    <!--[if IE 6]>
+    <script type="text/javascript" src="/assets/aspire/DD_belatedPNG_0.0.8a-min.js"></script> 
+    <script>
+      DD_belatedPNG.fix('img, .social li a, #intro');
+    </script>
+    <![endif]-->
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
     <% if Rails.env.development? %>
     <style>
-    #header { background: #080; }
+    #header {  }
     </style>
     <% end %>
+		<%= favicon_link_tag '/assets/verso/favicon.png' %>
   </head>
-  <body class="jsDisabled">
-  <script type="text/javascript">$('body').removeClass('jsDisabled');</script>
+  <body class="sub_no_cap">
   
-<div id="header" class="clearfix">
+  
 	
-	<div class="holder clearfix">
 	
-		<div class="skipLink"><a href="#content" title="Skip to content">Skip to content</a></div>
-		
-		<div id="title"><span>
-		<%= link_to 'VERSO', root_path(:versioned=>1) %>
-		</span></div>
-		
-		<ul id="siteNav">
-      <% if current_user %>
+	<!-- Container -->
+	<div id="container">
+		<!-- Header -->
+		<div id="header">
+			<div class="logo">
+    		<%= link_to root_path(:versioned=>1) do %>
+				  <img src="/assets/verso/logo.png" alt="image" width="110" />
+				<% end %>
+			</div>
+			
+			<ul class="sf-menu">
+        <% if current_user %>
       
         <li><%= link_to 'aulas totalmente aprovadas', projects_path(:status_revisao_texto=>Project::REVISAO_APROVADO,
                                                                     :status_revisao_final=>Project::REVISAO_APROVADO,
@@ -36,59 +47,72 @@
                                                                     ) %></li>
   			<li><%= link_to 'ver todas as aulas', projects_path %></li>
         <li><%= link_to current_user.username, edit_current_user_path %></li>
-        <li><%= link_to "Logout", logout_path %></li>
+        <li class="current"><%= link_to "Logout", logout_path %></li>
       <% else %>
         <li><%= link_to "Cadastro", signup_path %></li>
         <li><%= link_to "Login", login_path %></li>
       <% end %>
 		</ul>
-
-	</div>
-  
-</div><!-- #header -->
-    
-
-<div id="wrapper">
-
-	<div id="main" class="clearfix">
 		
-		  <%= content_tag :h1, yield(:title) if show_title? %>
+		</div>
+		<!-- </Header -->
+		
+		
+		<!-- Page -->
+		<div id="page">
+		
+      <%= content_tag :h1, yield(:title) if show_title? %>
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :class => "flash_#{name}" %>
       <% end %>
       <%= yield %>
       
-    <% if false %>
-		<div class="mainCol">
 		</div>
+		<!-- </Page -->
 		
-		<div class="sidebarCol">
-		  <%= render('/sidebar_col') %>
+		<!-- Sidebar -->
+		<div id="sidebar">
+			<%= yield :sidebar %>
 		</div>
-		<% end %>
-		
-	</div><!-- #main -->
+		<!-- </Sidebar -->
 
-	<div id="footer">
+	</div>
+	<!-- </Container -->
 	
-		<p class="copyright">&copy; 2011 Logos Educacao. Sistema VERSO.</p>
-		<ul>
-			<li>Desenvolvimento: <%= link_to "Thiago Almeida", "http://yakkoprofile.herokuapp.com/" %>.</li>
-		</ul>
-	</div><!-- #footer -->
-	
+
 	<% if Rails.env.development? %>
+  	<br class="clear" />
   	<h2>params</h2>
 	  <%= params %>
 	<% end %>
 	
-</div><!-- #wrapper -->
-
+	
+	
+	
+	<!-- Footer -->
+	<div id="footer">
+		<div class="inner">
+			
+			<div class="copyright">
+    		<p class="copyright">&copy; 2011 Logos Educacao. Sistema VERSO.</p>
+    		<p class="">Desenvolvimento: <%= link_to "Thiago Almeida", "http://yakkoprofile.herokuapp.com/" %></p>
+			</div>
+			
+			<ul class="quick_links">
+			  <li></li>
+			</ul>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<!-- </Footer -->
+	
+	
+	
+	
 <script type="text/javascript">
 
-	// apply cufon & force a redraw for IE
-	Cufon.now(); document.body.className = '<%= controller.controller_name %> <%= controller.action_name %>';
 $(function() {
+	$('body').addClass('<%= controller.controller_name %> <%= controller.action_name %>');
   <%= yield :jsload %>
 });
   

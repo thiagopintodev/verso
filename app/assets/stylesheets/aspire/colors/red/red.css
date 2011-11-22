@@ -1,0 +1,13 @@
+body{
+	background: #FFF url(/assets/aspire/colors/red/bg.jpg) repeat-x;
+}
+
+body.sub{
+	background: #FFF url(/assets/aspire/colors/red/sub.jpg) repeat-x;
+}
+
+body.sub_no_cap{
+	background: #FFF url(/assets/aspire/colors/red/sub_no_cap.jpg) repeat-x;
+}
+
+#page ul#entries li .entry small a, .entry p a, #container ul.quick_links li a.more {color:#c40000;}

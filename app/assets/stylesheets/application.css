@@ -4,4 +4,12 @@
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require_self
  *= require_directory .
+ *= require aspire/reset.css
+ *= require aspire/nivo-slider.css
+ *= require aspire/tipsy.css
+ *= require aspire/superfish.css
+ *= require aspire/prettyPhoto.css
+ *= require aspire/core.css
+ *= require aspire/colors/red/red.css
+ *= require pos/verso.css
 */

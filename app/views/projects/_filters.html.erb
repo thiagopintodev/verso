@@ -1,34 +1,109 @@
-<div style="width:450px;margin-right:55px;float:left;">
-<h2>Filtro</h2>
-<ul class="pagination">
-  <%= content_tag :li, :class=>('selected' if params[:versioned]) do %>
-    <%= link_to projects_filter_path(:versioned=>1) do %>
-      Apenas Cadastradas (<b><%= Project.cached_quantidade_versionadas %></b>)
-    <% end %>
-  <% end %>
-  
-  
-</ul>
-</div>
-<div style="width:450px;float:left;">
-<h2>Enviadas para o Ava</h2>
-<ul class="pagination">
-  <%= content_tag :li, :class=>('selected' if params[:status_producao] == '0') do %>
-    <%= link_to projects_filter_path(:status_producao=>0) do %>
-      Não Enviado (<b><%= Project.cached_group_producao[0] %></b>)
-    <% end %>
-  <% end %>
-  <%= content_tag :li, :class=>('selected' if params[:status_producao] == '1') do %>
-    <%= link_to projects_filter_path(:status_producao=>1) do %>
-      Enviado (<b><%= Project.cached_group_producao[1] %></b>)
-    <% end %>
-  <% end %>
-</ul>
-</div>
+
+			<!-- Filtros -->
+			
+		  <div class="box">
+				<h2>Filtros</h2>
+				<ul class="cat">
+          <%= content_tag :li, :class=>('selected' if params[:versioned]) do %>
+            <%= link_to projects_filter_path(:versioned=>1) do %>
+              Apenas Cadastradas (<b><%= Project.cached_quantidade_versionadas %></b>)
+            <% end %>
+          <% end %>
+				</ul>
+			</div>
+			
+		  <div class="box">
+				<h2>Enviadas para o Ava</h2>
+				<ul class="cat">
+          <%= content_tag :li, :class=>('selected' if params[:status_producao] == '0') do %>
+            <%= link_to projects_filter_path(:status_producao=>0) do %>
+              Não Enviado (<b><%= Project.cached_group_producao[0] %></b>)
+            <% end %>
+          <% end %>
+          <%= content_tag :li, :class=>('selected' if params[:status_producao] == '1') do %>
+            <%= link_to projects_filter_path(:status_producao=>1) do %>
+              Enviado (<b><%= Project.cached_group_producao[1] %></b>)
+            <% end %>
+          <% end %>
+				</ul>
+			</div>
+			
+			
+			
+			
+		  <div class="box">
+				<h2>Materias</h2>
+				<ul class="cat">
+          <% Subject.all_cached.each do |subject| %>
+            <%= content_tag :li, :class=>('selected' if subject == @subject) do %>
+              <%= link_to projects_filter_path(:subject=>subject.id) do %>
+                <%= subject.nome %> (<b><%= Project.cached_group_subject[subject.id] || 0 %></b>)
+              <% end %>
+            <% end %>
+          <% end %>
+				</ul>
+			</div>
+			
+			
+		  <div class="box">
+				<h2>Serie</h2>
+				<ul class="cat">
+          <% Degree.all_cached.each do |degree| %>
+            <%= content_tag :li, :class=>('selected' if degree == @degree) do %>
+              <%= link_to projects_filter_path(:degree=>degree.id) do %>
+                <%= degree.to_s %> (<b><%= Project.cached_group_degree[degree.id] || 0 %></b>)
+              <% end %>
+            <% end %>
+          <% end %>
+				</ul>
+			</div>
+			
+		  <div class="box">
+				<h2>Revisao de Audio</h2>
+				<ul class="cat">
+          <% Project::REVISOES.each do |texto, codigo| %>
+            <%= content_tag :li, :class=>('selected' if codigo.to_s == params[:status_revisao_audio]) do %>
+              <%= link_to projects_filter_path(:status_revisao_audio=>codigo) do %>
+                <%= texto %> (<b><%= Project.cached_group_revisao_audio[codigo] || 0 %></b>)
+              <% end %>
+            <% end %>
+          <% end %>
+				</ul>
+			</div>
+			
+		  <div class="box">
+				<h2>Revisao de Texto</h2>
+				<ul class="cat">
+          <% Project::REVISOES.each do |texto, codigo| %>
+            <%= content_tag :li, :class=>('selected' if codigo.to_s == params[:status_revisao_texto]) do %>
+              <%= link_to projects_filter_path(:status_revisao_texto=>codigo) do %>
+                <%= texto %> (<b><%= Project.cached_group_revisao_texto[codigo] || 0 %></b>)
+              <% end %>
+            <% end %>
+          <% end %>
+				</ul>
+			</div>
+			
+		  <div class="box">
+				<h2>Revisao de Flash</h2>
+				<ul class="cat">
+          <% Project::REVISOES.each do |texto, codigo| %>
+            <%= content_tag :li, :class=>('selected' if codigo.to_s == params[:status_revisao_final]) do %>
+              <%= link_to projects_filter_path(:status_revisao_final=>codigo) do %>
+                <%= texto %> (<b><%= Project.cached_group_revisao_final[codigo] || 0 %></b>)
+              <% end %>
+            <% end %>
+          <% end %>
+				</ul>
+			</div>
+			<!-- /Filtros -->
 
 
-<br style="clear:both" />
 
+
+
+
+<% if false %>
 <div style="width:450px;margin-right:55px;float:left;">
 <h2>Revisão Texto</h2>
 <ul class="pagination">
@@ -100,3 +175,4 @@
 <br style="clear:both" />
 <br /><br /><br />
 <hr />
+<% end %>
