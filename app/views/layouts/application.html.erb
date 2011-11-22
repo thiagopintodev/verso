@@ -112,7 +112,9 @@
 <script type="text/javascript">
 
 $(function() {
-	$('body').addClass('<%= controller.controller_name %> <%= controller.action_name %>');
+	$('body')
+	  .addClass('<%= controller.controller_name %> <%= controller.action_name %>')
+	  .addClass('<%= Rails.env.production? ? "red" : "white" %>');
   <%= yield :jsload %>
 });
   

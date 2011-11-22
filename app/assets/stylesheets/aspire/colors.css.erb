@@ -1,0 +1,11 @@
+<% colors = [['red', '#c40000'], ['green', '#4b9007'], ['blue', '#0e75b6'], ['orange', '#c55a0b'], ['pink', '#d41369'], ['white', '#0e75b6']] %>
+<% colors.each do |dir, color| %>
+  body.<%= dir %> { background: #FFF url(/assets/aspire/colors/<%= dir %>/bg.jpg) repeat-x; }
+  body.<%= dir %>.sub{ background: #FFF url(/assets/aspire/colors/<%= dir %>/sub.jpg) repeat-x; }
+  body.<%= dir %>.sub_no_cap{ background: #FFF url(/assets/aspire/colors/<%= dir %>/sub_no_cap.jpg) repeat-x; }
+  #page ul#entries li .entry small a,
+  #container ul.quick_links li a.more,
+  .entry p a {color:<%= color %>;}
+  body.<%= dir %> #sidebar ul.cat li.selected a { background:<%= color %>; color:#fff; }
+
+<% end %>
