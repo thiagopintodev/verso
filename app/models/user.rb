@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
   def self.find_auto
     find_by_username('auto')
   end
+  
+  def self.u(username)
+    find_by_username(username)
+  end
 
 
 

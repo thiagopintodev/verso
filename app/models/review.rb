@@ -67,6 +67,18 @@ class Review < ActiveRecord::Base
     (not corrigiu?) || (revisou? and not aprovou?)
   end
   
+  before_validation do
+    self.status = if self.aprovou?
+                    Project::REVISAO_APROVADO
+                  elsif self.precisa_revisar?
+                    Project::REVISAO_CORRIGIDO
+                  elsif self.precisa_corrigir?
+                    Project::REVISAO_REJEITADO
+                  else
+                    Project::REVISAO_NAO
+                  end
+  end
+  
   class Author
     attr_accessor :parent, :prefix
     

@@ -31,11 +31,13 @@ class Project < ActiveRecord::Base
   
   #
   REVISAO_NAO       = 0
-  REVISAO_REJEITADO = 1
-  REVISAO_APROVADO  = 2
+  REVISAO_CORRIGIDO = 1
+  REVISAO_REJEITADO = 2
+  REVISAO_APROVADO  = 3
   
   REVISOES_HASH = {
     REVISAO_NAO=>('NAO REVISADO'),
+    REVISAO_CORRIGIDO=>('CORRIGIDO'),
     REVISAO_REJEITADO=>('REJEITADO'),
     REVISAO_APROVADO=>('APROVADO')
   }
@@ -43,7 +45,8 @@ class Project < ActiveRecord::Base
   REVISOES = [
     [REVISOES_HASH[0], 0],
     [REVISOES_HASH[1], 1],
-    [REVISOES_HASH[2], 2]
+    [REVISOES_HASH[2], 2],
+    [REVISOES_HASH[3], 3]
   ]
   
   has_attached_file :capa,
@@ -108,13 +111,24 @@ class Project < ActiveRecord::Base
   end
   
   
+  before_validation do
+    self.status_revisao_audio = reviews.audios.minimum(:status)  || 0
+    self.status_revisao_texto = reviews.textos.minimum(:status)  || 0
+    self.status_revisao_final = reviews.flashes.minimum(:status) || 0
+  end
+  
   def recalcula_revisoes
+    #self.status_revisao_audio = reviews.audios.select(:status).map(&:status).min
+    #self.status_revisao_texto = reviews.textos.min_by(&:status).status
+    #self.status_revisao_audio = reviews.audios.minimum(:status)
+=begin
     #audio
     @revisoes = reviews.audios
     unless @revisoes.size.zero?
       self.status_revisao_audio = @revisoes.abertas.size.zero? ? Project::REVISAO_APROVADO : Project::REVISAO_REJEITADO
     puts "------------------audio--------------------------"
     end
+    
     #texto
     @revisoes = reviews.textos
     unless @revisoes.size.zero?
@@ -127,6 +141,7 @@ class Project < ActiveRecord::Base
       self.status_revisao_final = @revisoes.abertas.size.zero? ? Project::REVISAO_APROVADO : Project::REVISAO_REJEITADO
     puts "------------------flash--------------------------"
     end
+=end
     puts "--------------------------------------------"
     puts self.changes
     puts self.save

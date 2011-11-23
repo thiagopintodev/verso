@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111117130618) do
+ActiveRecord::Schema.define(:version => 20111123131216) do
 
   create_table "degrees", :force => true do |t|
     t.string   "nome"
@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(:version => 20111117130618) do
     t.boolean  "revisou_aprovou",  :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status",           :default => 0
   end
 
   add_index "reviews", ["project_id"], :name => "index_reviews_on_project_id"
