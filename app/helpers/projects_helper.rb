@@ -21,4 +21,13 @@ module ProjectsHelper
     end
     {:class=>'selected'}
   end
+  
+  def li_numero_options(numero)
+    if numero.nil?
+      return unless params[:numero].nil?
+    else
+      return unless numero.to_s == params[:numero]
+    end
+    {:class=>'selected'}
+  end
 end

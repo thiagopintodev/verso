@@ -34,8 +34,6 @@
 			</div>
 			
 			
-			
-			
 		  <div class="box">
 				<h2>Materias</h2>
 				<ul class="cat">
@@ -52,9 +50,8 @@
 				</ul>
 			</div>
 			
-			
 		  <div class="box">
-				<h2>Serie</h2>
+				<h2>Series</h2>
 				<ul class="cat">
           <%= content_tag :li, li_degree_options(nil) do %>
             <%= link_to "Todas", projects_filter_path(:degree=>nil) %>
@@ -68,6 +65,23 @@
           <% end %>
 				</ul>
 			</div>
+			
+		  <div class="box">
+				<h2>Numeros</h2>
+				<ul class="cat">
+          <%= content_tag :li, li_numero_options(nil) do %>
+            <%= link_to "Todas", projects_filter_path(:numero=>nil) %>
+          <% end %>
+          <% Project::AULAS.each do |numero| %>
+            <%= content_tag :li, li_numero_options(numero) do %>
+              <%= link_to projects_filter_path(:numero=>numero) do %>
+                <%= numero %>a Aula (<b><%= Project.cached_group_numero[numero] || 0 %></b>)
+              <% end %>
+            <% end %>
+          <% end %>
+				</ul>
+			</div>
+			
 			
 		  <div class="box">
 				<h2>Revisao de Audio</h2>
