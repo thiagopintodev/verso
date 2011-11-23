@@ -4,8 +4,8 @@ class ProjectsController < ApplicationController
   def index
     @projects = Project.includes(:subject, :degree).limit(21)
     @projects = @projects.versionadas if params[:versioned].present?
-    @projects = @projects.where(:subject_id=>params[:subject]) if params[:subject] && @subject = Subject.find(params[:subject])
-    @projects = @projects.where(:degree_id=>params[:degree])   if params[:degree]  && @degree  = Degree.find(params[:degree])
+    @projects = @projects.where(:subject_id=>params[:subject]) if params[:subject]
+    @projects = @projects.where(:degree_id=>params[:degree])   if params[:degree]
     @projects = @projects.where(:status_revisao_texto=>params[:status_revisao_texto])  if params[:status_revisao_texto]
     @projects = @projects.where(:status_revisao_final=>params[:status_revisao_final])  if params[:status_revisao_final]
     @projects = @projects.where(:status_revisao_audio=>params[:status_revisao_audio])  if params[:status_revisao_audio]
