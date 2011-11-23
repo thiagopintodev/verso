@@ -51,4 +51,5 @@ group :development, :test do
   gem 'libnotify'
   gem 'rb-inotify'
   gem 'guard-rspec'
+  gem 'railroady'
 end
