@@ -1,7 +1,7 @@
 module ProjectsHelper
 
-  def projects_filter_path(options)
-    options.merge({:action=>'index', :id=>nil})
+  def projects_filter_path(options={})
+    params.merge(options).merge({:action=>'index', :id=>nil})
   end
   
   def li_subject_options(subject)
