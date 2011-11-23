@@ -2,6 +2,14 @@ class User < ActiveRecord::Base
   # new columns need to be added here to be writable through mass assignment
   attr_accessible :username, :email, :password, :password_confirmation
 
+
+  has_many :projects
+  has_many :reviews
+  
+  has_many :criou_reviews,     :class_name=>'Review', :foreign_key=>:criou_user_id
+  has_many :corrigiu_reviews,  :class_name=>'Review', :foreign_key=>:corrigiu_user_id
+  has_many :revisou_reviews,   :class_name=>'Review', :foreign_key=>:revisou_user_id
+
   attr_accessor :password
   before_save :prepare_password
 
