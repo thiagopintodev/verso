@@ -57,7 +57,7 @@
 		
       <%= content_tag :h2, yield(:title) if show_title? %>
       <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, :class => "flash_#{name}" %>
+        <%= content_tag :div, msg, :class => "flash #{name}" %>
       <% end %>
       <%= yield %>
       
