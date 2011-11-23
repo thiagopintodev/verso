@@ -2,10 +2,9 @@ require 'spec_helper'
 
 describe "projects/index.html.erb" do
   before(:each) do
-    assign(:projects, [
-      Fabricate(:project),
-      Fabricate(:project, :numero=>2)
-    ])
+    Fabricate(:project)
+    Fabricate(:project, :numero=>2)
+    assign(:projects, Project.scoped.page(0))
     Fabricate(:subject)
     Fabricate(:degree)
   end
