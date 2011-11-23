@@ -12,3 +12,10 @@ pt-BR:
         username: "Usuário"
         password: "Senha"
         password_confirmation: "Senha Novamente"
+  views:
+    pagination:
+      previous: "&laquo;"
+      next: "&raquo;"
+      first: "primeira"
+      last: "última"
+      truncate: "..."

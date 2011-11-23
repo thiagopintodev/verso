@@ -1,8 +1,10 @@
 <%= content_for :sidebar, render('filters') %>
 
 <h2 class="title"><a href="#">Listando Aulas</a></h2>
-<h3>Resultados: <%= @projects.length %> Aula(s)</h3>
+<h3>Exibindo <%= @projects.size %> de <%= @projects_count %> Aulas encontadas nesta pesquisa</h3>
 <br class="clear" />
+
+<%= pagination = paginate @projects, :window => 10, :outer_window => -1 %>
 
 <ul id="gallery">
   <% @projects.each do |project| %>
@@ -15,6 +17,10 @@
 		</li>
   <% end %>
 </ul>
+
+<br class="clear" />
+
+<%= pagination %>
 
 <br class="clear" />
 

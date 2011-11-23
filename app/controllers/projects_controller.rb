@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   before_filter :login_required
   
   def index
-    @projects = Project.includes(:subject, :degree).limit(21)
+    @projects = Project.includes(:subject, :degree)
     @projects = @projects.versionadas if params[:versioned].present?
     @projects = @projects.where(:subject_id=>params[:subject]) if params[:subject]
     @projects = @projects.where(:degree_id=>params[:degree])   if params[:degree]
@@ -10,6 +10,8 @@ class ProjectsController < ApplicationController
     @projects = @projects.where(:status_revisao_final=>params[:status_revisao_final])  if params[:status_revisao_final]
     @projects = @projects.where(:status_revisao_audio=>params[:status_revisao_audio])  if params[:status_revisao_audio]
     @projects = @projects.where(:status_producao=>params[:status_producao])  if params[:status_producao]
+    @projects_count = @projects.count
+    @projects = @projects.page(params[:page]).per(21)
   end
 
   def show
