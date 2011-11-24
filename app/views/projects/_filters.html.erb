@@ -4,51 +4,34 @@
 		  <div class="box">
 				<h2>Filtros</h2>
 				<ul class="cat">
-          <%= content_tag :li, :class=>('selected' unless params[:versioned]) do %>
-            <%= link_to projects_filter_path(:versioned=>nil) do %>
-              Todas (<b><%= Project.cached_quantidade %></b>)
-            <% end %>
-          <% end %>
-          <%= content_tag :li, :class=>('selected' if params[:versioned]) do %>
-            <%= link_to projects_filter_path(:versioned=>1) do %>
-              Apenas Cadastradas (<b><%= Project.cached_quantidade_versionadas %></b>)
-            <% end %>
-          <% end %>
+          <%= li_filtro(:versioned, nil, "Todas", Project.cached_quantidade) %>
+          <%= li_filtro(:versioned, "1", "Apenas Cadastradas", Project.cached_quantidade_versionadas) %>
 				</ul>
 			</div>
 			
 		  <div class="box">
 				<h2>Enviadas para o Ava</h2>
 				<ul class="cat">
-          <%= content_tag :li, li_my_options(:status_producao, nil) do %>
-            <%= link_to "Todas", projects_filter_path(:status_producao=>nil) %>
-          <% end %>
-          <%= content_tag :li, li_my_options(:status_producao, '0') do %>
-            <%= link_to projects_filter_path(:status_producao=>0) do %>
-              Apenas Não Enviadas (<b><%= Project.cached_group_producao[0] %></b>)
-            <% end %>
-          <% end %>
-          <%= content_tag :li, li_my_options(:status_producao, '1') do %>
-            <%= link_to projects_filter_path(:status_producao=>1) do %>
-              Apenas Enviadas (<b><%= Project.cached_group_producao[1] %></b>)
-            <% end %>
-          <% end %>
+          <%= li_filtro(:status_producao, nil, "Todas") %>
+          <%= li_filtro(:status_producao,
+                        Project::PRODUCAO_NAO.to_s,
+                        "Apenas Não Enviadas",
+                        Project.cached_group_producao[Project::PRODUCAO_NAO] || 0)
+                        %>
+          <%= li_filtro(:status_producao,
+                        Project::PRODUCAO_SIM.to_s,
+                        "Apenas Enviadas",
+                        Project.cached_group_producao[Project::PRODUCAO_SIM] || 0)
+                        %>
 				</ul>
 			</div>
-			
 			
 		  <div class="box">
 				<h2>Materias</h2>
 				<ul class="cat">
-          <%= content_tag :li, li_subject_options(nil) do %>
-            <%= link_to "Todas", projects_filter_path(:subject=>nil) %>
-          <% end %>
+          <%= li_filtro(:subject, nil, "Todas") %>
           <% Subject.all_cached.each do |subject| %>
-            <%= content_tag :li, li_subject_options(subject) do %>
-              <%= link_to projects_filter_path(:subject=>subject.id) do %>
-                <%= subject.nome %> (<b><%= Project.cached_group_subject[subject.id] || 0 %></b>)
-              <% end %>
-            <% end %>
+            <%= li_filtro(:subject, subject.id, subject.nome, Project.cached_group_subject[subject.id]) %>
           <% end %>
 				</ul>
 			</div>
@@ -56,15 +39,9 @@
 		  <div class="box">
 				<h2>Series</h2>
 				<ul class="cat">
-          <%= content_tag :li, li_degree_options(nil) do %>
-            <%= link_to "Todas", projects_filter_path(:degree=>nil) %>
-          <% end %>
+          <%= li_filtro(:degree, nil, "Todas") %>
           <% Degree.all_cached.each do |degree| %>
-            <%= content_tag :li, li_degree_options(degree) do %>
-              <%= link_to projects_filter_path(:degree=>degree.id) do %>
-                <%= degree.to_s %> (<b><%= Project.cached_group_degree[degree.id] || 0 %></b>)
-              <% end %>
-            <% end %>
+            <%= li_filtro(:degree, degree.id, degree.to_s, Project.cached_group_degree[degree.id]) %>
           <% end %>
 				</ul>
 			</div>
@@ -72,15 +49,9 @@
 		  <div class="box">
 				<h2>Numeros</h2>
 				<ul class="cat">
-          <%= content_tag :li, li_numero_options(nil) do %>
-            <%= link_to "Todas", projects_filter_path(:numero=>nil) %>
-          <% end %>
+          <%= li_filtro(:numero, nil, "Todas") %>
           <% Project::AULAS.each do |numero| %>
-            <%= content_tag :li, li_numero_options(numero) do %>
-              <%= link_to projects_filter_path(:numero=>numero) do %>
-                <%= numero %>a Aula (<b><%= Project.cached_group_numero[numero] || 0 %></b>)
-              <% end %>
-            <% end %>
+            <%= li_filtro(:numero, numero, "#{numero}a Aula", Project.cached_group_numero[numero]) %>
           <% end %>
 				</ul>
 			</div>
@@ -89,15 +60,9 @@
 		  <div class="box">
 				<h2>Revisao de Audio</h2>
 				<ul class="cat">
-          <%= content_tag :li, li_my_options(:status_revisao_audio, nil) do %>
-            <%= link_to "Todas", projects_filter_path(:status_revisao_audio=>nil) %>
-          <% end %>
+          <%= li_filtro(:status_revisao_audio, nil, "Todas") %>
           <% Project::REVISOES.each do |texto, codigo| %>
-            <%= content_tag :li, li_my_options(:status_revisao_audio, codigo.to_s) do %>
-              <%= link_to projects_filter_path(:status_revisao_audio=>codigo) do %>
-                <%= texto %> (<b><%= Project.cached_group_revisao_audio[codigo] || 0 %></b>)
-              <% end %>
-            <% end %>
+            <%= li_filtro(:status_revisao_audio, codigo.to_s, texto, Project.cached_group_revisao_audio[codigo] || 0) %>
           <% end %>
 				</ul>
 			</div>
@@ -105,15 +70,9 @@
 		  <div class="box">
 				<h2>Revisao de Texto</h2>
 				<ul class="cat">
-          <%= content_tag :li, li_my_options(:status_revisao_texto, nil) do %>
-            <%= link_to "Todas", projects_filter_path(:status_revisao_texto=>nil) %>
-          <% end %>
+          <%= li_filtro(:status_revisao_texto, nil, "Todas") %>
           <% Project::REVISOES.each do |texto, codigo| %>
-            <%= content_tag :li, li_my_options(:status_revisao_texto, codigo.to_s) do %>
-              <%= link_to projects_filter_path(:status_revisao_texto=>codigo) do %>
-                <%= texto %> (<b><%= Project.cached_group_revisao_texto[codigo] || 0 %></b>)
-              <% end %>
-            <% end %>
+            <%= li_filtro(:status_revisao_texto, codigo.to_s, texto, Project.cached_group_revisao_texto[codigo] || 0) %>
           <% end %>
 				</ul>
 			</div>
@@ -121,15 +80,9 @@
 		  <div class="box">
 				<h2>Revisao de Flash</h2>
 				<ul class="cat">
-          <%= content_tag :li, li_my_options(:status_revisao_final, nil) do %>
-            <%= link_to "Todas", projects_filter_path(:status_revisao_final=>nil) %>
-          <% end %>
+          <%= li_filtro(:status_revisao_final, nil, "Todas") %>
           <% Project::REVISOES.each do |texto, codigo| %>
-            <%= content_tag :li, li_my_options(:status_revisao_final, codigo.to_s) do %>
-              <%= link_to projects_filter_path(:status_revisao_final=>codigo) do %>
-                <%= texto %> (<b><%= Project.cached_group_revisao_final[codigo] || 0 %></b>)
-              <% end %>
-            <% end %>
+            <%= li_filtro(:status_revisao_final, codigo.to_s, texto, Project.cached_group_revisao_final[codigo] || 0) %>
           <% end %>
 				</ul>
 			</div>
