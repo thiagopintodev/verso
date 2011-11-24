@@ -28,9 +28,8 @@ class ProjectVersion < ActiveRecord::Base
   has_attached_file :aud3, PAPERCLIP_DEFAULT_OPTIONS
   has_attached_file :aud4, PAPERCLIP_DEFAULT_OPTIONS
   
-  FLA_VALIDATIONS = { :content_type => [ 'application/octet-stream' ], :message => 'nao indica que este seja um arquivo .FLA' }
-  SWF_VALIDATIONS = { :content_type => [ 'application/x-shockwave-flash' ], :message => 'nao indica que este seja um arquivo .SWF' }
-  MP3_VALIDATIONS = { :content_type => [ 'audio/mp3' ], :message => 'nao indica que este arquivo seja do tipo \'audio/mp3\'' }
+  FLA_VALIDATIONS = { :content_type => [ 'application/octet-stream' ], :message => 'nao indica que este seja um arquivo .FLA (application/octet-stream)' }
+  SWF_VALIDATIONS = { :content_type => [ 'application/x-shockwave-flash' ], :message => 'nao indica que este seja um arquivo .SWF (application/x-shockwave-flash)' }
   
   #validates_attachment_presence :fla
   validates :texto, :length => {:minimum=>5}
@@ -41,11 +40,6 @@ class ProjectVersion < ActiveRecord::Base
   validates_attachment_content_type :swf2, SWF_VALIDATIONS
   validates_attachment_content_type :swf3, SWF_VALIDATIONS
   validates_attachment_content_type :swf4, SWF_VALIDATIONS
-                                    
-  validates_attachment_content_type :aud1, MP3_VALIDATIONS
-  validates_attachment_content_type :aud2, MP3_VALIDATIONS
-  validates_attachment_content_type :aud3, MP3_VALIDATIONS
-  validates_attachment_content_type :aud4, MP3_VALIDATIONS
   
   validate do
     errors[:fla] = "Voce deve enviar pelo menos um arquivo" if not algum_swf? and not algum_aud? and not fla?
