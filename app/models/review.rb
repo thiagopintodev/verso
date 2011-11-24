@@ -30,9 +30,6 @@ class Review < ActiveRecord::Base
     [TIPOS_HASH[2], 2]
   ]
   
-
-  scope :abertas,  where(:revisou_aprovou => false)
-  
   scope :textos,  where(:tipo => TIPO_TEXTO)
   scope :flashes, where(:tipo => TIPO_FLASH)
   scope :audios,  where(:tipo => TIPO_AUDIO)
@@ -109,17 +106,13 @@ class Review < ActiveRecord::Base
     @revisou ||= Author.new(self, 'revisou')
   end
   
-  def salva_e_recalcula
-    save and project.recalcula_revisoes
-  end
-  
   def cadastrar(user, project_id, tipo, texto)
     self.project_id = project_id
     self.tipo       = tipo
     self.texto      = texto
     criou.at = Time.now
     criou.user = user
-    salva_e_recalcula
+    save and project.save
   end
   
   def cadastrar_aprovada(user, project_id, tipo)
@@ -133,21 +126,21 @@ class Review < ActiveRecord::Base
     corrigiu.at = criou.at
     revisou.at  = criou.at
     revisou.aprovou = true
-    salva_e_recalcula
+    save and project.save
   end
   
   def corrigir(user)
     corrigiu.user = user
     corrigiu.at = Time.now
     revisou.clear
-    salva_e_recalcula
+    save and project.save
   end
   
   def revisar(user, bool_aprovado)
     revisou.user = user
     revisou.at = Time.now
     revisou.aprovou = bool_aprovado
-    salva_e_recalcula
+    save and project.save
   end
   
 =begin

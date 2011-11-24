@@ -11,7 +11,6 @@ class Project < ActiveRecord::Base
   belongs_to :user_revisao_texto, :class_name=>'User', :foreign_key => 'user_id_revisao_texto'
   belongs_to :user_revisao_audio, :class_name=>'User', :foreign_key => 'user_id_revisao_audio'
   belongs_to :user_revisao_final, :class_name=>'User', :foreign_key => 'user_id_revisao_final'
-
   
   AULAS = (1..12).to_a
   
@@ -66,7 +65,7 @@ class Project < ActiveRecord::Base
   
   #enviado para o ava?
   def producao?
-    status_producao==1
+    PRODUCAO_SIM == status_producao
   end
   
   #passou pelas 3 revisoes?
@@ -110,46 +109,11 @@ class Project < ActiveRecord::Base
     end
   end
   
-  
   before_validation do
     self.status_revisao_audio = reviews.audios.minimum(:status)  || 0
     self.status_revisao_texto = reviews.textos.minimum(:status)  || 0
     self.status_revisao_final = reviews.flashes.minimum(:status) || 0
   end
-  
-  def recalcula_revisoes
-    #self.status_revisao_audio = reviews.audios.select(:status).map(&:status).min
-    #self.status_revisao_texto = reviews.textos.min_by(&:status).status
-    #self.status_revisao_audio = reviews.audios.minimum(:status)
-=begin
-    #audio
-    @revisoes = reviews.audios
-    unless @revisoes.size.zero?
-      self.status_revisao_audio = @revisoes.abertas.size.zero? ? Project::REVISAO_APROVADO : Project::REVISAO_REJEITADO
-    puts "------------------audio--------------------------"
-    end
-    
-    #texto
-    @revisoes = reviews.textos
-    unless @revisoes.size.zero?
-      self.status_revisao_texto = @revisoes.abertas.size.zero? ? Project::REVISAO_APROVADO : Project::REVISAO_REJEITADO
-    puts "------------------texto--------------------------"
-    end
-    #flash
-    @revisoes = reviews.flashes
-    unless @revisoes.size.zero?
-      self.status_revisao_final = @revisoes.abertas.size.zero? ? Project::REVISAO_APROVADO : Project::REVISAO_REJEITADO
-    puts "------------------flash--------------------------"
-    end
-=end
-    puts "--------------------------------------------"
-    puts self.changes
-    puts self.save
-    puts self.errors.messages
-    puts "--------------------------------------------"
-    true
-  end
-  
   
   after_save do
     self.class.limpar_cached
