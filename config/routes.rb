@@ -1,8 +1,11 @@
 Verso::Application.routes.draw do
+  get "sobre"     => "site#sobre"
+  get "historico" => "site#historico"
+
   resources :project_versions
   get 'swf/:project_version_id/:swf_token' => "project_versions#swf", :as => :swf
 
-  resources :projects
+  resources :projects, :path=>'aulas'
   
   resources :reviews do
     member do
@@ -25,7 +28,7 @@ Verso::Application.routes.draw do
 
   resources :sessions
   resources :users
-  root :to => 'projects#index', :versioned=>1
+  root :to => 'projects#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
