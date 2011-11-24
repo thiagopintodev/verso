@@ -30,4 +30,19 @@ module ProjectsHelper
     end
     {:class=>'selected'}
   end
+  
+  
+  def li_my_options(key, valor_esperado)
+    if valor_esperado.nil?
+      return unless params[key].nil?
+    else
+      return unless valor_esperado == params[key]
+    end
+    {:class=>'selected'}
+  end
+  
+  def li_filtro()
+    #TODO
+  end
+  
 end

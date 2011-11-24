@@ -20,12 +20,15 @@
 		  <div class="box">
 				<h2>Enviadas para o Ava</h2>
 				<ul class="cat">
-          <%= content_tag :li, :class=>('selected' if params[:status_producao] == '0') do %>
+          <%= content_tag :li, li_my_options(:status_producao, nil) do %>
+            <%= link_to "Todas", projects_filter_path(:status_producao=>nil) %>
+          <% end %>
+          <%= content_tag :li, li_my_options(:status_producao, '0') do %>
             <%= link_to projects_filter_path(:status_producao=>0) do %>
               Apenas Não Enviadas (<b><%= Project.cached_group_producao[0] %></b>)
             <% end %>
           <% end %>
-          <%= content_tag :li, :class=>('selected' if params[:status_producao] == '1') do %>
+          <%= content_tag :li, li_my_options(:status_producao, '1') do %>
             <%= link_to projects_filter_path(:status_producao=>1) do %>
               Apenas Enviadas (<b><%= Project.cached_group_producao[1] %></b>)
             <% end %>
@@ -86,8 +89,11 @@
 		  <div class="box">
 				<h2>Revisao de Audio</h2>
 				<ul class="cat">
+          <%= content_tag :li, li_my_options(:status_revisao_audio, nil) do %>
+            <%= link_to "Todas", projects_filter_path(:status_revisao_audio=>nil) %>
+          <% end %>
           <% Project::REVISOES.each do |texto, codigo| %>
-            <%= content_tag :li, :class=>('selected' if codigo.to_s == params[:status_revisao_audio]) do %>
+            <%= content_tag :li, li_my_options(:status_revisao_audio, codigo.to_s) do %>
               <%= link_to projects_filter_path(:status_revisao_audio=>codigo) do %>
                 <%= texto %> (<b><%= Project.cached_group_revisao_audio[codigo] || 0 %></b>)
               <% end %>
@@ -99,8 +105,11 @@
 		  <div class="box">
 				<h2>Revisao de Texto</h2>
 				<ul class="cat">
+          <%= content_tag :li, li_my_options(:status_revisao_texto, nil) do %>
+            <%= link_to "Todas", projects_filter_path(:status_revisao_texto=>nil) %>
+          <% end %>
           <% Project::REVISOES.each do |texto, codigo| %>
-            <%= content_tag :li, :class=>('selected' if codigo.to_s == params[:status_revisao_texto]) do %>
+            <%= content_tag :li, li_my_options(:status_revisao_texto, codigo.to_s) do %>
               <%= link_to projects_filter_path(:status_revisao_texto=>codigo) do %>
                 <%= texto %> (<b><%= Project.cached_group_revisao_texto[codigo] || 0 %></b>)
               <% end %>
@@ -112,8 +121,11 @@
 		  <div class="box">
 				<h2>Revisao de Flash</h2>
 				<ul class="cat">
+          <%= content_tag :li, li_my_options(:status_revisao_final, nil) do %>
+            <%= link_to "Todas", projects_filter_path(:status_revisao_final=>nil) %>
+          <% end %>
           <% Project::REVISOES.each do |texto, codigo| %>
-            <%= content_tag :li, :class=>('selected' if codigo.to_s == params[:status_revisao_final]) do %>
+            <%= content_tag :li, li_my_options(:status_revisao_final, codigo.to_s) do %>
               <%= link_to projects_filter_path(:status_revisao_final=>codigo) do %>
                 <%= texto %> (<b><%= Project.cached_group_revisao_final[codigo] || 0 %></b>)
               <% end %>
