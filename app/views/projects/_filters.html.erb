@@ -31,7 +31,7 @@
 				<ul class="cat">
           <%= li_filtro(:subject, nil, "Todas") %>
           <% Subject.all_cached.each do |subject| %>
-            <%= li_filtro(:subject, subject.id, subject.nome, Project.cached_group_subject[subject.id]) %>
+            <%= li_filtro(:subject, subject.id.to_s, subject.nome, Project.cached_group_subject[subject.id]) %>
           <% end %>
 				</ul>
 			</div>
@@ -41,7 +41,7 @@
 				<ul class="cat">
           <%= li_filtro(:degree, nil, "Todas") %>
           <% Degree.all_cached.each do |degree| %>
-            <%= li_filtro(:degree, degree.id, degree.to_s, Project.cached_group_degree[degree.id]) %>
+            <%= li_filtro(:degree, degree.id.to_s, degree.to_s, Project.cached_group_degree[degree.id]) %>
           <% end %>
 				</ul>
 			</div>
@@ -51,7 +51,7 @@
 				<ul class="cat">
           <%= li_filtro(:numero, nil, "Todas") %>
           <% Project::AULAS.each do |numero| %>
-            <%= li_filtro(:numero, numero, "#{numero}a Aula", Project.cached_group_numero[numero]) %>
+            <%= li_filtro(:numero, numero.to_s, "#{numero}a Aula", Project.cached_group_numero[numero]) %>
           <% end %>
 				</ul>
 			</div>
