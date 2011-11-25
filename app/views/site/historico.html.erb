@@ -1,0 +1,51 @@
+<% set_page_css(:full) %>
+<% content_for :jsload do %>
+  $("#accordion").accordion({
+	  collapsible: true
+  });
+<% end %>
+
+<style>
+
+  #accordion { width:100%; }
+  .ui-accordion-content {
+    background:#fff !important;
+    color:#333 !important;
+    padding-top:    30px !important;
+    padding-bottom: 30px !important;
+  }
+
+</style>
+
+
+<div class="verso-ui">
+  <div id="accordion">
+  
+	  
+	  <h3><a href="#">v1.2 - 11/Novembro/2011 - Reformulação no layout.</a></h3>
+	  <%= content_tag :div, render('v12') %>
+	  
+	  <h3><a href="#">v1.5 - Reformulação no layout.</a></h3>
+	  <%= content_tag :div, render('v10') %>
+	  
+	  <h3><a href="#">v1.4 - Reformulação no layout.</a></h3>
+	  <%= content_tag :div, render('v10') %>
+	  
+	  <h3><a href="#">v1.3 - Reformulação no layout.</a></h3>
+	  <%= content_tag :div, render('v10') %>
+	  
+	  
+	  <h3><a href="#">v1.1 - 09/Novembro/2011 - Backups e Revisão de texto / áudio / animações.</a></h3>
+	  <%= content_tag :div, render('v11') %>
+  
+	  <h3><a href="#">v1.0 - 31/Outubro/2011 - Inicio do Verso. Objetivos: Reduzir brigas e garantir backups na produção de Animações SWF.</a></h3>
+	  <%= content_tag :div, render('v10') %>
+  
+	  <h3><a href="#">Contexto onde o Verso foi inserido</a></h3>
+	  <div>
+	    <% 12.times do %>
+		    <p>Mauris mauris ante, blandit et, ultrices a.</p>
+	    <% end %>
+	  </div>
+  </div>
+</div>
