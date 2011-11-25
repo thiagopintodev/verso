@@ -38,6 +38,8 @@
     
   </div>
   
+  <% if current_user.is_revisor? %>
+  
   <% unless review.aprovou? %>
     <% if review.precisa_corrigir? %>
       <div id="review_detalhes_<%= review.id %>" class="detalhes corrigir" style="display:none">
@@ -57,8 +59,11 @@
     <% end %>
   <% end %>
   
+  <% end %>
+  
 <% end %>
 
+<% if current_user.is_revisor? %>
 
 <%= link_to "Aprovar Áudio!",
             create_aprovado_reviews_path(:project_id=>@project.id, :tipo=>Review::TIPO_AUDIO),
@@ -96,3 +101,5 @@
     </div>
   <% end %>
 </div>
+
+<% end %>
