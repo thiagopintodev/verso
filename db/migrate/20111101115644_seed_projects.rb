@@ -12,11 +12,12 @@ class SeedProjects < ActiveRecord::Migration
     subjects.each do |s|
       degrees.each do |d|
         (1..8).each do |i|
-          Project.create! :user     => u,
-                          :subject  => s,
-                          :degree   => d,
-                          :sequencia => i
-          end
+          p=Project.new :user     => u,
+                        :subject  => s,
+                        :degree   => d,
+                        :numero   => i
+          p.send :create
+        end
       end
     end
     
