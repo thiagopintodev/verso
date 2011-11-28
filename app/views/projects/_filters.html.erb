@@ -86,4 +86,14 @@
           <% end %>
 				</ul>
 			</div>
+			
+		  <div class="box">
+				<h2>Revisao Metodológica</h2>
+				<ul class="cat">
+          <%= li_filtro(:status_revisao_metodo, nil, "Todas") %>
+          <% Project::REVISOES.each do |texto, codigo| %>
+            <%= li_filtro(:status_revisao_metodo, codigo.to_s, texto, Project.cached_group_revisao_metodo[codigo] || 0) %>
+          <% end %>
+				</ul>
+			</div>
 			<!-- /Filtros -->

@@ -18,8 +18,10 @@ module ReviewsHelper
       'verso/review/texto.png'
     elsif review.audio?
       'verso/review/audio.png'
-    else
+    elsif review.flash?
       'verso/review/flash.png'
+    else
+      'verso/review/metodo.png'
     end
     review_image_tag(url, 'tipo')
   end

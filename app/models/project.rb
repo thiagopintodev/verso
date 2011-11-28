@@ -87,7 +87,6 @@ class Project < ActiveRecord::Base
     REVISAO_NAO != status_revisao_final
   end
   
-  
   def revisao_texto
     REVISOES_HASH[status_revisao_texto]
   end
@@ -113,6 +112,8 @@ class Project < ActiveRecord::Base
     self.status_revisao_audio = reviews.audios.minimum(:status)  || 0
     self.status_revisao_texto = reviews.textos.minimum(:status)  || 0
     self.status_revisao_final = reviews.flashes.minimum(:status) || 0
+    self.status_revisao_metodo = reviews.metodologicas.minimum(:status) || 0
+    true
   end
   
   after_save do
@@ -139,6 +140,10 @@ class Project < ActiveRecord::Base
       Rails.cache.fetch([:project, :count, :versioned, :by_final]) { versionadas.select('status_revisao_final, count(*)').group(:status_revisao_final).count }
     end
     
+    def cached_group_revisao_metodo
+      Rails.cache.fetch([:project, :count, :versioned, :by_metodo]) { versionadas.select('status_revisao_metodo, count(*)').group(:status_revisao_metodo).count }
+    end
+    
     def cached_group_degree
       Rails.cache.fetch([:project, :count, :versioned, :by_degree]) { versionadas.select('degree_id, count(*)').group(:degree_id).count }
     end
@@ -161,6 +166,7 @@ class Project < ActiveRecord::Base
       Rails.cache.delete([:project, :count, :versioned, :by_texto])
       Rails.cache.delete([:project, :count, :versioned, :by_audio])
       Rails.cache.delete([:project, :count, :versioned, :by_final])
+      Rails.cache.delete([:project, :count, :versioned, :by_metodo])
       Rails.cache.delete([:project, :count, :versioned, :by_degree])
       Rails.cache.delete([:project, :count, :versioned, :by_subject])
       Rails.cache.delete([:project, :count, :versioned, :by_numero])

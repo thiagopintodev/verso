@@ -10,6 +10,7 @@ class ProjectsController < ApplicationController
     @projects = @projects.where(:status_revisao_texto=>params[:status_revisao_texto])  if params[:status_revisao_texto]
     @projects = @projects.where(:status_revisao_final=>params[:status_revisao_final])  if params[:status_revisao_final]
     @projects = @projects.where(:status_revisao_audio=>params[:status_revisao_audio])  if params[:status_revisao_audio]
+    @projects = @projects.where(:status_revisao_metodo=>params[:status_revisao_metodo])  if params[:status_revisao_metodo]
     @projects = @projects.where(:status_producao=>params[:status_producao])  if params[:status_producao]
     @projects_count = @projects.count
     @projects = @projects.page(params[:page]).per(21)

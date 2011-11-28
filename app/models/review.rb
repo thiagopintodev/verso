@@ -17,22 +17,26 @@ class Review < ActiveRecord::Base
   TIPO_TEXTO = 0
   TIPO_FLASH = 1
   TIPO_AUDIO = 2
+  TIPO_METODO= 3
   
   TIPOS_HASH = {
     TIPO_TEXTO=>('ORTOGRAFICA'),
     TIPO_FLASH=>('ANIMACAO'),
-    TIPO_AUDIO=>('AUDIO')
+    TIPO_AUDIO=>('AUDIO'),
+    TIPO_METODO=>('METODOLOGICA')
   }
   
   TIPOS = [
     [TIPOS_HASH[0], 0],
     [TIPOS_HASH[1], 1],
-    [TIPOS_HASH[2], 2]
+    [TIPOS_HASH[2], 2],
+    [TIPOS_HASH[3], 3]
   ]
   
   scope :textos,  where(:tipo => TIPO_TEXTO)
   scope :flashes, where(:tipo => TIPO_FLASH)
   scope :audios,  where(:tipo => TIPO_AUDIO)
+  scope :metodologicas, where(:tipo => TIPO_METODO)
   
   def tipo_nome
     TIPOS_HASH[tipo]
@@ -47,6 +51,14 @@ class Review < ActiveRecord::Base
   def animacao?
     tipo==TIPO_FLASH
   end
+  def metodo?
+    tipo==TIPO_METODO
+  end
+  
+  def flash?
+    animacao?
+  end
+  
   def corrigiu?
     corrigiu.at.present?
   end
@@ -74,6 +86,7 @@ class Review < ActiveRecord::Base
                   else
                     Project::REVISAO_NAO
                   end
+    true
   end
   
   class Author
