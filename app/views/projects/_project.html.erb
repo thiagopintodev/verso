@@ -36,6 +36,11 @@
           <%= content_tag :strong, @project.revisao_audio %>
           <br />
           
+          Revisão Metodológica.:
+          <%= content_tag :strong, @project.revisao_metodo %>
+          <br />
+          <br />
+          
           Enviado para o Ava..:
           <%= content_tag :strong, @project.producao? ? 'ENVIADO' : 'NÃO ENVIADO' %>
           

@@ -85,7 +85,7 @@
 <%= link_to "Aprovar Método!",
             create_aprovado_reviews_path(:project_id=>@project.id, :tipo=>Review::TIPO_METODO),
             :class=>'botao_revisao aprovar',
-            :method=>:post unless @project.flash_revisado?
+            :method=>:post unless @project.metodo_revisado?
             %>
             
 <br class="clear" >

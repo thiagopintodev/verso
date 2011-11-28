@@ -72,18 +72,20 @@ class Project < ActiveRecord::Base
   def revisado?
     REVISAO_APROVADO == status_revisao_texto &&
     REVISAO_APROVADO == status_revisao_audio &&
-    REVISAO_APROVADO == status_revisao_final
+    REVISAO_APROVADO == status_revisao_final &&
+    REVISAO_APROVADO == status_revisao_metodo
   end
   
   def texto_revisado?
     REVISAO_NAO != status_revisao_texto
   end
-  
   def audio_revisado?
     REVISAO_NAO != status_revisao_audio
   end
-  
   def flash_revisado?
+    REVISAO_NAO != status_revisao_final
+  end
+  def metodo_revisado?
     REVISAO_NAO != status_revisao_final
   end
   
@@ -95,6 +97,9 @@ class Project < ActiveRecord::Base
   end
   def revisao_audio
     REVISOES_HASH[status_revisao_audio]
+  end
+  def revisao_metodo
+    REVISOES_HASH[status_revisao_metodo]
   end
   
   def versao_final(attribute)
