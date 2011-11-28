@@ -85,7 +85,7 @@
             
 <br class="clear" >
 
-<%= link_to_function "Cadastrar Novo Erro", "$(this).html('');$('#new_review_wrapper').slideToggle('blind');", :Style=>'float:right' %>
+<%= link_to_function "Cadastrar Novo Erro", "$(this).html('');$('#new_review_wrapper').slideToggle('blind');$('#review_texto').focus();", :style=>'float:right' %>
 <div id="new_review_wrapper" style="display:none">
   <%= form_for(@project.reviews.build) do |f| %>
     <%= f.hidden_field :project_id %>
