@@ -22,7 +22,7 @@
 
 <%= pagination %>
 
-<br class="clear" />
-
-<p><%= link_to "Cadastrar Aula", new_project_path(:subject=>params[:subject], :degree=>params[:degree]) %></p>
-
+<% if current_user.is_cadastrador? %>
+  <br class="clear" />
+  <p><%= link_to "Cadastrar Aula", new_project_path(:subject=>params[:subject], :degree=>params[:degree]) %></p>
+<% end %>

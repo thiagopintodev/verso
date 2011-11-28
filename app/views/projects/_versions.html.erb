@@ -1,4 +1,11 @@
-<% unless @project.versions.size.zero? %>
+<% if current_user.is_cadastrador? %>
+  <div class="versao">
+    <h2>Nova Versao</h2>
+    <%= render 'project_versions/new' %>
+  </div>
+<% end %>
+
+<% unless @project.versions.empty? %>
   <h2 style='text-align:center;margin-top:200px'>Versões dessa Aula</h2>
   
   <% i = @project.versions.length+1 %>
