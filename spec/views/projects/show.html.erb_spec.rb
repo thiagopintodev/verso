@@ -2,14 +2,16 @@ require 'spec_helper'
 
 describe "projects/show.html.erb" do
   before(:each) do
-    @project = assign(:project, stub_model(Project,
-      :user_id => 1,
-      :subject_id => 1,
-      :degree_id => 1,
-      :numero => 1
-    ))
+    @user = Fabricate(:user)
     @subject = Fabricate(:subject)
     @degree = Fabricate(:degree)
+    @project = assign(:project, stub_model(Project,
+      :user_id => @user.id,
+      :subject_id => @subject.id,
+      :degree_id => @degree.id,
+      :numero => 1
+    ))
+    2.times { view.should_receive(:current_user).and_return @user }
     #
     @project_version  = ProjectVersion.new :project => @project
   end

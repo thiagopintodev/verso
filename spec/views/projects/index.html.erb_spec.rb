@@ -7,6 +7,7 @@ describe "projects/index.html.erb" do
     assign(:projects, Project.scoped.page(0))
     Fabricate(:subject)
     Fabricate(:degree)
+    template.should_receive(:current_user).and_return Fabricate(:user)
   end
 
   it "renders a list of projects" do
