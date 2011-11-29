@@ -3,48 +3,109 @@
 <table id="project_show">
   <tbody>
     <tr>
-      <td rowspan="11" style="padding-right:20px;">
+      <td style="padding-right:20px;">
         <%= render 'project_reviews' %>
       </td>
       <td width="400">
         <%= link_to image_tag(@project.capa.url, :width=>400), edit_project_path(@project) %>
-      </td>
-    </tr>
-    
-    <tr>
-      <td>
-        <%= @project.nome_completo %>
         <br />
         
-        Código Absoluto:
-        <strong>#<%= @project.id %></strong>
-        (<%= @project.versions.size %> Versões)
-        <br />
-        <br />
         
-        <div style="font-size:16px;color:#333;margin-bottom:20px;">
+        <table class="details">
+          <tr>
+            <td colspan="2" class="titulo">Dados</td>
+          </tr>
+          <tr>
+            <td>Código da aula</td>
+            <td><%= content_tag :strong, "##{@project.id}" %></td>
+          </tr>
+          <tr>
+            <td>Aula</td>
+            <td><%= content_tag :strong, @project.nome_completo %></td>
+          </tr>
+          <tr>
+            <td>Disciplina</td>
+            <td><%= content_tag :strong, @project.subject.nome %></td>
+          </tr>
+          <tr>
+            <td>Série</td>
+            <td><%= content_tag :strong, @project.degree.to_s %></td>
+          </tr>
+          <tr>
+            <td>Número</td>
+            <td><%= content_tag :strong, @project.nome %></td>
+          </tr>
+          <tr>
+            <td>Versões</td>
+            <td><%= content_tag :strong, "#{@project.versions.count} versões" %></td>
+          </tr>
+          <tr>
+            <td>Revisões</td>
+            <td><%= content_tag :strong, "#{@project.reviews.count} revisões" %></td>
+          </tr>
+        </table>
+        
+        <table class="details">
+          <tr>
+            <td colspan="2" class="titulo">Status das Revisões</td>
+          </tr>
+          <tr>
+            <td>Revisão ortográfica</td>
+            <td><%= content_tag :strong, @project.revisao_texto, :class=>"cor_#{@project.status_revisao_texto}" %></td>
+          </tr>
+          <tr>
+            <td>Revisão animação</td>
+            <td><%= content_tag :strong, @project.revisao_final, :class=>"cor_#{@project.status_revisao_final}" %></td>
+          </tr>
+          <tr>
+            <td>Revisão áudio</td>
+            <td><%= content_tag :strong, @project.revisao_audio, :class=>"cor_#{@project.status_revisao_audio}" %></td>
+          </tr>
+          <tr>
+            <td>Revisão Metodológica</td>
+            <td><%= content_tag :strong, @project.revisao_metodo, :class=>"cor_#{@project.status_revisao_metodo}" %></td>
+          </tr>
+          <tr>
+            <td>Enviado para o Ava</td>
+            <td><%= content_tag :strong, @project.producao, :class=>"cor_enviado_#{@project.status_producao}" %></td>
+          </tr>
+        </table>
+        
+        <table class="details">
+          <tr>
+            <td class="titulo">Arquivos Mais Recentes</td>
+          </tr>
           
-          Revisão Ortográfica..:
-          <%= content_tag :strong, @project.revisao_texto %>
-          <br />
+          <% v = @project.versao_final(:aud1) %>
+          <%= myfile(image_mp3(:width=>16), v.aud1) if v.id? %>
           
-          Revisão Animação...:
-          <%= content_tag :strong, @project.revisao_final %>
-          <br />
+          <% v = @project.versao_final(:aud2) %>
+          <%= myfile(image_mp3(:width=>16), v.aud2) if v.id? %>
           
-          Revisão Áudio..........:
-          <%= content_tag :strong, @project.revisao_audio %>
-          <br />
+          <% v = @project.versao_final(:aud3) %>
+          <%= myfile(image_mp3(:width=>16), v.aud3) if v.id? %>
           
-          Revisão Metodológica.:
-          <%= content_tag :strong, @project.revisao_metodo %>
-          <br />
-          <br />
+          <% v = @project.versao_final(:aud4) %>
+          <%= myfile(image_mp3(:width=>16), v.aud4) if v.id? %>
           
-          Enviado para o Ava..:
-          <%= content_tag :strong, @project.producao? ? 'ENVIADO' : 'NÃO ENVIADO' %>
           
-        </div>
+          <% v = @project.versao_final(:fla) %>
+          <%= myfile(image_fla(:width=>16), v.fla) if v.id? %>
+          
+          
+          <% v = @project.versao_final(:swf1) %>
+          <%= myfile(image_swf(:width=>16), v.swf1, swf_path(v.id, 1)) if v.id? %>
+          
+          <% v = @project.versao_final(:swf2) %>
+          <%= myfile(image_swf(:width=>16), v.swf2, swf_path(v.id, 2)) if v.id? %>
+          
+          <% v = @project.versao_final(:swf3) %>
+          <%= myfile(image_swf(:width=>16), v.swf3, swf_path(v.id, 3)) if v.id? %>
+          
+          <% v = @project.versao_final(:swf4) %>
+          <%= myfile(image_swf(:width=>16), v.swf4, swf_path(v.id, 4)) if v.id? %>
+        </table>
+        
         <% if @project.revisado? %>
           <div style="text-align:right;">
             <%= form_for @project do |f| %>
@@ -56,55 +117,6 @@
           <h3 style='color:green'>Conclua as revisões antes de cadastrar a aula no Ava.</h3>
         <% end %>
         
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <%= myfile(image_mp3, @project.versao_final(:aud1).aud1) %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <%= myfile(image_mp3, @project.versao_final(:aud2).aud2) %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <%= myfile(image_mp3, @project.versao_final(:aud3).aud3) %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <%= myfile(image_mp3, @project.versao_final(:aud4).aud4) %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <%= myfile(image_fla, @project.versao_final(:fla).fla) %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <% v = @project.versao_final(:swf1) %>
-        <%= myfile(image_swf, v.swf1, swf_path(v.id, 1)) if v.id? %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <% v = @project.versao_final(:swf2) %>
-        <%= myfile(image_swf, v.swf2, swf_path(v.id, 2)) if v.id? %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <% v = @project.versao_final(:swf3) %>
-        <%= myfile(image_swf, v.swf3, swf_path(v.id, 3)) if v.id? %>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <% v = @project.versao_final(:swf4) %>
-        <%= myfile(image_swf, v.swf4, swf_path(v.id, 4)) if v.id? %>
       </td>
     </tr>
   </tbody>

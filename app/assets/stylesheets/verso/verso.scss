@@ -74,4 +74,26 @@ table#project_show {
     font-size:16px;
     a { color:#00f; }
   }
+  table.details {
+    width: 100%;
+    font-size: 16px;
+    color: #333;
+    margin: 20px 0;
+    border: #CCC solid 1px;
+    tr {
+      td {
+        border-bottom:#ccc solid 1px;padding:8px 15px;
+        &.titulo { background:#fafafa;font-weight:bold;color:#222 }
+        strong {
+          font-size: 11px;
+          &.cor_0 { color: darken(#FCC, 60%) }
+          &.cor_1 { color: darken(#FCC, 60%) }
+          &.cor_2 { color: darken(#FFC, 60%) }
+          &.cor_3 { color: darken(#CFC, 60%) }
+          &.cor_enviado_1 { color: darken(#CFC, 60%) }
+        }
+      }
+      &:last-child td {border-bottom:none}
+    }
+  }
 }

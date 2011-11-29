@@ -1,5 +1,8 @@
 /*Thiago Almeida css2 fix*/
 $(function(){
+
+  $("table").attr('cellspacing', 0)
+
   $("select").addClass("input-value input-type-select");
   $("input[type='text'], textarea").addClass("input-value input-type-text");
   $("input[type='password']").addClass("input-value input-type-text input-type-password");

@@ -68,6 +68,10 @@ class Project < ActiveRecord::Base
     PRODUCAO_SIM == status_producao
   end
   
+  def producao
+    PRODUCAO_HASH[status_producao]
+  end
+  
   #passou pelas 3 revisoes?
   def revisado?
     REVISAO_APROVADO == status_revisao_texto &&
