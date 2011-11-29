@@ -22,11 +22,11 @@
         <b>revisou e <%= review.aprovou? ? 'aprovou' : 'reprovou' %></b>
         em <%= l review.revisou.at, :format=>:short %>
       <% end %>
+      
+      <br/>
+      <b><%= review.tipo_nome %></b>
+      <%= review.texto %>
     </p>
-    
-    <b><%= review.tipo_nome %></b>
-    <%= review.texto %>
-    <br/>
     
     <%= review_tipo_image_tag(review) %>
     
