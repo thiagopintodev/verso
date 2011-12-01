@@ -77,7 +77,8 @@ class ProjectVersion < ActiveRecord::Base
   end
   
   before_validation do
-    self.sequencia = project.versions.last.sequencia+1
+    antes = project.versions.last.sequencia rescue 0
+    self.sequencia = antes+1
     true
   end
   
