@@ -67,43 +67,4 @@ class ProjectVersion < ActiveRecord::Base
     self.sequencia = project.versions.last.sequencia+1
     true
   end
-  
-  def altera_revisao_texto(status, user=nil)
-    return if status.nil?
-    user ||= User.find_by_username('auto')
-    return unless user.is_revisao_texto?
-    #
-    self.user_revisao_texto   = user
-    self.status_revisao_texto = status
-  end
-  
-  def altera_revisao_final(status, user=nil)
-    return if status.nil?
-    user ||= User.find_by_username('auto')
-    return unless user.is_revisao_final?
-    #
-    self.user_revisao_final   = user
-    self.status_revisao_final = status
-  end
-  
-  def altera_revisao_audio(status, user=nil)
-    return if status.nil?
-    user ||= User.find_by_username('auto')
-    return unless user.is_revisao_audio?
-    #
-    self.user_revisao_audio   = user
-    self.status_revisao_audio = status
-  end
-=begin
-  after_save do
-    v = project.versions.last
-    project.status_revisao_texto = v.status_revisao_texto
-    project.status_revisao_audio = v.status_revisao_audio
-    project.status_revisao_final = v.status_revisao_final
-    project.user_revisao_texto   = v.user_revisao_texto
-    project.user_revisao_audio   = v.user_revisao_audio
-    project.user_revisao_final   = v.user_revisao_final
-    project.save
-  end
-=end
 end
