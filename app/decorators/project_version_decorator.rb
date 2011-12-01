@@ -20,11 +20,12 @@ class ProjectVersionDecorator < ApplicationDecorator
       h.form_for model.project, :html=>{:multipart=>true, :class=>'aspire'} do |f|
         f.fields_for :project_versions, model do |f2|
           ls = []
-          ls << h.myupload(f2, :fla, h.image_fla, "FONTES *.FLA")
-          ls << h.myupload(f2, :swf1, h.image_swf, "CENA 1 *.SWF")
-          ls << h.myupload(f2, :swf2, h.image_swf, "CENA 2 *.SWF")
-          ls << h.myupload(f2, :swf3, h.image_swf, "CENA 3 *.SWF")
-          ls << h.myupload(f2, :swf4, h.image_swf, "CENA 4 *.SWF")
+          ls << h.myupload(f2, :fla, h.image_fla, "Fontes *.FLA")
+          ls << h.myupload(f2, :swf1, h.image_swf, "Cena 1 *.SWF")
+          ls << h.myupload(f2, :swf2, h.image_swf, "Cena 2 *.SWF")
+          ls << h.myupload(f2, :swf3, h.image_swf, "Cena 3 *.SWF")
+          ls << h.myupload(f2, :swf4, h.image_swf, "Cena 4 *.SWF")
+          ls << h.myupload(f,  :capa, h.image_img, "Capa *.JPG")
           ls = ls.map { |i| h.content_tag :p, i }
           
           ps = []
@@ -35,7 +36,7 @@ class ProjectVersionDecorator < ApplicationDecorator
           ps << ls.join
           ps << f2.text_area(:texto, :rows=>10, :style=>"width: 300px")
           ps << h.content_tag(:div, :class=>'direita') do
-                  h.submit_tag "Cadastrar Animacoes", :class=>"button"
+                  h.submit_tag "Cadastrar Animacoes", :class=>"button", :confirm => "Tem Certeza?"
                 end
                 
           h.raw ps.join
@@ -76,10 +77,10 @@ class ProjectVersionDecorator < ApplicationDecorator
         f.fields_for :project_versions, model do |f2|
           ls = []
           #ls << h.myupload(f2, :doc, h.image_doc, "ROTEIRO *.DOC")
-          ls << h.myupload(f2, :aud1, h.image_mp3, "CENA 1 *.MP3")
-          ls << h.myupload(f2, :aud2, h.image_mp3, "CENA 2 *.MP3")
-          ls << h.myupload(f2, :aud3, h.image_mp3, "CENA 3 *.MP3")
-          ls << h.myupload(f2, :aud4, h.image_mp3, "CENA 4 *.MP3")
+          ls << h.myupload(f2, :aud1, h.image_mp3, "Cena 1 *.MP3")
+          ls << h.myupload(f2, :aud2, h.image_mp3, "Cena 2 *.MP3")
+          ls << h.myupload(f2, :aud3, h.image_mp3, "Cena 3 *.MP3")
+          ls << h.myupload(f2, :aud4, h.image_mp3, "Cena 4 *.MP3")
           ls = ls.map { |i| h.content_tag :p, i }
           
           ps = []
@@ -90,7 +91,7 @@ class ProjectVersionDecorator < ApplicationDecorator
           ps << ls.join
           ps << f2.text_area(:texto, :rows=>10, :style=>"width: 300px")
           ps << h.content_tag(:div, :class=>'direita') do
-                  h.submit_tag "Cadastrar Recursos", :class=>"button"
+                  h.submit_tag "Cadastrar Recursos", :class=>"button", :confirm => "Tem Certeza?"
                 end
                 
           h.raw ps.join

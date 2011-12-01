@@ -10,8 +10,6 @@ class Project < ActiveRecord::Base
   has_many :animations, :class_name => 'ProjectVersion', :conditions=> {:tipo=>ProjectVersion::TIPO_ANIMACAO}
   has_many :resources,  :class_name => 'ProjectVersion', :conditions=> {:tipo=>ProjectVersion::TIPO_RECURSO}
   
-  
-  
   accepts_nested_attributes_for :project_versions, :allow_destroy => true, :reject_if => :all_blank
   
   scope :versionadas, where('project_animations_count > 0 OR project_resources_count > 0')
