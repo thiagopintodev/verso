@@ -66,6 +66,11 @@ class ProjectVersion < ActiveRecord::Base
     tipo==TIPO_RECURSO
   end
   
+  before_validation do
+    self.sequencia = project.versions.last.sequencia+1
+    true
+  end
+  
   def altera_revisao_texto(status, user=nil)
     return if status.nil?
     user ||= User.find_by_username('auto')
