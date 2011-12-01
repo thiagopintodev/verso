@@ -94,8 +94,10 @@ class ProjectVersionDecorator < ApplicationDecorator
           ps << ls.join
           ps << f2.text_area(:texto, :rows=>10, :style=>"width: 300px")
           ps << h.content_tag(:div, :class=>'direita') do
-                  h.submit_tag "Cadastrar Recursos", :class=>"button", :confirm => "Tem Certeza?"
-                  h.image_enviando
+                  h.raw [
+                    h.image_enviando,
+                    h.submit_tag("Cadastrar Recursos", :class=>"button", :confirm => "Tem Certeza?")
+                  ].join
                 end
                 
           h.raw ps.join
