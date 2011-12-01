@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111201104946) do
+ActiveRecord::Schema.define(:version => 20111201165646) do
 
   create_table "degrees", :force => true do |t|
     t.string   "nome"
@@ -72,19 +72,20 @@ ActiveRecord::Schema.define(:version => 20111201104946) do
     t.integer  "user_id"
     t.integer  "subject_id"
     t.integer  "degree_id"
-    t.integer  "numero",                 :default => 1
-    t.integer  "project_versions_count", :default => 0
+    t.integer  "numero",                   :default => 1
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "capa_file_name"
     t.string   "capa_content_type"
     t.integer  "capa_file_size"
     t.datetime "capa_updated_at"
-    t.integer  "status_revisao_texto",   :default => 0
-    t.integer  "status_revisao_final",   :default => 0
-    t.integer  "status_revisao_audio",   :default => 0
-    t.integer  "status_producao",        :default => 0
-    t.integer  "status_revisao_metodo",  :default => 0
+    t.integer  "status_revisao_texto",     :default => 0
+    t.integer  "status_revisao_final",     :default => 0
+    t.integer  "status_revisao_audio",     :default => 0
+    t.integer  "status_producao",          :default => 0
+    t.integer  "status_revisao_metodo",    :default => 0
+    t.integer  "project_animations_count", :default => 0
+    t.integer  "project_resources_count",  :default => 0
   end
 
   create_table "reviews", :force => true do |t|

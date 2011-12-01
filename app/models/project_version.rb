@@ -1,5 +1,5 @@
 class ProjectVersion < ActiveRecord::Base
-  belongs_to :project, :counter_cache=>true
+  belongs_to :project
   belongs_to :user
   
   belongs_to :user_revisao_texto, :class_name=>'User', :foreign_key => 'user_id_revisao_texto'
@@ -7,14 +7,27 @@ class ProjectVersion < ActiveRecord::Base
   belongs_to :user_revisao_final, :class_name=>'User', :foreign_key => 'user_id_revisao_final'
   
   validates :project, :presence=>true
-  validates :user, :presence=>true
+  validates :user,    :presence=>true
+  
+  TIPO_ANIMACAO=0
+  TIPO_RECURSO=1
+  
+  TIPOS_HASH = {
+    TIPO_ANIMACAO => "Animacao",
+    TIPO_RECURSO  => "Recurso"
+  }
+  
+  TIPOS = [
+    [TIPOS_HASH[0], 0],
+    [TIPOS_HASH[1], 1]
+  ]
+                       
+  scope :tipo_animacao, where(:tipo=>TIPO_ANIMACAO)
+  scope :tipo_recurso,  where(:tipo=>TIPO_RECURSO)
   
   Paperclip.interpolates :created_at  do |attachment, style|
     attachment.instance.created_at.strftime("%Y_%h_%d")
   end
-  
-  TIPO_ANIMACAO=0
-  TIPO_RECURSO=1
   
   PAPERCLIP_DEFAULT_URL = "/arquivos/diario/:created_at/:class/:id/:attachment/:filename"
   PAPERCLIP_DEFAULT_OPTIONS = { :url  => PAPERCLIP_DEFAULT_URL, :path => ":rails_root/public#{PAPERCLIP_DEFAULT_URL}" }
@@ -66,5 +79,14 @@ class ProjectVersion < ActiveRecord::Base
   before_validation do
     self.sequencia = project.versions.last.sequencia+1
     true
+  end
+  
+  after_save    :update_counter_cache
+  after_destroy :update_counter_cache
+  
+  def update_counter_cache
+    self.project.project_animations_count = self.project.animations.count
+    self.project.project_resources_count  = self.project.resources.count
+    self.project.save
   end
 end

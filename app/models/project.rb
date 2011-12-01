@@ -6,9 +6,17 @@ class Project < ActiveRecord::Base
   has_many :project_versions
   alias :versions   :project_versions
   
+  
+  has_many :animations, :class_name => 'ProjectVersion', :conditions=> {:tipo=>ProjectVersion::TIPO_ANIMACAO}
+  has_many :resources,  :class_name => 'ProjectVersion', :conditions=> {:tipo=>ProjectVersion::TIPO_RECURSO}
+  
+  
+  
   accepts_nested_attributes_for :project_versions, :allow_destroy => true, :reject_if => :all_blank
   
-  scope :versionadas, where('project_versions_count > 0')
+  scope :versionadas, where('project_animations_count > 0 OR project_resources_count > 0')
+  scope :com_animacoes, where('project_animations_count > 0')
+  scope :com_recursos, where('project_resources_count > 0')
   
   belongs_to :user_revisao_texto, :class_name=>'User', :foreign_key => 'user_id_revisao_texto'
   belongs_to :user_revisao_audio, :class_name=>'User', :foreign_key => 'user_id_revisao_audio'
@@ -139,6 +147,14 @@ class Project < ActiveRecord::Base
       Rails.cache.fetch([:project, :count, :versioned]) { versionadas.count }
     end
     
+    def cached_group_tipo
+      Rails.cache.fetch([:project, :count, :versioned, :by_tipo]) do
+        r={}
+        ProjectVersion::TIPOS_HASH.map { |tipo, nome| r[tipo] = ProjectVersion.where(:tipo=>tipo).group(:project_id).size.size }
+        r
+      end
+    end
+    
     def cached_group_revisao_texto
       Rails.cache.fetch([:project, :count, :versioned, :by_texto]) { versionadas.select('status_revisao_texto, count(*)').group(:status_revisao_texto).count }
     end
@@ -174,6 +190,7 @@ class Project < ActiveRecord::Base
     def limpar_cached
       Rails.cache.delete([:project, :count])
       Rails.cache.delete([:project, :count, :versioned])
+      Rails.cache.delete([:project, :count, :versioned, :by_tipo])
       Rails.cache.delete([:project, :count, :versioned, :by_texto])
       Rails.cache.delete([:project, :count, :versioned, :by_audio])
       Rails.cache.delete([:project, :count, :versioned, :by_final])

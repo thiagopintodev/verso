@@ -10,6 +10,30 @@
 			</div>
 			
 		  <div class="box">
+				<h2>Animação</h2>
+				<ul class="cat">
+          <%= li_filtro(:with_animations, nil, "Todas") %>
+          <%= li_filtro(:with_animations,
+                        "1",
+                        "Cadastrada Animação",
+                        Project.cached_group_tipo[ProjectVersion::TIPO_ANIMACAO] || 0)
+                        %>
+				</ul>
+			</div>
+			
+		  <div class="box">
+				<h2>Recurso</h2>
+				<ul class="cat">
+          <%= li_filtro(:with_resources, nil, "Todas") %>
+          <%= li_filtro(:with_resources,
+                        "1",
+                        "Cadastrada Recurso",
+                        Project.cached_group_tipo[ProjectVersion::TIPO_RECURSO] || 0)
+                        %>
+				</ul>
+			</div>
+			
+		  <div class="box">
 				<h2>Enviadas para o Ava</h2>
 				<ul class="cat">
           <%= li_filtro(:status_producao, nil, "Todas") %>
