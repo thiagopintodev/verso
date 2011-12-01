@@ -2,34 +2,38 @@ class ProjectVersionDecorator < ApplicationDecorator
   decorates :project_version
 
   def conteudo_esquerda
-    t = new_record? ? Time.now : created_at
+    unless new_record?
+      t = h.content_tag(:small, created_at.strftime("%d/%m/%y %H:%M:S"))
+      s = h.content_tag(:strong, "v. #{sequencia}")
+    end
+    
     h.raw [
       #h.image_tag "/assets/aspire/page/author.jpg",
       "@#{user.username}",
-      h.content_tag(:small, t.strftime("%d/%m/%y %H:%M:S")),
-      h.content_tag(:strong, "v. #{sequencia}")
+      t,
+      s
     ].join(h.content_tag(:br))
   end
   
   def conteudo_direita_animacao
     if new_record?
       h.form_for model.project, :html=>{:multipart=>true, :class=>'aspire'} do |f|
-        f.fields_for :project_versions, model do |fa|
+        f.fields_for :project_versions, model do |f2|
           ls = []
-          ls << h.myupload(fa, :fla, h.image_fla, "FONTES *.FLA")
-          ls << h.myupload(fa, :swf1, h.image_swf, "CENA 1 *.SWF")
-          ls << h.myupload(fa, :swf2, h.image_swf, "CENA 2 *.SWF")
-          ls << h.myupload(fa, :swf3, h.image_swf, "CENA 3 *.SWF")
-          ls << h.myupload(fa, :swf4, h.image_swf, "CENA 4 *.SWF")
+          ls << h.myupload(f2, :fla, h.image_fla, "FONTES *.FLA")
+          ls << h.myupload(f2, :swf1, h.image_swf, "CENA 1 *.SWF")
+          ls << h.myupload(f2, :swf2, h.image_swf, "CENA 2 *.SWF")
+          ls << h.myupload(f2, :swf3, h.image_swf, "CENA 3 *.SWF")
+          ls << h.myupload(f2, :swf4, h.image_swf, "CENA 4 *.SWF")
           ls = ls.map { |i| h.content_tag :p, i }
           
           ps = []
-          ps << fa.error_messages
-          ps << fa.hidden_field(:project_id)
-          ps << fa.hidden_field(:user_id)
-          ps << fa.hidden_field(:tipo)
+          ps << f2.error_messages
+          ps << f2.hidden_field(:project_id)
+          ps << f2.hidden_field(:user_id)
+          ps << f2.hidden_field(:tipo)
           ps << ls.join
-          ps << fa.text_area(:texto, :rows=>10, :style=>"width: 300px")
+          ps << f2.text_area(:texto, :rows=>10, :style=>"width: 300px")
           ps << h.content_tag(:div, :class=>'direita') do
                   h.submit_tag "Cadastrar Animacoes", :class=>"button"
                 end
@@ -69,23 +73,22 @@ class ProjectVersionDecorator < ApplicationDecorator
   def conteudo_direita_recurso
     if new_record?
       h.form_for model.project, :html=>{:multipart=>true, :class=>'aspire'} do |f|
-        f.fields_for :project_versions, model do |fr|
+        f.fields_for :project_versions, model do |f2|
           ls = []
-          #ls << h.myupload(fr, :doc, h.image_doc, "ROTEIRO *.DOC")
-          ls << nil
-          ls << h.myupload(fr, :aud1, h.image_mp3, "CENA 1 *.MP3")
-          ls << h.myupload(fr, :aud2, h.image_mp3, "CENA 2 *.MP3")
-          ls << h.myupload(fr, :aud3, h.image_mp3, "CENA 3 *.MP3")
-          ls << h.myupload(fr, :aud4, h.image_mp3, "CENA 4 *.MP3")
+          #ls << h.myupload(f2, :doc, h.image_doc, "ROTEIRO *.DOC")
+          ls << h.myupload(f2, :aud1, h.image_mp3, "CENA 1 *.MP3")
+          ls << h.myupload(f2, :aud2, h.image_mp3, "CENA 2 *.MP3")
+          ls << h.myupload(f2, :aud3, h.image_mp3, "CENA 3 *.MP3")
+          ls << h.myupload(f2, :aud4, h.image_mp3, "CENA 4 *.MP3")
           ls = ls.map { |i| h.content_tag :p, i }
           
           ps = []
-          ps << fr.error_messages
-          ps << fr.hidden_field(:project_id)
-          ps << fr.hidden_field(:user_id)
-          ps << fr.hidden_field(:tipo)
+          ps << f2.error_messages
+          ps << f2.hidden_field(:project_id)
+          ps << f2.hidden_field(:user_id)
+          ps << f2.hidden_field(:tipo)
           ps << ls.join
-          ps << fr.text_area(:texto, :rows=>10, :style=>"width: 300px")
+          ps << f2.text_area(:texto, :rows=>10, :style=>"width: 300px")
           ps << h.content_tag(:div, :class=>'direita') do
                   h.submit_tag "Cadastrar Recursos", :class=>"button"
                 end
@@ -128,7 +131,7 @@ class ProjectVersionDecorator < ApplicationDecorator
   #   Then use the helpers with no proxy:
   #     number_to_currency(2)
 
-  # Defining an Interface
+  # Defining an Interf2ce
   #   Control access to the wrapped subject's methods using one of the following:
   #
   #   To allow only the listed methods (whitelist):
