@@ -17,7 +17,7 @@ module ImagesHelper
   end
   
   def image_enviando
-    image_tag('verso/enviando.gif', :id=>'enviando', :style=>'display:none')
+    image_tag('verso/enviando.gif', :class=>'enviando', :style=>'display:none')
   end
 
 end
