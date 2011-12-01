@@ -8,7 +8,7 @@ module ReviewsHelper
               else
                 "error"
               end
-    "flash #{status}"
+    "review #{status}"
   end
   
   
@@ -38,6 +38,6 @@ module ReviewsHelper
 
 
   def review_image_tag(key, css)
-    image_tag key, :width=>32, :class=>css
+    image_tag key, :width=>24, :class=>css
   end
 end

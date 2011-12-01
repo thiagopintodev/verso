@@ -2,37 +2,48 @@
 td { vertical-align:top; }
 
 
+@mixin review($color) {
+  color: darken($color, 60%) !important;
+}
 .review {
   position:relative;
-  a { position:absolute;display:block;width:100%;height:100%;border:none !important; }
-  p { width: 390px; }
+  
+  border-bottom: #ccc solid 1px;
+  margin: 0;
+  display:inline-block;width:100%;
+  font-size: 11px;
+  &:hover   { border-bottom: #999 solid 1px;background:#fafafa; }
+  &.notice  { @include review(#CFC); }
+  &.alert   { @include review(#FFC); }
+  &.error   { @include review(#FCC); }
+  a.botao_revisao {
+    position:absolute;top:40px;right:10px;
+  }
+  p { width: 390px;min-height:100px;margin: 10px; }
   img {
     position:absolute;top:10px;
-    &.tipo      { right:94px; }
-    &.corrigiu  { right:52px; }
+    &.tipo      { right:72px; }
+    &.corrigiu  { right:36px; }
     &.revisou   { right:10px; }
   }
 }
 .detalhes { clear:both; }
 a.botao_revisao {
-  &.corrigir  { background: #FF6; }
-  &.aprovar   { background: #6F6; }
-  &.reprovar  { background: #F66; }
-  color: #111 !important;
-  text-shadow: #fff 2px 2px 2px;
-  box-shadow: #666 2px 2px 2px;
-  margin-bottom:15px;
-  width:60%;
-  float:right;
+  padding:5px 0;width:120px;text-align:center;
   display:block;
-  font-size: 20px;
-  border: none;
-  border-radius: 3px;
-  padding: 12px 20px 13px 20px;
-  text-align:center;
+  box-shadow: #ccc 2px 2px 1px;
+  border:#efefef solid 1px;
+  border-radius:5px;
+  background:#fff;
+  &.corrigir { color: #990 !important;  }
+  &.aprovar  { color: green !important;  }
+  &.reprovar { color: red !important; top:80px; }
+  img { position:static; }
 }
-
-
+.revisao_objetiva {
+  margin: 20px;
+  a { float:right;width:200px;margin:20px 0; }
+}
 
 
 
@@ -47,7 +58,6 @@ table#project_show {
     font-size: 16px;
     color: #333;
     margin: 20px 0;
-    border: #CCC solid 1px;
     tr {
       td {
         border-bottom:#ccc solid 1px;padding:8px 15px;

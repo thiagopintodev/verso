@@ -1,8 +1,7 @@
 <h2>Erros e Revisões</h2>
 
 <% @project.reviews.each do |review| %>
-  <div id="review_<%= review.id %>" class="review <%= review_css(review) %>">
-    <%= link_to_function "", "$('#review_detalhes_#{review.id}').slideToggle('slow');" unless review.aprovou? %>
+  <div id="review_<%= review.id %>" class="<%= review_css(review) %>">
     
     <p>
       @<%= review.criou.user.username %>
@@ -36,35 +35,42 @@
     <%# REVISOU revisado: vazio/corrigido/reprovado %>
     <%= review_revisou_image_tag(review) %>
     
-  </div>
-  
-  <% if current_user.is_revisor? %>
-  
-  <% unless review.aprovou? %>
-    <% if review.precisa_corrigir? %>
-      <div id="review_detalhes_<%= review.id %>" class="detalhes corrigir" style="display:none">
-        <%= link_to "Marcar como corrigido.", corrigiu_review_path(review), :method=>:post, :class=>'botao_revisao corrigir' %>
-        <br class="clear" />
-        <br class="clear" />
-      </div>
+    
+    <% if current_user.is_revisor? %>
+    
+      <% unless review.aprovou? %>
+        <% if review.precisa_corrigir? %>
+          <%= link_to 'marcar corrigido',
+                      corrigiu_review_path(review),
+                      :method=>:post,
+                      :class=>'botao_revisao corrigir'
+                      %>
+        <% end %>
+      <% end %>
+      
+      
+      <% if review.precisa_revisar? %>
+        <%= link_to 'marcar aprovado',
+                    revisou_aprovou_review_path(review),
+                    :method=>:post,
+                    :class=>'botao_revisao aprovar'
+                    %>
+        <%= link_to 'marcar reprovado',
+                    revisou_reprovou_review_path(review),
+                    :method=>:post,
+                    :class=>'botao_revisao reprovar'
+                    %>
+      <% end %>
     <% end %>
     
-    <% if review.precisa_revisar? %>
-      <div id="review_detalhes_<%= review.id %>" class="detalhes revisar" style="display:none">
-        <%= link_to "Marcar como aprovado.",      revisou_aprovou_review_path(review), :method=>:post, :class=>'botao_revisao aprovar' %>
-        <%= link_to "Marcar como NÃO corrigido.",  revisou_reprovou_review_path(review), :method=>:post, :class=>'botao_revisao reprovar' %>
-        <br class="clear" />
-        <br class="clear" />
-      </div>
-    <% end %>
-  <% end %>
-  
-  <% end %>
+    
+  </div>
   
 <% end %>
 
 <% if current_user.is_revisor? %>
 
+<div class="revisao_objetiva">
 <%= link_to "Aprovar Áudio!",
             create_aprovado_reviews_path(:project_id=>@project.id, :tipo=>Review::TIPO_AUDIO),
             :class=>'botao_revisao aprovar',
