@@ -13,8 +13,10 @@ class ProjectsController < ApplicationController
   def index
     @projects = Project.includes(:subject, :degree)
     @projects = @projects.versionadas if params[:versioned].present?
-    @projects = @projects.com_animacoes if params[:with_animations].present?
-    @projects = @projects.com_recursos if params[:with_resources].present?
+    @projects = @projects.sem_animacoes if params[:with_animations]=="1"
+    @projects = @projects.com_animacoes if params[:with_animations]=="2"
+    @projects = @projects.sem_recursos if params[:with_resources]=="1"
+    @projects = @projects.com_recursos if params[:with_resources]=="2"
     @projects = @projects.where(:subject_id=>params[:subject]) if params[:subject]
     @projects = @projects.where(:degree_id=>params[:degree])   if params[:degree]
     @projects = @projects.where(:numero=>params[:numero])      if params[:numero]

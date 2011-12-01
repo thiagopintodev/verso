@@ -17,6 +17,8 @@ class Project < ActiveRecord::Base
   scope :versionadas, where('project_animations_count > 0 OR project_resources_count > 0')
   scope :com_animacoes, where('project_animations_count > 0')
   scope :com_recursos, where('project_resources_count > 0')
+  scope :sem_animacoes, where('project_animations_count = 0')
+  scope :sem_recursos, where('project_resources_count = 0')
   
   belongs_to :user_revisao_texto, :class_name=>'User', :foreign_key => 'user_id_revisao_texto'
   belongs_to :user_revisao_audio, :class_name=>'User', :foreign_key => 'user_id_revisao_audio'

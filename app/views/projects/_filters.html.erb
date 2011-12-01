@@ -15,19 +15,29 @@
           <%= li_filtro(:with_animations, nil, "Todas") %>
           <%= li_filtro(:with_animations,
                         "1",
-                        "Cadastrada Animação",
+                        "Aulas sem Animação",
+                        )
+                        %>
+          <%= li_filtro(:with_animations,
+                        "2",
+                        "Aulas com Animação",
                         Project.cached_group_tipo[ProjectVersion::TIPO_ANIMACAO] || 0)
                         %>
 				</ul>
 			</div>
 			
 		  <div class="box">
-				<h2>Recurso</h2>
+				<h2>Áudio</h2>
 				<ul class="cat">
           <%= li_filtro(:with_resources, nil, "Todas") %>
           <%= li_filtro(:with_resources,
                         "1",
-                        "Cadastrada Recurso",
+                        "Aulas sem Áudio",
+                        )
+                        %>
+          <%= li_filtro(:with_resources,
+                        "2",
+                        "Aulas com Áudio",
                         Project.cached_group_tipo[ProjectVersion::TIPO_RECURSO] || 0)
                         %>
 				</ul>
