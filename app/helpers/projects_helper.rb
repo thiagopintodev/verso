@@ -22,4 +22,24 @@ module ProjectsHelper
     end
   end
   
+  def myfile(img_html, paperclip, url=nil)
+    return unless paperclip.present?
+    url ||= paperclip.url
+    content = raw("#{img_html} #{paperclip.original_filename} (#{number_to_human_size(paperclip.size)})")
+    link_to content, url, :target=>'_blank'
+  end
+  
+  def myfile_title(img_html, paperclip, url=nil)
+    return unless paperclip.present?
+    url ||= paperclip.url
+    title = "#{paperclip.original_filename} (#{number_to_human_size(paperclip.size)})"
+    link_to img_html, url, :target=>'_blank', :title=>title
+  end
+  
+  def myupload(form, field, img_html, texto)
+    label_tag do
+      raw "#{img_html} #{texto} #{form.file_field field}"
+    end
+  end
+  
 end

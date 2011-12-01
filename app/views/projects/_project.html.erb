@@ -70,41 +70,71 @@
             <td><%= content_tag :strong, @project.producao, :class=>"cor_enviado_#{@project.status_producao}" %></td>
           </tr>
         </table>
-        
+        <% if false %>
         <table class="details">
           <tr>
             <td class="titulo">Arquivos Mais Recentes</td>
           </tr>
           
-          <% v = @project.versao_final(:aud1) %>
-          <%= myfile(image_mp3(:width=>16), v.aud1) if v.id? %>
           
-          <% v = @project.versao_final(:aud2) %>
-          <%= myfile(image_mp3(:width=>16), v.aud2) if v.id? %>
+          <% if v = @project.versao_final(:aud1) and v.id? %>
+          <tr>
+            <td><%= myfile(image_mp3(:width=>16), v.aud1) %></td>
+          </tr>
+          <% end %>
           
-          <% v = @project.versao_final(:aud3) %>
-          <%= myfile(image_mp3(:width=>16), v.aud3) if v.id? %>
+          <% if v = @project.versao_final(:aud2) and v.id? %>
+          <tr>
+            <td><%= myfile(image_mp3(:width=>16), v.aud2)  %></td>
+          </tr>
+          <% end %>
           
-          <% v = @project.versao_final(:aud4) %>
-          <%= myfile(image_mp3(:width=>16), v.aud4) if v.id? %>
+          <% if v = @project.versao_final(:aud3) and v.id? %>
+          <tr>
+            <td><%= myfile(image_mp3(:width=>16), v.aud3)  %></td>
+          </tr>
+          <% end %>
+          
+          <% if v = @project.versao_final(:aud4) and v.id? %>
+          <tr>
+            <td><%= myfile(image_mp3(:width=>16), v.aud4)  %></td>
+          </tr>
+          <% end %>
           
           
-          <% v = @project.versao_final(:fla) %>
-          <%= myfile(image_fla(:width=>16), v.fla) if v.id? %>
+          <% if v = @project.versao_final(:fla) and v.id? %>
+          <tr>
+            <td><%= myfile(image_fla(:width=>16), v.fla)  %></td>
+          </tr>
+          <% end %>
           
           
-          <% v = @project.versao_final(:swf1) %>
-          <%= myfile(image_swf(:width=>16), v.swf1, swf_path(v.id, 1)) if v.id? %>
+          <% if v = @project.versao_final(:swf1) and v.id? %>
+          <tr>
+            <td><%= myfile(image_swf(:width=>16), v.swf1, swf_path(v.id, 1)) %></td>
+          </tr>
+          <% end %>
           
-          <% v = @project.versao_final(:swf2) %>
-          <%= myfile(image_swf(:width=>16), v.swf2, swf_path(v.id, 2)) if v.id? %>
+          <% if v = @project.versao_final(:swf2) and v.id? %>
+          <tr>
+            <td><%= myfile(image_swf(:width=>16), v.swf2, swf_path(v.id, 2))  %></td>
+          </tr>
+          <% end %>
           
-          <% v = @project.versao_final(:swf3) %>
-          <%= myfile(image_swf(:width=>16), v.swf3, swf_path(v.id, 3)) if v.id? %>
+          <% if v = @project.versao_final(:swf3) and v.id? %>
+          <tr>
+            <td><%= myfile(image_swf(:width=>16), v.swf3, swf_path(v.id, 3))  %></td>
+          </tr>
+          <% end %>
           
-          <% v = @project.versao_final(:swf4) %>
-          <%= myfile(image_swf(:width=>16), v.swf4, swf_path(v.id, 4)) if v.id? %>
+          <% if v = @project.versao_final(:swf4) and v.id? %>
+          <tr>
+            <td><%= myfile(image_swf(:width=>16), v.swf4, swf_path(v.id, 4))  %></td>
+          </tr>
+          <% end %>
+          
         </table>
+        <% end %>
         
         <% if @project.revisado? %>
           <div style="text-align:right;">

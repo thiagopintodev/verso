@@ -1,0 +1,46 @@
+<table id="versoes" style="margin-top:100px;" celspacing="10">
+  <tr>
+    <td style="padding-right:10px">
+      <h2>Animações e Recursos</h2>
+        
+      <table>
+        <% @project.versions.reverse.each do |v|  %>
+          <% unless v.new_record? %>
+          <% v = ProjectVersionDecorator.new v %>
+          <tr>
+            <td class="left">
+              <%= v.conteudo_esquerda %>
+            </td>
+            <td class="right">
+              <%= v.conteudo_direita_animacao if v.tipo_animacao? %>
+              <%= v.conteudo_direita_recurso if v.tipo_recurso? %>
+            </td>
+          </tr>
+          <% end %>
+        <% end %>
+      </table>
+      
+    </td>
+    <td>
+      <h2>Cadastro</h2>
+      
+      <table>
+        <% @project.versions.each do |v|  %>
+          <% if v.new_record? %>
+          <% v = ProjectVersionDecorator.new v %>
+          <tr>
+            <td class="left">
+              <%= v.conteudo_esquerda %>
+            </td>
+            <td class="right">
+              <%= v.conteudo_direita_animacao if v.tipo_animacao? %>
+              <%= v.conteudo_direita_recurso if v.tipo_recurso? %>
+            </td>
+          </tr>
+          <% end %>
+        <% end %>
+      </table>
+        
+    </td>
+  </tr>
+</table>

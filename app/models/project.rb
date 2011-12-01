@@ -4,7 +4,9 @@ class Project < ActiveRecord::Base
   belongs_to :degree
   has_many :reviews
   has_many :project_versions
-  alias :versions :project_versions
+  alias :versions   :project_versions
+  
+  accepts_nested_attributes_for :project_versions, :allow_destroy => true, :reject_if => :all_blank
   
   scope :versionadas, where('project_versions_count > 0')
   

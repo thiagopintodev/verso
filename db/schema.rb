@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111128154545) do
+ActiveRecord::Schema.define(:version => 20111201104946) do
 
   create_table "degrees", :force => true do |t|
     t.string   "nome"
@@ -61,6 +61,8 @@ ActiveRecord::Schema.define(:version => 20111128154545) do
     t.string   "aud4_content_type"
     t.integer  "aud4_file_size"
     t.datetime "aud4_updated_at"
+    t.integer  "tipo",              :default => 0
+    t.integer  "sequencia",         :default => 0
   end
 
   add_index "project_versions", ["project_id"], :name => "index_project_versions_on_project_id"

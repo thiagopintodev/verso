@@ -13,6 +13,9 @@ class ProjectVersion < ActiveRecord::Base
     attachment.instance.created_at.strftime("%Y_%h_%d")
   end
   
+  TIPO_ANIMACAO=0
+  TIPO_RECURSO=1
+  
   PAPERCLIP_DEFAULT_URL = "/arquivos/diario/:created_at/:class/:id/:attachment/:filename"
   PAPERCLIP_DEFAULT_OPTIONS = { :url  => PAPERCLIP_DEFAULT_URL, :path => ":rails_root/public#{PAPERCLIP_DEFAULT_URL}" }
   
@@ -53,6 +56,14 @@ class ProjectVersion < ActiveRecord::Base
   
   def algum_aud?
     aud1? || aud2? || aud3? || aud4?
+  end
+  
+  def tipo_animacao?
+    tipo==TIPO_ANIMACAO
+  end
+  
+  def tipo_recurso?
+    tipo==TIPO_RECURSO
   end
   
   def altera_revisao_texto(status, user=nil)

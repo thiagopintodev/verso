@@ -2,38 +2,6 @@
 td { vertical-align:top; }
 
 
-
-table#cadastro_versoes {
-  width: auto;
-  td { padding-bottom:20px; }
-  p { height:60px;margin-bottom:0;border-bottom:#efefef solid 1px;padding: 10px 0; }
-  textarea { width:100%; }
-  
-	form button:hover,
-	form button:focus {
-		background: #800;
-	}
-}
-
-.versao {
-  position: relative;
-  
-  background:#fff;border: #999 solid 1px;padding:20px;border-radius:10px;
-  margin-top:50px;
-	-moz-box-shadow:0 0 20px 5px #000;
-	-webkit-box-shadow: 0 0 20px #000;
-	
-  td { height:40px; }
-  a { border:none;display:block;color:#00f; }
-  .actions {
-    input, select {
-      padding:10px;font-weight:bold;font-size:16px;margin-right:32px;
-    }
-  }
-}
-
-
-
 .review {
   position:relative;
   a { position:absolute;display:block;width:100%;height:100%;border:none !important; }
@@ -97,3 +65,46 @@ table#project_show {
     }
   }
 }
+
+table#versoes {
+  width:100%;
+  > tbody > tr > td { width:50%; }
+  table {
+    margin-top:20px;width:500px;
+    box-shadow:0 0 2px 1px #ccc;
+    td {
+      border:#ccc solid 1px;
+      border-bottom-width: 0px;
+      padding:20px;
+      height:120px;
+      &.left  { background:#fafafa;border-right:none; }
+      &.right {
+        a, span { border:#ccc solid 1px;border-radius:3px; padding: 10px;width:32px;height:32px; margin-right:10px;display:block;float:left; }
+        form {
+          textarea { width:366px !important; }
+          p { margin-bottom:10px;padding-bottom:10px;border-bottom:#ccc solid 1px; height:30px; }
+          div.direita { margin-top:20px;text-align:right }
+        }
+      }
+      p { margin-bottom:20px }
+    }
+    tr:last-child td { border-bottom-width: 1px; }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

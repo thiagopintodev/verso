@@ -1,6 +1,15 @@
 class ProjectsController < ApplicationController
   before_filter :login_required
   
+  
+  # GET /project/:project_version_id/:attribute
+  def swf
+    v = ProjectVersion.find(params[:project_version_id])
+    @paperclip = v.send("swf#{params[:swf_token]}")
+  end
+  
+  #RESOURCE
+  
   def index
     @projects = Project.includes(:subject, :degree)
     @projects = @projects.versionadas if params[:versioned].present?
@@ -17,8 +26,11 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project          = Project.find(params[:id])
-    @project_version  = ProjectVersion.new :project => @project
+    @project = Project.find(params[:id])
+    if current_user.is_cadastrador?
+      @project.project_versions.build(:user=>current_user, :tipo=>ProjectVersion::TIPO_ANIMACAO)
+      @project.project_versions.build(:user=>current_user, :tipo=>ProjectVersion::TIPO_RECURSO)
+    end
   end
 
   def new

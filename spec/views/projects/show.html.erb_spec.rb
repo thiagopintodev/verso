@@ -13,7 +13,8 @@ describe "projects/show.html.erb" do
     ))
     2.times { view.should_receive(:current_user).and_return @user }
     #
-    @project_version  = ProjectVersion.new :project => @project
+    @project.project_resources.build(:user=>@user)
+    @project.project_animations.build(:user=>@user)
   end
   
   it "renders attributes in <p>" do

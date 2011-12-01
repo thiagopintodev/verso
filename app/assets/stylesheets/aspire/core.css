@@ -206,7 +206,7 @@ body{
 		width: 670px;
 	}
 	
-	.full, .full ul#entries li, .full .author, .full #comments{width: 960px !important;}
+	.full, .full ul#entries li, .full .author {width: 960px !important;}
 	
 		#page h2{
 			font-size: 16px;
@@ -422,7 +422,7 @@ body{
 		}
 		
 		#page #comments ul.comment_list li{
-			width: 667px;
+			width: 450px;
 			overflow: hidden;
 			margin-bottom: 10px;
 		}
@@ -446,6 +446,7 @@ body{
 			#page #comments ul.comment_list li .comment{
 				float: right;
 				width: 530px;
+				width: 130px;
 				background: #f8f8f8;
 				border: 1px solid #cfcfcf;
 				padding: 15px;

@@ -2,8 +2,7 @@ Verso::Application.routes.draw do
   get "sobre"     => "site#sobre"
   get "historico" => "site#historico"
 
-  resources :project_versions
-  get 'swf/:project_version_id/:swf_token' => "project_versions#swf", :as => :swf
+  get 'swf/:project_version_id/:swf_token' => "projects#swf", :as => :swf
 
   resources :projects, :path=>'aulas'
   
