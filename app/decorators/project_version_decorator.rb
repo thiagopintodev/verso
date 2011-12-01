@@ -26,6 +26,7 @@ class ProjectVersionDecorator < ApplicationDecorator
           ps << fa.error_messages
           ps << fa.hidden_field(:project_id)
           ps << fa.hidden_field(:user_id)
+          ps << fa.hidden_field(:tipo)
           ps << ls.join
           ps << fa.text_area(:texto, :rows=>10, :style=>"width: 300px")
           ps << h.content_tag(:div, :class=>'direita') do
@@ -81,6 +82,7 @@ class ProjectVersionDecorator < ApplicationDecorator
           ps << fr.error_messages
           ps << fr.hidden_field(:project_id)
           ps << fr.hidden_field(:user_id)
+          ps << fr.hidden_field(:tipo)
           ps << ls.join
           ps << fr.text_area(:texto, :rows=>10, :style=>"width: 300px")
           ps << h.content_tag(:div, :class=>'direita') do
