@@ -34,9 +34,6 @@ class ProjectVersion < ActiveRecord::Base
   FLA_VALIDATIONS = { :content_type => [ 'application/octet-stream' ], :message => 'nao indica que este seja um arquivo .FLA (application/octet-stream)' }
   SWF_VALIDATIONS = { :content_type => [ 'application/x-shockwave-flash' ], :message => 'nao indica que este seja um arquivo .SWF (application/x-shockwave-flash)' }
   
-  #validates_attachment_presence :fla
-  validates :texto, :length => {:minimum=>5}
-  
   validates_attachment_content_type :fla, FLA_VALIDATIONS
   
   validates_attachment_content_type :swf1, SWF_VALIDATIONS
@@ -45,9 +42,9 @@ class ProjectVersion < ActiveRecord::Base
   validates_attachment_content_type :swf4, SWF_VALIDATIONS
   
   validate do
-    errors[:fla] = "Voce deve enviar pelo menos um arquivo" if not algum_swf? and not algum_aud? and not fla?
-    errors[:fla] = "Voce nao pode enviar arquivos SWF sem enviar o FLA" if algum_swf? and not fla?
-    errors[:swf1] = "Voce nao pode enviar o FLA sem enviar ao menos um SWF" if not algum_swf? and fla?
+    return errors[:fla] = "Voce deve enviar pelo menos um arquivo" if not algum_swf? and not algum_aud? and not fla?
+    return errors[:fla] = "Voce nao pode enviar arquivos SWF sem enviar o FLA" if algum_swf? and not fla?
+    return errors[:swf1] = "Voce nao pode enviar o FLA sem enviar ao menos um SWF" if not algum_swf? and fla?
   end
   
   def algum_swf?
