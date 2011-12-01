@@ -92,7 +92,7 @@ class Project < ActiveRecord::Base
     REVISAO_NAO != status_revisao_final
   end
   def metodo_revisado?
-    REVISAO_NAO != status_revisao_final
+    REVISAO_NAO != status_revisao_metodo
   end
   
   def revisao_texto
