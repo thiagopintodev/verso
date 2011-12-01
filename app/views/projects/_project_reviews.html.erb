@@ -43,6 +43,7 @@
           <%= link_to 'marcar corrigido',
                       corrigiu_review_path(review),
                       :method=>:post,
+                      :confirm=>"Tem certeza?",
                       :class=>'botao_revisao corrigir'
                       %>
         <% end %>
@@ -53,11 +54,13 @@
         <%= link_to 'marcar aprovado',
                     revisou_aprovou_review_path(review),
                     :method=>:post,
+                    :confirm=>"Tem certeza?",
                     :class=>'botao_revisao aprovar'
                     %>
         <%= link_to 'marcar reprovado',
                     revisou_reprovou_review_path(review),
                     :method=>:post,
+                    :confirm=>"Tem certeza?",
                     :class=>'botao_revisao reprovar'
                     %>
       <% end %>
@@ -74,23 +77,27 @@
 <%= link_to "Aprovar Áudio!",
             create_aprovado_reviews_path(:project_id=>@project.id, :tipo=>Review::TIPO_AUDIO),
             :class=>'botao_revisao aprovar',
+            :confirm=>"Tem certeza?",
             :method=>:post unless @project.audio_revisado?
             %>
             
 <%= link_to "Aprovar Texto!",
             create_aprovado_reviews_path(:project_id=>@project.id, :tipo=>Review::TIPO_TEXTO),
             :class=>'botao_revisao aprovar',
+            :confirm=>"Tem certeza?",
             :method=>:post unless @project.texto_revisado?
             %>
             
 <%= link_to "Aprovar Flash!",
             create_aprovado_reviews_path(:project_id=>@project.id, :tipo=>Review::TIPO_FLASH),
             :class=>'botao_revisao aprovar',
+            :confirm=>"Tem certeza?",
             :method=>:post unless @project.flash_revisado?
             %>
 <%= link_to "Aprovar Metodologia!",
             create_aprovado_reviews_path(:project_id=>@project.id, :tipo=>Review::TIPO_METODO),
             :class=>'botao_revisao aprovar',
+            :confirm=>"Tem certeza?",
             :method=>:post unless @project.metodo_revisado?
             %>
             

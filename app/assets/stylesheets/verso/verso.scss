@@ -17,7 +17,7 @@ td { vertical-align:top; }
   &.alert   { @include review(#FFC); }
   &.error   { @include review(#FCC); }
   a.botao_revisao {
-    position:absolute;top:40px;right:10px;
+    position:absolute;top:40px;right:10px;font-size:12px;
   }
   p { width: 390px;min-height:100px;margin: 10px; }
   img {
