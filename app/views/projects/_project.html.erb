@@ -10,10 +10,6 @@
     <td><%= content_tag :strong, "##{@project.id}" %></td>
   </tr>
   <tr>
-    <td>Aula</td>
-    <td><%= content_tag :strong, @project.titulo %></td>
-  </tr>
-  <tr>
     <td>Disciplina</td>
     <td><%= content_tag :strong, @project.subject.nome %></td>
   </tr>
@@ -32,6 +28,10 @@
   <tr>
     <td>Revisões</td>
     <td><%= content_tag :strong, "#{@project.reviews.count} revisões" %></td>
+  </tr>
+  <tr>
+    <td>Sumário</td>
+    <td><%= link_to_sumario(@project.degree) %></td>
   </tr>
 </table>
 

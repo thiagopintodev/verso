@@ -6,10 +6,6 @@ class Project < ActiveRecord::Base
   has_many :project_versions
   alias :versions   :project_versions
   
-  def titulo
-    "titulo"
-  end
-  
   has_many :animations, :class_name => 'ProjectVersion', :conditions=> {:tipo=>ProjectVersion::TIPO_ANIMACAO}
   has_many :resources,  :class_name => 'ProjectVersion', :conditions=> {:tipo=>ProjectVersion::TIPO_RECURSO}
   

@@ -1,0 +1,21 @@
+<%= form_for(@degree, :html=>{:class=>'aspire'}) do |f| %>
+  <% if @degree.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@degree.errors.count, "error") %> prohibited this degree from being saved:</h2>
+
+      <ul>
+      <% @degree.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field" style='border:#333 solid 1px;margin:20px 0;padding:20px'>
+    <%= f.file_field :arquivo %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Confirmar" %>
+    <%= link_to "Cancelar", :degrees, :class=>'input-button cancelar' %>
+  </div>
+<% end %>

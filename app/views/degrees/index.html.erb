@@ -1,0 +1,22 @@
+<style>
+table { width:100%; }
+table td { text-align:center;padding:20px;border-right:#333 solid 1px }
+table td:last-child { border:none }
+</style>
+<h1>Sumários</h1>
+
+<table>
+  <tr>
+    <% @degrees.each do |degree| %>
+      <td>
+        <strong><%= degree %></strong>
+        <br />
+        <%= link_to image_tag_sumario, degree.arquivo.url if degree.arquivo? %>
+        <br/>
+        (<%= link_to 'Enviar', edit_degree_path(degree) %>)
+      </td>
+    <% end %>
+  </tr>
+</table>
+
+<%#= link_to 'New Degree', new_degree_path %>

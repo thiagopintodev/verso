@@ -23,5 +23,10 @@ form.aspire {
 		padding: 13px;
 		border:1px solid #cfcfcf;
 		width: auto;
+		&.cancelar {
+		  background:#fafafa;
+		  color:#000;
+		  &:hover { text-decoration:none; }
+		}
 	}
 }

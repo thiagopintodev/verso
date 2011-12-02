@@ -4,6 +4,8 @@ Verso::Application.routes.draw do
 
   resources :projects, :path=>'aulas'
   
+  resources :degrees, :path=>'sumarios'
+  
   resources :reviews do
     member do
       post :corrigiu
