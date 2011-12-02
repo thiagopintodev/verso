@@ -63,6 +63,7 @@ a.botao_revisao {
   table { color:#333; }
 }
 
+#tabs { width:600px; }
 
 table#project_show {
   width: 100%;
@@ -78,15 +79,16 @@ table#project_show {
   .button { background: #333 !important; }
   
   table.details {
-    width: 100%;
-    font-size: 16px;
+    width:100%;
     color: #333;
-    margin-top: 33px;
+    &.primeiro { margin-top: 33px; }
     tr {
       td {
-        font-size:16px;
-        a { color:#33f; }
+        vertical-align:middle;
+        a { color:#33f;font-size: 11px !important; }
         border-bottom:#ccc solid 1px;padding:8px 15px;
+        &:first-child { font-size:10px;width:100px; }
+        &:last-child  { font-size:16px; }
         &.titulo {
           background:#fafafa;font-weight:bold;color:#222;
           position:relative;
@@ -96,7 +98,7 @@ table#project_show {
           }
         }
         strong {
-          font-size: 11px;
+          font-size: 14px;
           &.cor_0 { color: darken(#FCC, 60%) }
           &.cor_1 { color: darken(#FCC, 60%) }
           &.cor_2 { color: darken(#FFC, 60%) }
@@ -109,7 +111,7 @@ table#project_show {
   }
   
   table.versoes {
-    width:100%;
+    width:560px !important;
     td {
       border:#ccc solid 1px;
       border-width: 1px 0px;
@@ -120,10 +122,10 @@ table#project_show {
       }
       &.arquivos {
         padding:10px 0;
-        min-width:400px !important;
+        min-width:35px !important;
         a, span { border:#ccc solid 1px;border-radius:3px; padding: 10px;width:32px;height:32px; margin-right:10px;display:block;float:left; }
         form {
-          textarea { width:580px !important; }
+          textarea { width:530px !important; }
           p { margin-bottom:10px;padding-bottom:10px;border-bottom:#ccc solid 1px; height:30px; }
           div.direita { margin-top:10px;text-align:right }
         }

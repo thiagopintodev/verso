@@ -1,4 +1,4 @@
-<table class="details">
+<table class="details primeiro">
   <tr>
     <td colspan="2" class="titulo">
       Dados
@@ -11,7 +11,7 @@
   </tr>
   <tr>
     <td>Aula</td>
-    <td><%= content_tag :strong, @project.nome_completo %></td>
+    <td><%= content_tag :strong, @project.titulo %></td>
   </tr>
   <tr>
     <td>Disciplina</td>
@@ -52,7 +52,7 @@
     <td><%= content_tag :strong, @project.revisao_audio, :class=>"cor_#{@project.status_revisao_audio}" %></td>
   </tr>
   <tr>
-    <td>Revisão Metodológica</td>
+    <td>R. metodológica</td>
     <td><%= content_tag :strong, @project.revisao_metodo, :class=>"cor_#{@project.status_revisao_metodo}" %></td>
   </tr>
   <tr>
