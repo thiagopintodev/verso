@@ -60,7 +60,8 @@ class ProjectsController < ApplicationController
     if @project.update_attributes(params[:project])
       redirect_to @project, :notice  => "Aula foi atualizada."
     else
-      render :action => 'edit'
+      flash[:error] = "Ocorreu um Erro, veja detalhes abaixo"
+      render :action => 'show'
     end
   end
 
