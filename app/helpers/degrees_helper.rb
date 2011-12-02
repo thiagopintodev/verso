@@ -5,7 +5,7 @@ module DegreesHelper
   end
   
   def image_tag_sumario
-    image_tag "http://aux4.iconpedia.net/uploads/730515789872400627.png", :width=>64
+    image_tag "/assets/verso/sumario-128.png", :width=>64
   end
 
 end
