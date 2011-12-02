@@ -1,22 +1,21 @@
-<h2>Cadastro</h2>
 
-<table class="versoes">
-  <% @project.versions.each do |v|  %>
-    <% if v.new_record? %>
-    <% v = ProjectVersionDecorator.new v %>
-    <tr>
-      <td class="left">
-        <%= v.conteudo_esquerda %>
-      </td>
-      <td class="right">
-        <%= v.conteudo_direita_animacao if v.tipo_animacao? %>
-        <%= v.conteudo_direita_recurso if v.tipo_recurso? %>
-      </td>
-    </tr>
-    <% end %>
+
+<% @project.versions.each do |v|  %>
+  <% if v.new_record? %>
+  <% v = ProjectVersionDecorator.new v %>
+    <h2>Cadastro</h2>
+    <table class="versoes">
+      <tr>
+        <td class="arquivos">
+          <%= v.conteudo_arquivos_animacao if v.tipo_animacao? %>
+          <%= v.conteudo_arquivos_recurso if v.tipo_recurso? %>
+        </td>
+      </tr>
+    </table>
+    <h2 class="rodape"></h2>
   <% end %>
-</table>
-<br /><br />
+<% end %>
+
 
 <h2>Arquivos</h2>
   
@@ -25,14 +24,17 @@
     <% unless v.new_record? %>
     <% v = ProjectVersionDecorator.new v %>
     <tr>
-      <td class="left">
-        <%= v.conteudo_esquerda %>
+      <td class="usuario">
+        <%= v.conteudo_usuario %>
       </td>
-      <td class="right">
-        <%= v.conteudo_direita_animacao if v.tipo_animacao? %>
-        <%= v.conteudo_direita_recurso if v.tipo_recurso? %>
+    </tr>
+    <tr>
+      <td class="arquivos">
+        <%= v.conteudo_arquivos_animacao if v.tipo_animacao? %>
+        <%= v.conteudo_arquivos_recurso if v.tipo_recurso? %>
       </td>
     </tr>
     <% end %>
   <% end %>
 </table>
+<h2 class="rodape"></h2>

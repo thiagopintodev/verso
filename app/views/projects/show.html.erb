@@ -8,20 +8,31 @@
   });
 <% end %>
 	
-
 <div class="verso-ui">
-
-  <div id="tabs">
-	  <ul>
-		  <li><a href="#tabs-1">Dados e Revisões</a></li>
-		  <li><a href="#tabs-2">Arquivos</a></li>
-	  </ul>
-	  <div id="tabs-1">
-		  <%= render @project %>
-	  </div>
-	  <div id="tabs-2">
-		  <%= render 'files' %>
-	  </div>
-  </div>
-  
+  <table id="project_show">
+    <tbody>
+      <tr>
+        <td width="250" style="padding-right:50px">
+          <%= render @project %>
+        </td>
+        <td width="600">
+        
+          <div id="tabs" width=500>
+	          <ul>
+		          <li><a href="#tabs-1">Revisões</a></li>
+		          <li><a href="#tabs-2">Arquivos</a></li>
+	          </ul>
+	          <div id="tabs-1">
+              <%= render 'reviews' %>
+	          </div>
+	          <div id="tabs-2">
+		          <%= render 'files' %>
+	          </div>
+          </div>
+        
+        
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

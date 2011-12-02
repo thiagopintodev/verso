@@ -1,21 +1,16 @@
 class ProjectVersionDecorator < ApplicationDecorator
   decorates :project_version
 
-  def conteudo_esquerda
-    unless new_record?
-      t = h.content_tag(:small, created_at.strftime("%d/%m/%y %H:%M:S"))
-      s = h.content_tag(:strong, "v. #{sequencia}")
-    end
-    
+  def conteudo_usuario
     h.raw [
       #h.image_tag "/assets/aspire/page/author.jpg",
-      "@#{user.username}",
-      t,
-      s
-    ].join(h.content_tag(:br))
+      h.content_tag(:strong, "v. #{sequencia} "),
+      "@#{user.username} ",
+      h.content_tag(:small, created_at.strftime("%d/%m/%y %H:%M:%S"))
+    ].join
   end
   
-  def conteudo_direita_animacao
+  def conteudo_arquivos_animacao
     if new_record?
       h.form_for model.project, :html=>{:multipart=>true, :class=>'aspire'} do |f|
         f.fields_for :project_versions, model do |f2|
@@ -68,13 +63,13 @@ class ProjectVersionDecorator < ApplicationDecorator
       t = texto.blank? ? h.raw("<b>***Nao foram escritos comentarios***</b>") : texto
       ps = []
       ps << h.content_tag(:p, t)
-      ps << ls.join
+      ps << h.content_tag(:p, h.raw(ls.join))
       
       h.raw ps.join
     end
   end
   
-  def conteudo_direita_recurso
+  def conteudo_arquivos_recurso
     if new_record?
       h.form_for model.project, :html=>{:multipart=>true, :class=>'aspire'} do |f|
         f.fields_for :project_versions, model do |f2|
@@ -122,7 +117,7 @@ class ProjectVersionDecorator < ApplicationDecorator
       t = texto.blank? ? h.raw("<b>***Nao foram escritos comentarios***</b>") : texto
       ps = []
       ps << h.content_tag(:p, t)
-      ps << ls.join
+      ps << h.content_tag(:p, h.raw(ls.join))
       
       h.raw ps.join
     end
