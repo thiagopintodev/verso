@@ -19,7 +19,7 @@
 		/*
 		$('ul.sf-menu').superfish();
 		Cufon.replace('ul.sf-menu:has(ul) > li a, ul.quick_links li h3, #page h2, #page h3, #page h4, #page h5, #sidebar h2, .sub_header p, .article_nav a', { fontFamily: 'Avenir LT Std' });
-		
+		/*
 		$('form.search input').focus(function() {
   			$(this).val('');
 		});

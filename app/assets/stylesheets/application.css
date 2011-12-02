@@ -11,6 +11,7 @@
  *= require aspire/prettyPhoto.css
  *= require aspire/core.css
  *= require aspire/colors.css
+ *= require verso-ui/jquery-ui-1.8.16.custom.css
  *= require verso/alertas.css
  *= require verso/forms.css
  *= require verso/pagination.css

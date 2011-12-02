@@ -1,6 +1,4 @@
 Verso::Application.routes.draw do
-  get "sobre"     => "site#sobre"
-  get "historico" => "site#historico"
 
   get 'swf/:project_version_id/:swf_token' => "projects#swf", :as => :swf
 

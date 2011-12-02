@@ -1,6 +1,7 @@
 .clear { clear:both; }
 td { vertical-align:top; }
 
+#page { min-height:800px; }
 
 @mixin review($color) {
   color: darken($color, 60%) !important;
