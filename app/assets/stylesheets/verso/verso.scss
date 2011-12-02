@@ -46,6 +46,13 @@ a.botao_revisao {
   a { float:right;width:200px;margin:20px 0; }
 }
 
+.verso-ui {
+  .ui-tabs       { background:#fff !important;border:none !important; }
+  .ui-tabs-nav   { background: #fff none !important;border:none !important;padding: 0 !important; }
+  .ui-tabs-selected { padding-bottom:0px !important; }
+  .ui-tabs-panel { border: #ccc solid 1px !important; }
+  table { color:#333; }
+}
 
 
 table#project_show {
@@ -62,7 +69,14 @@ table#project_show {
     tr {
       td {
         border-bottom:#ccc solid 1px;padding:8px 15px;
-        &.titulo { background:#fafafa;font-weight:bold;color:#222 }
+        &.titulo {
+          background:#fafafa;font-weight:bold;color:#222;
+          position:relative;
+          img {
+            position:absolute;
+            top:0;right:0;
+          }
+        }
         strong {
           font-size: 11px;
           &.cor_0 { color: darken(#FCC, 60%) }
@@ -77,32 +91,28 @@ table#project_show {
   }
 }
 
-table#versoes {
-  width:100%;
-  > tbody > tr > td { width:50%; }
-  table {
-    margin-top:20px;width:500px;
-    box-shadow:0 0 2px 1px #ccc;
-    td {
-      border:#ccc solid 1px;
-      border-bottom-width: 0px;
-      padding:20px;
-      height:120px;
-      &.left  { background:#fafafa;border-right:none; }
-      &.right {
-        a, span { border:#ccc solid 1px;border-radius:3px; padding: 10px;width:32px;height:32px; margin-right:10px;display:block;float:left; }
-        form {
-          textarea { width:366px !important; }
-          p { margin-bottom:10px;padding-bottom:10px;border-bottom:#ccc solid 1px; height:30px; }
-          div.direita { margin-top:20px;text-align:right }
-        }
+table.versoes {
+  margin-top:20px;width:500px;
+  td {
+    border-bottom: none;
+    border:#ccc solid 1px;
+    border-width: 0 1px 1px 0;
+    padding:20px;
+    height:120px;
+    &.left  { background:#fafafa;border-right:none;min-width:120px !important; }
+    &.right {
+      min-width:400px !important;
+      a, span { border:#ccc solid 1px;border-radius:3px; padding: 10px;width:32px;height:32px; margin-right:10px;display:block;float:left; }
+      form {
+        textarea { width:366px !important; }
+        p { margin-bottom:10px;padding-bottom:10px;border-bottom:#ccc solid 1px; height:30px; }
+        div.direita { margin-top:20px;text-align:right }
       }
-      p { margin-bottom:20px }
     }
-    tr:last-child td { border-bottom-width: 1px; }
+    p { margin-bottom:20px }
   }
+  tr:last-child td { border-bottom-width: 0px; }
 }
-
 
 
 

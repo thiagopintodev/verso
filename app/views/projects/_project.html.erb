@@ -1,5 +1,3 @@
-<h1>Aula</h1>
-
 <table id="project_show">
   <tbody>
     <tr>
@@ -7,13 +5,13 @@
         <%= render 'project_reviews' %>
       </td>
       <td width="400">
-        <%= image_tag(@project.capa.url, :width=>400) %>
-        <br />
-        
         
         <table class="details">
           <tr>
-            <td colspan="2" class="titulo">Dados</td>
+            <td colspan="2" class="titulo">
+              Dados
+              <%= image_tag(@project.capa.url, :height=>35) %>
+            </td>
           </tr>
           <tr>
             <td>Código da aula</td>
@@ -76,6 +74,12 @@
             <td class="titulo">Arquivos Mais Recentes</td>
           </tr>
           
+          
+          <% if @project.capa? %>
+          <tr>
+            <td><%= myfile(image_img(:width=>16), @project.capa) %></td>
+          </tr>
+          <% end %>
           
           <% if v = @project.versao_final(:aud1) and v.id? %>
           <tr>

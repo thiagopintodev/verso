@@ -1,4 +1,27 @@
 <% set_page_css(:full) %>
-<%= render @project %>
+<% content_for :jsload do %>  
+  $( "#tabs" ).tabs();
+  
+  $("form").submit(function(){
+    $("input:submit").hide();
+    $(".enviando").fadeIn(1200);
+  });
+<% end %>
+	
 
-<%= render 'files' %>
+<div class="verso-ui">
+
+  <div id="tabs">
+	  <ul>
+		  <li><a href="#tabs-1">Dados e Revisões</a></li>
+		  <li><a href="#tabs-2">Arquivos</a></li>
+	  </ul>
+	  <div id="tabs-1">
+		  <%= render @project %>
+	  </div>
+	  <div id="tabs-2">
+		  <%= render 'files' %>
+	  </div>
+  </div>
+  
+</div>
