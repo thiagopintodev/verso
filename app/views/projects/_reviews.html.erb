@@ -4,20 +4,20 @@
   <div id="review_<%= review.id %>" class="<%= review_css(review) %>">
     
     <p>
-      @<%= review.criou.user.username %>
+      <%= link_to_usuario review.criou.user %>
       <b>criou</b>
       em <%= l review.criou.at, :format=>:short %>
       
       <% if review.corrigiu? %>
         <br/>
-        @<%= review.corrigiu.user.username %>
+        <%= link_to_usuario review.corrigiu.user %>
         <b>corrigiu</b>
         em <%= l review.corrigiu.at, :format=>:short %>
       <% end %>
       
       <% if review.revisou? %>
         <br/>
-        @<%= review.revisou.user.username %>
+        <%= link_to_usuario review.revisou.user %>
         <b>revisou e <%= review.aprovou? ? 'aprovou' : 'reprovou' %></b>
         em <%= l review.revisou.at, :format=>:short %>
       <% end %>
@@ -101,8 +101,6 @@
             :method=>:post unless @project.metodo_revisado?
             %>
 </div>
-            
-
 
 <%= link_to_function "Cadastrar Novo Erro",
                      "$(this).remove();$('#new_review_wrapper').slideToggle('blind');$('#review_texto').focus();",

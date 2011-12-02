@@ -60,7 +60,11 @@ a.botao_revisao {
     }
   }
   .ui-tabs-panel { border: #ccc solid 1px !important;color:#333 !important; }
+  
+  .ui-widget-content a { color: #00f; }
 }
+
+
 
 #tabs { width:600px; }
 img[rel='capa'] { cursor:pointer; }

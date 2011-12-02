@@ -33,7 +33,9 @@ class User < ActiveRecord::Base
     find_by_username(username)
   end
 
-
+  def u_
+    "@#{username}"
+  end
 
 
 

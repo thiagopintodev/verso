@@ -40,7 +40,7 @@
                                                                       :status_producao=>Project::PRODUCAO_NAO
                                                                       ) %></li>
   			<li><%= link_to 'ver todas as aulas', projects_path %></li>
-        <li><%= link_to current_user.username, edit_current_user_path %></li>
+        <li><%= link_to_usuario current_user, {:style=>''} %></li>
         <li class="current"><%= link_to "Logout", logout_path %></li>
       <% else %>
         <li><%= link_to "Cadastro", signup_path %></li>

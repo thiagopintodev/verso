@@ -27,4 +27,9 @@ class UsersController < ApplicationController
       render :action => 'edit'
     end
   end
+  
+  def show
+    @user = params.has_key?(:id) ? User.find(params[:id])
+                                 : User.u(params[:usuario])
+  end
 end

@@ -5,8 +5,8 @@ class ProjectVersionDecorator < ApplicationDecorator
     h.raw [
       #h.image_tag "/assets/aspire/page/author.jpg",
       h.content_tag(:strong, "v. #{sequencia} "),
-      "@#{user.username} ",
-      h.content_tag(:small, created_at.strftime("%d/%m/%y %H:%M:%S"))
+      h.link_to_usuario(user),
+      h.content_tag(:small, created_at.strftime(" %d/%m/%y %H:%M:%S"))
     ].join
   end
   

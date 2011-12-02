@@ -15,16 +15,14 @@ Verso::Application.routes.draw do
     end
   end
 
-  #resources :degrees
-  #resources :subjects
-
   match 'editar' => 'users#edit', :as => :edit_current_user
+  match 'usuario/:usuario' => 'users#show', :as => :usuario
   match 'cadastro' => 'users#new', :as => :signup
   match 'logout' => 'sessions#destroy', :as => :logout
   match 'login' => 'sessions#new', :as => :login
 
   resources :sessions
-  resources :users
+  resources :users, :path=>'usuarios'
   root :to => 'projects#index'
 
   # The priority is based upon order of creation:
