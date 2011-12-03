@@ -14,12 +14,13 @@ class User < ActiveRecord::Base
   before_save :prepare_password
 
   validates_presence_of :username
-  validates_uniqueness_of :username, :email, :allow_blank => true
-  validates_format_of :username, :with => /^[-\w\._@]+$/i, :allow_blank => true, :message => "should only contain letters, numbers, or .-_@"
+  validates_uniqueness_of :username, :case_sensitive => false, :allow_blank => false
+  validates_uniqueness_of :email,    :case_sensitive => false, :allow_blank => false
+  validates_format_of :username, :with => /^[-\w\._@]+$/i, :allow_blank => false, :message => "should only contain letters, numbers, or .-_@"
   validates_format_of :email, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i
   validates_presence_of :password, :on => :create
   validates_confirmation_of :password
-  validates_length_of :password, :minimum => 4, :allow_blank => true
+  validates_length_of :password, :minimum => 4, :allow_blank => false
 
   def is_revisao?
     is_revisao_texto || is_revisao_audio || is_revisao_final
@@ -43,7 +44,10 @@ class User < ActiveRecord::Base
 
   # login can be either username or email address
   def self.authenticate(login, pass)
-    user = find_by_username(login) || find_by_email(login)
+    return nil unless login && pass
+    user = if login.include?('@') then where('lower(email) = ?',    login.downcase).first
+                                  else where('lower(username) = ?', login.downcase).first
+                                  end
     return user if user && user.password_hash == user.encrypt_password(pass)
   end
 
