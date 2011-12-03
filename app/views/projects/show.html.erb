@@ -6,9 +6,6 @@
     $("input:submit").hide();
     $(".enviando").fadeIn(1200);
   });
-  $("img[rel='capa']").click(function(){
-    $('#capa_escondida').slideToggle('slow');
-  });
 <% end %>
 	
 <div class="verso-ui">
@@ -19,8 +16,6 @@
           <%= render @project %>
         </td>
         <td width="600">
-          
-          <%= image_tag(@project.capa.url, :id=>'capa_escondida', :width=>'600', :style=>'display:none', :rel=>'capa') %>
           
           <div id="tabs">
 	          <ul>
