@@ -10,13 +10,10 @@ class ProjectsController < ApplicationController
   
   #GET relatorio (COLLECTION)
   def relatorio
-    @user = User.u(params[:usuario]) if params[:usuario].present?
+    project_versions = ProjectVersion.includes(:project)
+    project_versions = project_versions.where(:user_id=>params[:user_ids]) if params[:user_ids]
     
     @pvs_by_date = {}
-    
-    project_versions = @user ? @user.project_versions.includes(:project)
-                             : ProjectVersion.includes(:project)
-    
     project_versions.reverse.each do |v|
       (@pvs_by_date[v.created_at.to_date] ||= []) << v
     end

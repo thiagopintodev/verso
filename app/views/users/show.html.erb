@@ -2,4 +2,4 @@
 <br />
 <%= @user.u_ %>
 <br /><br />
-<%= link_to "Relatório de Aulas Enviadas", relatorio_por_aluno_projects_path(@user.username)  %>
+<%= link_to "Relatório de Aulas Enviadas", relatorio_projects_path(:user_id=>@user.id)  %>

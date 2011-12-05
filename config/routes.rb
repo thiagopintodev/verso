@@ -4,8 +4,7 @@ Verso::Application.routes.draw do
 
   resources :projects, :path=>'aulas' do
     collection do
-      get 'relatorio',                       :action=>'relatorio', :as => 'relatorio'
-      get 'relatorio/por_usuario/:usuario', :action=>'relatorio', :as => 'relatorio_por_aluno'
+      get 'relatorio'
     end
   end
   

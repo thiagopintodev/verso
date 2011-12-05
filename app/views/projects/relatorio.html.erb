@@ -3,9 +3,16 @@
   <div class="box">
 		<h2>Usuários</h2>
 		<ul class="cat">
-		  <li><%= link_to "Todos", relatorio_projects_path %></li>
+		  <li class="<%= 'selected' unless params.has_key?(:user_ids) %>">
+		    <%= link_to "Todos", relatorio_projects_path %>
+		  </li>
 		  <% User.all.each do |user| %>
-			  <li><%= link_to user.u_, relatorio_por_aluno_projects_path(user.username) %></li>
+		    <% a1 = params[:user_ids] || [] %>
+		    <% a2 = [user.id.to_s] %>
+		    <% new_params = (a1|a2) - (a1 & a2) %>
+		    <% css = 'selected' if a1.include?(user.id.to_s) %>
+		    <% url = relatorio_projects_path(:user_ids => new_params) %>
+			  <%= content_tag :li, link_to(user.u_, url), :class=>css %>
 		  <% end %>
 		</ul>
 	</div>
@@ -47,7 +54,7 @@
           <%= v.created_at.strftime("%H:%M:%S") %>
         </td>
         <td>
-          <%= link_to v.user.u_, v.user unless user_atual == v.user %>
+          <%= link_to v.user.u_, relatorio_projects_path(:user_ids=>[v.user_id]) unless user_atual == v.user %>
           <% user_atual = v.user %>
         </td>
         <td>
