@@ -1,3 +1,5 @@
+<%= image_tag(@project.capa.url, :width=>'100%') %>
+
 <table class="details primeiro">
   <tr>
     <td colspan="2" class="titulo">Dados</td>
@@ -138,6 +140,3 @@
 <% else %>
   <h3 style='color:green'>Conclua as revisões antes de cadastrar a aula no Ava.</h3>
 <% end %>
-
-<br /><br />
-<%= image_tag(@project.capa.url, :width=>'100%') %>
