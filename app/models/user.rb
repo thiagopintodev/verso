@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
   def self.authenticate(login, pass)
     return nil unless login && pass
     user = if login.include?('@') then where('lower(email) = ?', login.downcase).first
-                                  else u(username)
+                                  else where('lower(username) = ?', username.downcase).first
                                   end
     return user if user && user.password_hash == user.encrypt_password(pass)
   end
