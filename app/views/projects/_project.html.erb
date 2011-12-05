@@ -106,25 +106,25 @@
   
   <% if v = @project.versao_final(:swf1) and v.id? %>
   <tr>
-    <td><%= myfile_swf(v.swf1) %></td>
+    <td><%= myfile_swf(v.swf1, swf_path(v.id, 1)) %></td>
   </tr>
   <% end %>
   
   <% if v = @project.versao_final(:swf2) and v.id? %>
   <tr>
-    <td><%= myfile_swf(v.swf2) %></td>
+    <td><%= myfile_swf(v.swf2, swf_path(v.id, 2)) %></td>
   </tr>
   <% end %>
   
   <% if v = @project.versao_final(:swf3) and v.id? %>
   <tr>
-    <td><%= myfile_swf(v.swf3) %></td>
+    <td><%= myfile_swf(v.swf3, swf_path(v.id, 3)) %></td>
   </tr>
   <% end %>
   
   <% if v = @project.versao_final(:swf4) and v.id? %>
   <tr>
-    <td><%= myfile_swf(v.swf4) %></td>
+    <td><%= myfile_swf(v.swf4, swf_path(v.id, 4)) %></td>
   </tr>
   <% end %>
   

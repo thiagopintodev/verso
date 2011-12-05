@@ -73,56 +73,57 @@
 
 <% if current_user.is_revisor? %>
 
-<div class="revisao_objetiva">
-<%= link_to "Aprovar Áudio!",
-            create_aprovado_reviews_path(:project_id=>@project.id, :tipo=>Review::TIPO_AUDIO),
-            :class=>'botao_revisao aprovar',
-            :confirm=>"Tem certeza?",
-            :method=>:post unless @project.audio_revisado?
-            %>
-            
-<%= link_to "Aprovar Texto!",
-            create_aprovado_reviews_path(:project_id=>@project.id, :tipo=>Review::TIPO_TEXTO),
-            :class=>'botao_revisao aprovar',
-            :confirm=>"Tem certeza?",
-            :method=>:post unless @project.texto_revisado?
-            %>
-            
-<%= link_to "Aprovar Flash!",
-            create_aprovado_reviews_path(:project_id=>@project.id, :tipo=>Review::TIPO_FLASH),
-            :class=>'botao_revisao aprovar',
-            :confirm=>"Tem certeza?",
-            :method=>:post unless @project.flash_revisado?
-            %>
-<%= link_to "Aprovar Metodologia!",
-            create_aprovado_reviews_path(:project_id=>@project.id, :tipo=>Review::TIPO_METODO),
-            :class=>'botao_revisao aprovar',
-            :confirm=>"Tem certeza?",
-            :method=>:post unless @project.metodo_revisado?
-            %>
-</div>
+  <div class="revisao_objetiva">
+    <%= link_to "Aprovar Áudio!",
+                create_aprovado_reviews_path(:project_id=>@project.id, :tipo=>Review::TIPO_AUDIO),
+                :class=>'botao_revisao aprovar',
+                :confirm=>"Tem certeza?",
+                :method=>:post unless @project.audio_revisado?
+                %>
+                
+    <%= link_to "Aprovar Texto!",
+                create_aprovado_reviews_path(:project_id=>@project.id, :tipo=>Review::TIPO_TEXTO),
+                :class=>'botao_revisao aprovar',
+                :confirm=>"Tem certeza?",
+                :method=>:post unless @project.texto_revisado?
+                %>
+                
+    <%= link_to "Aprovar Flash!",
+                create_aprovado_reviews_path(:project_id=>@project.id, :tipo=>Review::TIPO_FLASH),
+                :class=>'botao_revisao aprovar',
+                :confirm=>"Tem certeza?",
+                :method=>:post unless @project.flash_revisado?
+                %>
+    <%= link_to "Aprovar Metodologia!",
+                create_aprovado_reviews_path(:project_id=>@project.id, :tipo=>Review::TIPO_METODO),
+                :class=>'botao_revisao aprovar',
+                :confirm=>"Tem certeza?",
+                :method=>:post unless @project.metodo_revisado?
+                %>
+    <br class="clear">
+  </div>
 
-<%= link_to_function "Cadastrar Novo Erro",
-                     "$(this).remove();$('#new_review_wrapper').slideToggle('blind');$('#review_texto').focus();",
-                     :style=>'float:right',
-                     :class=>'botao_revisao reprovar'
-                     %>
-<br class="clear">
+  <%= link_to_function "Cadastrar Novo Erro",
+                       "$(this).remove();$('#new_review_wrapper').slideToggle('blind');$('#review_texto').focus();",
+                       :style=>'float:right',
+                       :class=>'botao_revisao reprovar'
+                       %>
+  <br class="clear">
 
-<div id="new_review_wrapper" style="display:none">
-  <%= form_for(@project.reviews.build, :html=>{:class=>'aspire'}) do |f| %>
-    <%= f.hidden_field :project_id %>
-    <div class="field" style='float:right'>
-      <%= f.label :tipo, "Tipo de Erro" %>
-      <%= f.select :tipo, Review::TIPOS %>
-    </div>
-    <div class="field clear">
-      <%= f.text_area :texto, :style=>'height: 40px;width:500px;float:right' %>
-    </div>
-    <div class="actions" style="text-align:right">
-      <%= submit_tag "Cadastrar erro para revisão" %>
-    </div>
-  <% end %>
-</div>
+  <div id="new_review_wrapper" style="display:none">
+    <%= form_for(@project.reviews.build, :html=>{:class=>'aspire'}) do |f| %>
+      <%= f.hidden_field :project_id %>
+      <div class="field" style='float:right'>
+        <%= f.label :tipo, "Tipo de Erro" %>
+        <%= f.select :tipo, Review::TIPOS %>
+      </div>
+      <div class="field clear">
+        <%= f.text_area :texto, :style=>'height: 40px;width:500px;float:right' %>
+      </div>
+      <div class="actions" style="text-align:right">
+        <%= submit_tag "Cadastrar erro para revisão" %>
+      </div>
+    <% end %>
+  </div>
 
 <% end %>

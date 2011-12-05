@@ -42,28 +42,13 @@ module ProjectsHelper
     end
   end
   
-  def myfile_swf(paperclip)
+  def myfile_swf(paperclip, swf_path)
     return unless paperclip.present?
     content = raw("#{image_swf(:width=>16)} #{paperclip.original_filename} (#{number_to_human_size(paperclip.size)})")
     raw [
       link_to(content, paperclip.url, :target=>'_blank'),
-      link_to_function(
-                       image_play(:width=>16, :style=>"float:right"),
-                       "$('#player').html( $(this).data('swf-content') );scroll(0,0);",
-                       :'data-swf-content' => swf_source(paperclip)
-                      )
+      link_to(image_play(:width=>16, :style=>"float:right"), swf_path, :target=>'_blank')
     ].join
-  end
-  
-  def swf_source(paperclip)
-    "<div style='background:#000;text-align:center;padding-top:3px'><object width='800' height='600'
-classid='clsid:d27cdb6e-ae6d-11cf-96b8-444553540000'
-codebase='http://fpdownload.macromedia.com/
-pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0'>
-<param name='SRC' value='#{paperclip.url}'>
-<param name='wmode' value='opaque'/>
-<embed src='#{paperclip.url}' wmode='opaque' width='800' height='600'></embed>
-</object></div>"
   end
   
 end
