@@ -6,7 +6,7 @@
 		  <li class="<%= 'selected' unless params.has_key?(:user_ids) %>">
 		    <%= link_to "Todos", relatorio_projects_path %>
 		  </li>
-		  <% User.all.each do |user| %>
+		  <% User.order('username').each do |user| %>
 		    <% a1 = params[:user_ids] || [] %>
 		    <% a2 = [user.id.to_s] %>
 		    <% new_params = (a1|a2) - (a1 & a2) %>
