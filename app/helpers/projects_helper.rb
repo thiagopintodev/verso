@@ -48,7 +48,7 @@ module ProjectsHelper
     raw [
       link_to(content, paperclip.url, :target=>'_blank'),
       link_to_function(
-                       image_tag("http://aux.iconpedia.net/uploads/1603402821514493232.png", :width=>16, :style=>"float:right"),
+                       image_play(:width=>16, :style=>"float:right"),
                        "$('#player').html( $(this).data('swf-content') );scroll(0,0);",
                        :'data-swf-content' => swf_source(paperclip)
                       )

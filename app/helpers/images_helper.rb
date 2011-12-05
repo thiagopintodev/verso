@@ -16,6 +16,10 @@ module ImagesHelper
     image_tag('verso/Capa-32.png', options)
   end
   
+  def image_play(options={})
+    image_tag('verso/Play-64.png', options)
+  end
+  
   def image_enviando
     image_tag('verso/enviando.gif', :class=>'enviando', :style=>'display:none')
   end

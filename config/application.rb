@@ -49,6 +49,6 @@ module Verso
     config.assets.enabled = true
 
     # Version of your assets, change this if you want to expire all your assets
-    config.assets.version = '1.6.6'
+    config.assets.version = '1.6.7'
   end
 end
