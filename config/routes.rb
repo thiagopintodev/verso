@@ -2,7 +2,12 @@ Verso::Application.routes.draw do
 
   get 'swf/:project_version_id/:swf_token' => "projects#swf", :as => :swf
 
-  resources :projects, :path=>'aulas'
+  resources :projects, :path=>'aulas' do
+    collection do
+      get 'relatorio',                       :action=>'relatorio', :as => 'relatorio'
+      get 'relatorio/por_usuario/:usuario', :action=>'relatorio', :as => 'relatorio_por_aluno'
+    end
+  end
   
   resources :degrees, :path=>'sumarios'
   

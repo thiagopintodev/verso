@@ -139,7 +139,17 @@ table#project_show {
 
 }
 
-
+table.verso {
+  width: 100%;
+  border:#ccc solid 1px;
+  border-width: 0 1px 1px 0;
+  td, th {
+    border:#ccc solid 1px;
+    border-width: 1px 0 0 1px;
+    padding:10px;
+    a { text-decoration:underline; }
+  }
+}
 
 
 

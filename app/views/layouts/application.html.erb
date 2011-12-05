@@ -33,13 +33,14 @@
 			<ul class="sf-menu">
         <% if current_user %>
       
-        <li><%= link_to 'aguardando enviar para o ava', projects_path(:status_revisao_texto=>Project::REVISAO_APROVADO,
-                                                                      :status_revisao_final=>Project::REVISAO_APROVADO,
-                                                                      :status_revisao_audio=>Project::REVISAO_APROVADO,
-                                                                      :status_revisao_audio=>Project::REVISAO_APROVADO,
-                                                                      :status_producao=>Project::PRODUCAO_NAO
-                                                                      ) %></li>
+        <li><%= link_to 'enviar para o ava',  projects_path(:status_revisao_texto=>Project::REVISAO_APROVADO,
+                                                            :status_revisao_final=>Project::REVISAO_APROVADO,
+                                                            :status_revisao_audio=>Project::REVISAO_APROVADO,
+                                                            :status_revisao_audio=>Project::REVISAO_APROVADO,
+                                                            :status_producao=>Project::PRODUCAO_NAO
+                                                            ) %></li>
   			<li><%= link_to 'ver todas as aulas', projects_path %></li>
+  			<li><%= link_to 'relatório', relatorio_projects_path %></li>
   			<li><%= link_to 'sumários', degrees_path %></li>
         <li><%= link_to_usuario current_user, {:style=>''} %></li>
         <li class="current"><%= link_to "Logout", logout_path %></li>

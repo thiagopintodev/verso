@@ -31,5 +31,10 @@ class UsersController < ApplicationController
   def show
     @user = params.has_key?(:id) ? User.find(params[:id])
                                  : User.u(params[:usuario])
+    unless @user
+      flash[:error] = "Usuario Nao Existe"
+      return redirect_to root_url
+    end
   end
+  
 end

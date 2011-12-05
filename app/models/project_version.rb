@@ -21,7 +21,11 @@ class ProjectVersion < ActiveRecord::Base
     [TIPOS_HASH[0], 0],
     [TIPOS_HASH[1], 1]
   ]
-                       
+                  
+  def tipo_nome
+    TIPOS_HASH[tipo]
+  end
+       
   scope :tipo_animacao, where(:tipo=>TIPO_ANIMACAO)
   scope :tipo_recurso,  where(:tipo=>TIPO_RECURSO)
   

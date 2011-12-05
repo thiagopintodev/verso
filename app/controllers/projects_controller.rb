@@ -8,6 +8,20 @@ class ProjectsController < ApplicationController
     @paperclip = v.send("swf#{params[:swf_token]}")
   end
   
+  #GET relatorio (COLLECTION)
+  def relatorio
+    @user = User.u(params[:usuario]) if params[:usuario].present?
+    
+    @pvs_by_date = {}
+    
+    project_versions = @user ? @user.project_versions.includes(:project)
+                             : ProjectVersion.includes(:project)
+    
+    project_versions.reverse.each do |v|
+      (@pvs_by_date[v.created_at.to_date] ||= []) << v
+    end
+  end
+  
   #RESOURCE
   
   def index

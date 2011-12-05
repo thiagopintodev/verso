@@ -1,3 +1,5 @@
 <%= link_to "editar meu perfil", edit_current_user_path if @user==current_user %>
 <br />
 <%= @user.u_ %>
+<br /><br />
+<%= link_to "Relatório de Aulas Enviadas", relatorio_por_aluno_projects_path(@user.username)  %>

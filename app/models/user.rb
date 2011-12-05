@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
 
   has_many :projects
+  has_many :project_versions
   has_many :reviews
   
   has_many :criou_reviews,     :class_name=>'Review', :foreign_key=>:criou_user_id
@@ -31,7 +32,7 @@ class User < ActiveRecord::Base
   end
   
   def self.u(username)
-    find_by_username(username)
+    where('lower(username) = ?', username.downcase).first
   end
 
   def u_
@@ -45,8 +46,8 @@ class User < ActiveRecord::Base
   # login can be either username or email address
   def self.authenticate(login, pass)
     return nil unless login && pass
-    user = if login.include?('@') then where('lower(email) = ?',    login.downcase).first
-                                  else where('lower(username) = ?', login.downcase).first
+    user = if login.include?('@') then where('lower(email) = ?', login.downcase).first
+                                  else u(username)
                                   end
     return user if user && user.password_hash == user.encrypt_password(pass)
   end

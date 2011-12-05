@@ -1,0 +1,67 @@
+<%= content_for :sidebar do %>
+
+  <div class="box">
+		<h2>Usuários</h2>
+		<ul class="cat">
+		  <li><%= link_to "Todos", relatorio_projects_path %></li>
+		  <% User.all.each do |user| %>
+			  <li><%= link_to user.u_, relatorio_por_aluno_projects_path(user.username) %></li>
+		  <% end %>
+		</ul>
+	</div>
+
+<% end %>
+
+<h2><%= @user.u_ rescue "Todos" %></h2>
+<br /><br />
+<table class="verso">
+  <thead>
+    <tr>
+      <th>Qtd</th>
+      <th>Data</th>
+      <th>hora</th>
+      <th>@</th>
+      <th>Aula</th>
+      <th>Versão</th>
+      <th>Tipo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% data_atual = nil %>
+    <% aula_atual = nil %>
+    <% user_atual = nil %>
+    <% @pvs_by_date.each do |date, pvs| %>
+      <% pvs.each do |v| %>
+      <tr>
+        <td>
+          <%= pvs.size unless data_atual == date %>
+        </td>
+        <td style="text-align:right">
+          <% unless data_atual == date %>
+            <%= "SAB -" if date.saturday? %>
+            <%= l date %>
+          <% end %>
+          <% data_atual = date %>
+        </td>
+        <td>
+          <%= v.created_at.strftime("%H:%M:%S") %>
+        </td>
+        <td>
+          <%= link_to v.user.u_, v.user unless user_atual == v.user %>
+          <% user_atual = v.user %>
+        </td>
+        <td>
+          <%= link_to v.project.nome_completo, v.project unless aula_atual == v.project_id %>
+          <% aula_atual = v.project_id %>
+        </td>
+        <td>
+          <b>v.<%= v.sequencia %></b>
+        </td>
+        <td>
+          <b><%= v.tipo == ProjectVersion::TIPO_ANIMACAO ? image_swf(:width=>16) : image_mp3(:width=>16) %></b>
+        </td>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
