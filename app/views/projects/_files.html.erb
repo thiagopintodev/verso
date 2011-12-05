@@ -7,6 +7,7 @@
     <table class="versoes">
       <tr>
         <td class="arquivos">
+          <%= v.conteudo_arquivos_capa if v.tipo_animacao? %>
           <%= v.conteudo_arquivos_animacao if v.tipo_animacao? %>
           <%= v.conteudo_arquivos_recurso if v.tipo_recurso? %>
         </td>
