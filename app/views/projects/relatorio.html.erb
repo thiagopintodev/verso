@@ -25,6 +25,7 @@
   <thead>
     <tr>
       <th>Qtd</th>
+      <th>Uniq</th>
       <th>Data</th>
       <th>hora</th>
       <th>@</th>
@@ -42,6 +43,9 @@
       <tr>
         <td>
           <%= pvs.size unless data_atual == date %>
+        </td>
+        <td>
+          <%= pvs.map(&:project_id).uniq.size unless data_atual == date %>
         </td>
         <td style="text-align:right">
           <% unless data_atual == date %>
