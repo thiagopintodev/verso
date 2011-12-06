@@ -10,23 +10,6 @@ class ProjectVersionDecorator < ApplicationDecorator
     ].join
   end
   
-  def conteudo_arquivos_capa
-    if new_record?
-      h.form_for model.project, :html=>{:multipart=>true, :class=>'aspire'} do |f|
-        ps = []
-        ps << f.error_messages
-        ps << h.content_tag(:p, h.myupload(f,  :capa, h.image_img, "Capa *.JPG"))
-        ps << h.content_tag(:div, :class=>'direita', :style=>'margin-bottom:100px') do
-                h.raw [
-                  h.image_enviando,
-                  h.submit_tag("Cadastrar Animacoes", :class=>"button", :confirm => "Tem Certeza?")
-                ].join
-              end
-        h.raw ps.join
-      end
-    end
-  end
-  
   def conteudo_arquivos_animacao
     if new_record?
       h.form_for model.project, :html=>{:multipart=>true, :class=>'aspire'} do |f|

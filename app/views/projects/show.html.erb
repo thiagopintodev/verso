@@ -3,6 +3,8 @@
   $( "#tabs" ).tabs();
   
   $("form").submit(function(){
+    $(".form-holder").hide();
+    $(this).closest('.form-holder').show();
     $("input:submit").hide();
     $(".enviando").fadeIn(1200);
   });

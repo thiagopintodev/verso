@@ -1,23 +1,42 @@
-
+<div class="form-holder">
+<h2>Capa</h2>
+<table class="versoes">
+  <tr>
+    <td class="arquivos">
+      <%= form_for @project, :html=>{:multipart=>true, :class=>'aspire'} do |f| %>
+        <%= f.error_messages %>
+        <%= content_tag(:p, myupload(f, :capa, image_img, "Capa *.JPG")) %>
+        <%= f.error_messages %>
+        <%= content_tag :div, :class=>'direita' do %>
+          <%= image_enviando %>
+          <%= submit_tag("Cadastrar Apenas a Capa", :class=>"button", :confirm => "Tem Certeza?") %>
+        <% end %>
+      <% end %>
+    </td>
+  </tr>
+</table>
+<h2 class="rodape"></h2>
+</div>
 
 <% @project.versions.each do |v|  %>
   <% if v.new_record? %>
   <% v = ProjectVersionDecorator.new v %>
+    <div class="form-holder">
     <h2>Cadastro</h2>
     <table class="versoes">
       <tr>
         <td class="arquivos">
-          <%= v.conteudo_arquivos_capa if v.tipo_animacao? %>
           <%= v.conteudo_arquivos_animacao if v.tipo_animacao? %>
           <%= v.conteudo_arquivos_recurso if v.tipo_recurso? %>
         </td>
       </tr>
     </table>
     <h2 class="rodape"></h2>
+    </div>
   <% end %>
 <% end %>
 
-
+<div class="form-holder">
 <h2>Arquivos</h2>
   
 <table class="versoes">
@@ -39,3 +58,4 @@
   <% end %>
 </table>
 <h2 class="rodape"></h2>
+</div>
