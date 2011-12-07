@@ -55,7 +55,7 @@
           <% user_atual = v.user %>
         </td>
         <td>
-          <%= link_to v.project.nome_completo, v.project unless aula_atual == v.project_id %>
+          <%= link_to raw(v.project.nome_completo.split(',').join('<br />')), v.project unless aula_atual == v.project_id %>
           <% aula_atual = v.project_id %>
         </td>
         <td>
