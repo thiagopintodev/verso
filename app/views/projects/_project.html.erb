@@ -129,14 +129,10 @@
   <% end %>
   
 </table>
-
-<% if @project.revisado? %>
-  <div style="text-align:right;">
-    <%= form_for @project do |f| %>
-      <%= select :project, :status_producao, Project::PRODUCAO_ARRAY, {}, :style=>'padding:8px' %>
-      <%= button_tag "Salvar", :style=>'padding:5px' %>
-    <% end %>
-  </div>
-<% else %>
-  <h3 style='color:green'>Conclua as revisões antes de cadastrar a aula no Ava.</h3>
-<% end %>
+<br /><br />
+<div style="text-align:right;">
+  <%= form_for @project do |f| %>
+    <%= select :project, :status_producao, Project::PRODUCAO_ARRAY, {}, :style=>'padding:8px' %>
+    <%= button_tag "Salvar", :style=>'padding:5px' %>
+  <% end %>
+</div>

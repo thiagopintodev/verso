@@ -81,7 +81,7 @@ class Project < ActiveRecord::Base
     PRODUCAO_HASH[status_producao]
   end
   
-  #passou pelas 3 revisoes?
+  #passou pelas 4 revisoes?
   def revisado?
     REVISAO_APROVADO == status_revisao_texto &&
     REVISAO_APROVADO == status_revisao_audio &&
