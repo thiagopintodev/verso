@@ -7,12 +7,7 @@
 		    <%= link_to "Todos", relatorio_projects_path %>
 		  </li>
 		  <% User.order('username').each do |user| %>
-		    <% a1 = params[:user_ids] || [] %>
-		    <% a2 = [user.id.to_s] %>
-		    <% new_params = (a1|a2) - (a1 & a2) %>
-		    <% css = 'selected' if a1.include?(user.id.to_s) %>
-		    <% url = relatorio_projects_path(:user_ids => new_params) %>
-			  <%= content_tag :li, link_to(user.u_, url), :class=>css %>
+		    <%= li_filtro_relatorio_uploads(user) %>
 		  <% end %>
 		</ul>
 	</div>

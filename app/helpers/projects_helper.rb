@@ -22,6 +22,24 @@ module ProjectsHelper
     end
   end
   
+  def li_filtro_relatorio_uploads(user)
+    a1 = params[:user_ids] || []
+    a2 = [user.id.to_s]
+    new_params = (a1|a2) - (a1 & a2)
+    css = 'selected' if a1.include?(user.id.to_s)
+    url = relatorio_projects_path(:user_ids => new_params)
+    q2 = user.project_versions.count
+    if (q2.zero?)
+      txt = user.u_
+      title = "este usuario nao cadastra aulas"
+    else
+      q1 = user.project_versions.select('distinct project_id').count
+      txt = "#{user.u_} (#{q1} / #{q2})"
+      title = "#{user.u_} interagiu com #{q1} aulas, totalizando #{q2} uploads"
+    end
+    content_tag :li, link_to(txt, url, :title=>title), :class=>css
+  end
+  
   def myfile(img_html, paperclip, url=nil)
     return unless paperclip.present?
     url ||= paperclip.url
