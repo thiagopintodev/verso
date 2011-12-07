@@ -1,3 +1,4 @@
+<% if current_user.is_cadastrador? %>
 <div class="form-holder">
 <h2>Capa</h2>
 <table class="versoes">
@@ -17,6 +18,7 @@
 </table>
 <h2 class="rodape"></h2>
 </div>
+<% end %>
 
 <% @project.versions.each do |v|  %>
   <% if v.new_record? %>
