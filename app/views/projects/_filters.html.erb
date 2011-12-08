@@ -80,15 +80,6 @@
 				</ul>
 			</div>
 			
-		  <div class="box">
-				<h2>Numeros</h2>
-				<ul class="cat">
-          <%= li_filtro(:numero, nil, "Todas") %>
-          <% Project::AULAS.each do |numero| %>
-            <%= li_filtro(:numero, numero.to_s, "#{numero}a Aula", Project.cached_group_numero[numero]) %>
-          <% end %>
-				</ul>
-			</div>
 			
 			
 		  <div class="box">
