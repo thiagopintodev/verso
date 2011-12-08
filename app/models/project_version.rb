@@ -90,8 +90,10 @@ class ProjectVersion < ActiveRecord::Base
   after_destroy :update_counter_cache
   
   def update_counter_cache
-    self.project.project_animations_count = self.project.animations.count
-    self.project.project_resources_count  = self.project.resources.count
-    self.project.save
+    if self.project.present?
+      self.project.project_animations_count = self.project.animations.count
+      self.project.project_resources_count  = self.project.resources.count
+      self.project.save
+    end
   end
 end
