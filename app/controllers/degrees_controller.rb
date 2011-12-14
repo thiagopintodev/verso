@@ -1,4 +1,6 @@
 class DegreesController < ApplicationController
+  before_filter :login_required
+  
   # GET /degrees
   # GET /degrees.json
   def index
