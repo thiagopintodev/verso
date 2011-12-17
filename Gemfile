@@ -9,7 +9,6 @@ gem 'sqlite3'
 gem 'paperclip'
 gem 'nifty-generators'
 gem 'haml'
-gem 'thin'
 gem 'colorize'
 gem 'newrelic_rpm'
 gem 'kaminari'
@@ -45,7 +44,7 @@ group :test do
 end
 group :development, :test do
   gem 'rspec-rails'
-  gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
+  gem 'capybara'
   gem 'fabrication'
   gem 'launchy'
   gem 'database_cleaner'
