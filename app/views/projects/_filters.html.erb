@@ -2,6 +2,12 @@
 			<!-- Filtros -->
 			
 		  <div class="box">
+				<ul class="cat">
+  			  <li><%= link_to "Limpar Filtros", projects_path(:limpar_filtro=>1) %></li>
+				</ul>
+			</div>
+			
+		  <div class="box">
 				<h2>Filtros</h2>
 				<ul class="cat">
 				  <% q_todas = Project.cached_quantidade %>

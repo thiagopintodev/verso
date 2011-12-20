@@ -39,7 +39,6 @@
                                                             :status_revisao_audio=>Project::REVISAO_APROVADO,
                                                             :status_producao=>Project::PRODUCAO_NAO
                                                             ) %></li>
-  			<li><%= link_to 'ver todas as aulas', projects_path %></li>
   			<li><%= link_to 'relatório', relatorio_projects_path %></li>
   			<li><%= link_to 'sumários', degrees_path %></li>
         <li><%= link_to_usuario current_user, {:style=>''} %></li>
@@ -80,6 +79,8 @@
   	<br class="clear" />
   	<h2>params</h2>
 	  <%= params %>
+  	<h2>session</h2>
+	  <%= session %>
 	<% end %>
 	
 	

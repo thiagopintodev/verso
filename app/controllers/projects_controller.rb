@@ -22,20 +22,24 @@ class ProjectsController < ApplicationController
   #RESOURCE
   
   def index
+    #puts params[:filtros]#.symbolize_keys
+    #filtros_merge params[:filtros]
+    filtros.clear if params[:limpar_filtro]
+    filtros.merge! params[:filtros] if params[:filtros]
     @projects = Project.includes(:subject, :degree)
-    @projects = @projects.versionadas if params[:versioned].present?
-    @projects = @projects.sem_animacoes if params[:with_animations]=="1"
-    @projects = @projects.com_animacoes if params[:with_animations]=="2"
-    @projects = @projects.sem_recursos if params[:with_resources]=="1"
-    @projects = @projects.com_recursos if params[:with_resources]=="2"
-    @projects = @projects.where(:subject_id=>params[:subject]) if params[:subject]
-    @projects = @projects.where(:degree_id=>params[:degree])   if params[:degree]
-    @projects = @projects.where(:numero=>params[:numero])      if params[:numero]
-    @projects = @projects.where(:status_revisao_texto=>params[:status_revisao_texto])  if params[:status_revisao_texto]
-    @projects = @projects.where(:status_revisao_final=>params[:status_revisao_final])  if params[:status_revisao_final]
-    @projects = @projects.where(:status_revisao_audio=>params[:status_revisao_audio])  if params[:status_revisao_audio]
-    @projects = @projects.where(:status_revisao_metodo=>params[:status_revisao_metodo])  if params[:status_revisao_metodo]
-    @projects = @projects.where(:status_producao=>params[:status_producao])  if params[:status_producao]
+    @projects = @projects.versionadas   if filtros['versioned'].present?
+    @projects = @projects.sem_animacoes if filtros['with_animations']=="1"
+    @projects = @projects.com_animacoes if filtros['with_animations']=="2"
+    @projects = @projects.sem_recursos if filtros['with_resources']=="1"
+    @projects = @projects.com_recursos if filtros['with_resources']=="2"
+    @projects = @projects.where(:subject_id=>filtros['subject']) if filtros['subject']
+    @projects = @projects.where(:degree_id=>filtros['degree'])   if filtros['degree']
+    @projects = @projects.where(:numero=>filtros['numero'])      if filtros['numero']
+    @projects = @projects.where(:status_revisao_texto=>filtros['status_revisao_texto'])    if filtros['status_revisao_texto']
+    @projects = @projects.where(:status_revisao_final=>filtros['status_revisao_final'])    if filtros['status_revisao_final']
+    @projects = @projects.where(:status_revisao_audio=>filtros['status_revisao_audio'])    if filtros['status_revisao_audio']
+    @projects = @projects.where(:status_revisao_metodo=>filtros['status_revisao_metodo'])  if filtros['status_revisao_metodo']
+    @projects = @projects.where(:status_producao=>filtros['status_producao'])              if filtros['status_producao']
     @projects_count = @projects.count
     @projects = @projects.page(params[:page]).per(21)
   end

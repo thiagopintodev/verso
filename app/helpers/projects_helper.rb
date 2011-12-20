@@ -1,14 +1,16 @@
 module ProjectsHelper
 
   def projects_filter_path(options={})
-    params.merge(options).merge({:action=>'index', :id=>nil})
+    #params.merge(options).merge({:action=>'index', :id=>nil})
+    projects_path(:filtros=>options)
   end
   
   def li_my_options(key, valor_esperado)
+    key = key.to_s
     if valor_esperado.nil?
-      return unless params[key].nil?
+      return unless filtros[key].nil?
     else
-      return unless valor_esperado == params[key]
+      return unless valor_esperado == filtros[key]
     end
     {:class=>'selected'}
   end
