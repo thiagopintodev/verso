@@ -64,11 +64,13 @@ module ProjectsHelper
   
   def myfile_swf(paperclip, swf_path)
     return unless paperclip.present?
-    content = raw("#{image_swf(:width=>16)} #{paperclip.original_filename} (#{number_to_human_size(paperclip.size)})")
-    raw [
-      link_to(content, paperclip.url, :target=>'_blank'),
-      link_to(image_play(:width=>16, :style=>"float:right"), swf_path, :target=>'_blank')
-    ].join
+    raw (
+      content_tag(:span, "#{paperclip.original_filename} (#{number_to_human_size(paperclip.size)})", :style=>'font-size:10px;') +
+      link_to(image_play(:width=>16, :style=>"float:right"), swf_path, :target=>'_blank') +
+      link_to(image_swf(:width=>16, :style=>"float:right;margin-right:16px;"), paperclip.url, :target=>'_blank')
+    )
+    
+    
   end
   
 end
